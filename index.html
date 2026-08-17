@@ -3,7 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gabriela César — Product Designer Portfolio</title>
+<title>Gabriela César — Design Lead &amp; UX Strategist</title>
+
+<!-- ============ SEO + OPEN GRAPH (LinkedIn, WhatsApp, Slack) ============ -->
+
+<!-- SEO básico -->
+<meta name="description" content="Design Lead and UX Strategist with 16+ years of experience. Specialized in design leadership, DesignOps, team development, and UX strategy for complex B2B products.">
+<meta name="author" content="Gabriela César">
+
+<!-- Open Graph — controla o card de preview ao colar o link -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gabrielacesar.github.io/portfolio/">
+<meta property="og:title" content="Gabriela César — Design Lead &amp; UX Strategist">
+<meta property="og:description" content="Design Lead and UX Strategist with 16+ years of experience. Specialized in design leadership, DesignOps, team development, and UX strategy for complex B2B products.">
+<meta property="og:image" content="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Gabriela César Portfolio">
+
+<!-- Twitter/X Card (funciona também no iMessage e outros) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gabriela César — Design Lead &amp; UX Strategist">
+<meta name="twitter:description" content="Design Lead and UX Strategist with 16+ years of experience. Specialized in design leadership, DesignOps, team development, and UX strategy for complex B2B products.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/og-cover.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Karla:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -80,7 +104,9 @@
   }
 
   *{ box-sizing: border-box; }
-  html{ scroll-behavior: smooth; overflow-x: hidden; }
+  html{ scroll-behavior: smooth; }
+  /* NOTE: overflow-x:hidden must NOT be set on html — it kills position:sticky.
+     overflow-x is set on body only, which is sufficient to clip horizontal overflow. */
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior: auto; }
     *, *::before, *::after{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
@@ -117,8 +143,8 @@
     text-decoration: underline; /* links always distinguishable by more than color */
   }
 
-  /* Suppress outline on programmatic focus (tabindex="-1") — not triggered by user keyboard interaction,
-     so no WCAG violation. Keyboard focus remains visible via :focus-visible below. */
+  /* Suppress outline on programmatic focus (e.g. heading.focus() on page render).
+     Only :focus-visible — initiated by the user — should show the ring. */
   [tabindex="-1"]:focus{ outline: none; }
 
   /* Visible, high-contrast focus indicator everywhere (WCAG 2.4.11/12 AAA) */
@@ -567,6 +593,44 @@
   }
 
   .case-end-nav{ display:flex; flex-wrap:wrap; gap: var(--space-md); margin-top: var(--space-xl); padding-top: var(--space-lg); border-top: var(--border-width) solid var(--border-soft); }
+
+  /* ============ BENCHMARKING CARDS (replaces horizontal-scroll table) ============ */
+  .bench-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: var(--space-md);
+    margin: var(--space-md) 0;
+  }
+  .bench-card{
+    background: var(--bg-blue);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    border: var(--border-width) solid var(--border-soft);
+  }
+  .bench-app{
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-size-base);
+    color: var(--text-maroon);
+    margin: 0 0 var(--space-sm) 0;
+  }
+  .bench-maker{
+    display: block;
+    font-family: var(--font-tag);
+    font-weight: var(--weight-regular);
+    font-size: var(--text-size-xs);
+    letter-spacing: 0.06em;
+    color: var(--text-dark);
+    opacity: 0.7;
+  }
+  .bench-findings{
+    margin: 0;
+    padding-left: 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  .bench-findings li{ margin: 0; }
 </style>
 </head>
 <body>
@@ -648,6 +712,11 @@
         <p class="section-intro">Selected projects showcasing how I balance business goals and user needs through structured design methodologies.</p>
 
         <div class="mini-card-row" role="list">
+          <a class="mini-card" href="javascript:void(0)" data-nav="case-acssus" role="listitem">
+            <span class="mini-card-year">2026</span>
+            <h3 class="mini-card-title">ACSSUS — Social Impact E-commerce for Handcrafted Jewelry</h3>
+            <span class="mini-card-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
           <a class="mini-card" href="javascript:void(0)" data-nav="case-transfer" role="listitem">
             <span class="mini-card-year">2026</span>
             <h3 class="mini-card-title">Transfer Analysis Portal</h3>
@@ -894,16 +963,13 @@
 
     <div class="wrap case-body">
 
-      
-
       <section class="case-section">
-        <h2>📖 Background</h2>
-        <p>YouTuber Luccas Neto hired 01 Digital to build his first app entirely from scratch! At the time (2019–20), YouTube had just changed its monetization policy for children's videos, impacting the creator and his sources of income. As a result, Luccas sought to expand his product lineup by investing in a dedicated app.</p>
+        <h2>📋 Executive Summary</h2>
+        <p>01 Digital was hired by YouTuber Luccas Neto to design his first app from scratch. Faced with YouTube's changing monetization policies for children's content, the client sought to diversify his revenue streams. The project followed a full discovery-to-delivery process — from user research with children and guardians, through ideation workshops, rapid prototyping, and usability testing — resulting in an app that surpassed 600,000 downloads in its first month on the market.</p>
       </section>
 
       <section class="case-section">
         <h2>🧑‍🤝‍🧑 Design Team</h2>
-        
         <ul class="case-list">
           <li>Design Lead • André Roberti</li>
           <li>UX Designer and Researcher • Gabriela Cesar</li>
@@ -912,6 +978,11 @@
           <li>UI Designer and Illustrations • Juliana Iasi</li>
           <li>Design Assistant • Renata Caldas</li>
         </ul>
+      </section>
+
+      <section class="case-section">
+        <h2>📖 Background</h2>
+        <p>YouTuber Luccas Neto hired 01 Digital to build his first app entirely from scratch! At the time (2019–20), YouTube had just changed its monetization policy for children's videos, impacting the creator and his sources of income. As a result, Luccas sought to expand his product lineup by investing in a dedicated app.</p>
       </section>
 
       <section class="case-section">
@@ -937,7 +1008,7 @@
         <p class="case-lede">How we began to understand which of people's problems the app could address</p>
 
         <h3>Needs Assessment</h3>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-01.png" alt="Screenshot of YouTube comments from children expressing affection for Luccas Neto, used as research input" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-01.png" alt="Screenshot of YouTube comments from children expressing affection for Luccas Neto, used as research input" loading="lazy"></figure>
         <p>We analyzed hundreds of comments posted on Luccas Neto's YouTube channel, and after careful analysis, we identified some key needs:</p>
         <ul class="case-list">
           <li>closer contact with Luccas, to receive individual attention</li>
@@ -947,32 +1018,52 @@
         <p>However, no business can sustain itself by merely addressing the customer's needs alone. Therefore, we moved on to a phase of understanding the needs not only of the customer but also of secondary users (guardians, for example) and the available technology.</p>
 
         <h3>Product Requirements</h3>
-        
-        <ul class="case-list">
-          <li>Consider the creator economy as a business requirement</li>
-          <li>Unity development for quicker deployment</li>
-          <li>Parents must be able to control what the children access</li>
-          <li>Audience: children from 3 to 11 years old</li>
+        <ul class="achv-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            <p>Consider the creator economy as a business requirement</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <p>Unity development for quicker deployment</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <p>Parents must be able to control what the children access</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            <p>Audience: children from 3 to 11 years old</p>
+          </li>
         </ul>
         <p>Since this is a children's app, it needed to cater to two distinct audiences, each with its own characteristics.</p>
         <p><strong>Adults (guardians)</strong>, who seek: control over the content viewed; trust in the technology; a safe and customizable environment. Source: previous research on the Masha and the Bear app.</p>
         <p><strong>Children (users)</strong> belonging to the following audiences: from the YouTube channel (ages 3–11); already consume Luccas Neto's content; use other mobile apps and games.</p>
         <p>In addition, we also identified the following requirements that the product must meet:</p>
-        <ul class="case-list">
-          <li>💰 Client: have its own monetization platform</li>
-          <li>🧑🏾‍💻 Technical: an app developed in Unity to enable scalable game implementation</li>
-          <li>🔠 Accessibility: cater to children at different stages of literacy</li>
+        <ul class="achv-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p><strong>Client:</strong> have its own monetization platform</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <p><strong>Technical:</strong> an app developed in Unity to enable scalable game implementation</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <p><strong>Accessibility:</strong> cater to children at different stages of literacy</p>
+          </li>
         </ul>
 
         <h3>Ideation</h3>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-03.png" alt="Photo of the team's ideation workshop with sticky notes on a wall, captioned: Yes, UX Designers are the driving force of the post-it industry" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-03.png" alt="Photo of the team's ideation workshop with sticky notes on a wall, captioned: Yes, UX Designers are the driving force of the post-it industry" loading="lazy"></figure>
         <p>The 01 Digital design team brought together representatives from various business and technology areas to brainstorm which product features could be created to meet the needs of its users. The ideation process took place in three stages:</p>
         <ul class="case-list">
           <li><strong>Crazy 8</strong> – a workshop tool that allowed the team to generate as many ideas as possible within a limited timeframe.</li>
           <li><strong>Clustering</strong> – grouping proposals into categories based on similarity</li>
           <li><strong>Value vs. Complexity Matrix</strong> – categorizing features based on ease of implementation and value delivered to the end user</li>
         </ul>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_Untitled.png" alt="Diagram mapping ideation outputs to onboarding, avatar and game world, and community engagement features" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_Untitled.png" alt="Diagram mapping ideation outputs to onboarding, avatar and game world, and community engagement features" loading="lazy"></figure>
         <p>The ideas selected to move on to the next stage (prototyping) had to be directly related to addressing the user needs identified earlier.</p>
         <p>The collaborative ideation session also allowed the various departments at 01 Digital to articulate their needs and goals regarding the app, as well as to voice their limitations and concerns. It was an excellent opportunity for everyone to take ownership of the project and for us to better understand the internal stakeholders' expectations for the product.</p>
 
@@ -981,52 +1072,99 @@
         <p>In addition to the ideation phase, before moving on to the final solution, it was important to research the market for children's games and apps that address similar problems, even if they target different audiences.</p>
 
         <h4>Benchmarking Results</h4>
-        <div class="table-scroll">
-        <table class="case-table">
-          <thead><tr><th>App</th><th>Main findings</th></tr></thead>
-          <tbody>
-            <tr><td>DC Super Hero Girls Blitz (Budge)</td><td><strong>Adventure World Immersion</strong> — A game-like visual experience applied even to routine tasks — navigating app sections and completing control activities feels like gameplay.<br><br><strong>Infinite Explorable Environment</strong> — An open-ended world design that leaves room for future updates, seasonal content, and special decorations unlocked through achievements or easter eggs.</td></tr>
-            <tr><td>PK XD (Playkids)</td><td><strong>Multi-purpose Avatar</strong> — The avatar serves multiple functions within the interface: representing the player during activities, enabling communication with other users, and powering an in-app coin economy.<br><br><strong>Character Empathy as Motivation</strong> — Emotional connection to the characters sparks children's desire to become adventurers themselves. Previous research showed kids already identify their character's color, power, and custom outfit preferences.</td></tr>
-            <tr><td>Brawl Stars (Supercell)</td><td><strong>In-app Purchases via Earned Currency</strong> — Certain app content (videos, avatar items, in-game resources such as hints) can be purchased using coins earned through gameplay — keeping spending tied to effort.<br><br><strong>Achievement System</strong> — Achievements are merit-based rewards granted when players reach a milestone within the app. Upon completion, new items are unlocked or players receive coin rewards.</td></tr>
-            <tr><td>Cube Escape (Rusty Lake)</td><td><strong>Mystery-driven Exploration</strong> — Players are encouraged to explore an enigmatic environment, discovering items that help them progress — driving curiosity and continued engagement.<br><br><strong>Luccas Neto Universe Integration</strong> — Opportunity to incorporate characters and villains from the Luccas Neto franchise, deepening brand connection.<br><br><strong>Escape Room Adventure Format</strong> — The escape room mechanic is a natural fit — Luccas Neto has already explored this format in his YouTube content (e.g., the "Trapped in the Toy Room" video), giving it built-in recognition with the audience.</td></tr>
-            <tr><td>LinkedIn reactions (LinkedIn)</td><td><strong>Emotional Reactions to Videos</strong> — Beyond watching, children can express how a video made them feel and view other users' reactions — adding a social and emotional layer to content consumption.<br><br><strong>Mood-based Video Discovery</strong> — Video ratings feed into personalized search filters (e.g., videos to laugh to, music videos), helping kids find content that matches their current mood.</td></tr>
-            <tr><td>BTS World (Netmarble)</td><td><strong>Simulated Call Interface</strong> — The app mimics a phone call UI, creating the feeling that Luccas is speaking directly to the child — a parasocial interaction made interactive.<br><br><strong>Native Creator Voice</strong> — Luccas Neto already uses a direct, child-facing communication style in his YouTube videos, making the transition to in-app interaction feel authentic and familiar.</td></tr>
-          </tbody>
-        </table>
+        <div class="bench-grid">
+          <div class="bench-card">
+            <p class="bench-app">DC Super Hero Girls Blitz <span class="bench-maker">Budge</span></p>
+            <ul class="bench-findings">
+              <li><strong>Adventure World Immersion</strong> — A game-like visual experience applied even to routine tasks — navigating app sections and completing control activities feels like gameplay.</li>
+              <li><strong>Infinite Explorable Environment</strong> — An open-ended world design that leaves room for future updates, seasonal content, and special decorations unlocked through achievements or easter eggs.</li>
+            </ul>
+          </div>
+          <div class="bench-card">
+            <p class="bench-app">PK XD <span class="bench-maker">Playkids</span></p>
+            <ul class="bench-findings">
+              <li><strong>Multi-purpose Avatar</strong> — The avatar serves multiple functions within the interface: representing the player during activities, enabling communication with other users, and powering an in-app coin economy.</li>
+              <li><strong>Character Empathy as Motivation</strong> — Emotional connection to the characters sparks children's desire to become adventurers themselves. Previous research showed kids already identify their character's color, power, and custom outfit preferences.</li>
+            </ul>
+          </div>
+          <div class="bench-card">
+            <p class="bench-app">Brawl Stars <span class="bench-maker">Supercell</span></p>
+            <ul class="bench-findings">
+              <li><strong>In-app Purchases via Earned Currency</strong> — Certain app content (videos, avatar items, in-game resources such as hints) can be purchased using coins earned through gameplay — keeping spending tied to effort.</li>
+              <li><strong>Achievement System</strong> — Achievements are merit-based rewards granted when players reach a milestone within the app. Upon completion, new items are unlocked or players receive coin rewards.</li>
+            </ul>
+          </div>
+          <div class="bench-card">
+            <p class="bench-app">Cube Escape <span class="bench-maker">Rusty Lake</span></p>
+            <ul class="bench-findings">
+              <li><strong>Mystery-driven Exploration</strong> — Players are encouraged to explore an enigmatic environment, discovering items that help them progress — driving curiosity and continued engagement.</li>
+              <li><strong>Luccas Neto Universe Integration</strong> — Opportunity to incorporate characters and villains from the Luccas Neto franchise, deepening brand connection.</li>
+              <li><strong>Escape Room Adventure Format</strong> — The escape room mechanic is a natural fit — Luccas Neto has already explored this format in his YouTube content (e.g., the "Trapped in the Toy Room" video), giving it built-in recognition with the audience.</li>
+            </ul>
+          </div>
+          <div class="bench-card">
+            <p class="bench-app">LinkedIn Reactions <span class="bench-maker">LinkedIn</span></p>
+            <ul class="bench-findings">
+              <li><strong>Emotional Reactions to Videos</strong> — Beyond watching, children can express how a video made them feel and view other users' reactions — adding a social and emotional layer to content consumption.</li>
+              <li><strong>Mood-based Video Discovery</strong> — Video ratings feed into personalized search filters (e.g., videos to laugh to, music videos), helping kids find content that matches their current mood.</li>
+            </ul>
+          </div>
+          <div class="bench-card">
+            <p class="bench-app">BTS World <span class="bench-maker">Netmarble</span></p>
+            <ul class="bench-findings">
+              <li><strong>Simulated Call Interface</strong> — The app mimics a phone call UI, creating the feeling that Luccas is speaking directly to the child — a parasocial interaction made interactive.</li>
+              <li><strong>Native Creator Voice</strong> — Luccas Neto already uses a direct, child-facing communication style in his YouTube videos, making the transition to in-app interaction feel authentic and familiar.</li>
+            </ul>
+          </div>
         </div>
       </section>
 
       <section class="case-section">
         <h2>🧪 Prototyping</h2>
         <p class="case-lede">Time to roll up our sleeves and put the product to the test!</p>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-05.png" alt="Overview of MVP prototyping strategies across features" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-05.png" alt="Overview of MVP prototyping strategies across features" loading="lazy"></figure>
         <p>To optimize our time, we then set out to define an MVP that would allow the product to deliver value with minimal technical effort. After agreeing with the client (Luccas Neto) on the scope of features to be active at the app's launch, we began planning the prototyping and testing phases.</p>
         <p>To test the MVP concepts, the team devised several strategies to conduct the tests as quickly as possible and with the least possible use of resources:</p>
-        <ul class="case-list">
-          <li><strong>Avatar:</strong> paper dolls.</li>
-          <li><strong>Interaction with Luccas:</strong> a paper letter for children to write.</li>
-          <li><strong>Super Player:</strong> a simple HTML version.</li>
-          <li><strong>Escape Room:</strong> a navigable prototype of the game in Figma.</li>
-          <li><strong>Profile (Achievements) and Signature:</strong> static wireframe in Figma.</li>
+        <ul class="achv-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+            <p><strong>Avatar:</strong> paper dolls.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <p><strong>Interaction with Luccas:</strong> a paper letter for children to write.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            <p><strong>Super Player:</strong> a simple HTML version.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+            <p><strong>Escape Room:</strong> a navigable prototype of the game in Figma.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <p><strong>Profile (Achievements) and Signature:</strong> static wireframe in Figma.</p>
+          </li>
         </ul>
         <p>In a pre-pandemic context (late 2019), we conducted in-person testing at 01 Digital's headquarters with children aged 5 to 9 who are fans of Luccas Neto, accompanied by their guardians.</p>
 
         <h3>Concept Test</h3>
         <h4>Avatar</h4>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-06.png" alt="Paper doll prototype used to test avatar color and customization concepts with children" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-06.png" alt="Paper doll prototype used to test avatar color and customization concepts with children" loading="lazy"></figure>
         <p>The children experimented with colors on a paper doll. They see themselves as Adventurers—they already know their power, color, and even their "transformation"! In addition, they wrote briefly about their favorite videos and what message they'd like to send to their idol, Luccas Neto.</p>
 
         <h4>Super Player</h4>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-07.png" alt="Medium-fidelity HTML prototype of the Super Player video player with real-time reactions" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-07.png" alt="Medium-fidelity HTML prototype of the Super Player video player with real-time reactions" loading="lazy"></figure>
         <p>Using a medium-fidelity prototype (HTML), we were able to simulate the Super Player feature (a video player with real-time reactions). The children show their reactions to the videos, customizing their experience in the app—comedy (funny), scare, etc.</p>
 
         <h4>Escape Room Game</h4>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-08.png" alt="Medium-fidelity Figma prototype of the navigable Escape Room game" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-08.png" alt="Medium-fidelity Figma prototype of the navigable Escape Room game" loading="lazy"></figure>
         <p>Using a medium-fidelity prototype (Figma), we were able to simulate the Escape Room game. The children really loved the game! They thought it was fun that the "reactions" to the objects in the room were "narrated" by Luccas.</p>
         <p class="case-callout"><strong>Point to Note:</strong> Children of literacy age rely exclusively on icons and audio: the final version of the game must be accessible to this audience.</p>
 
         <h4>In-Game Economy</h4>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-09.png" alt="Low-fidelity Figma prototype of the Achievements and in-app economy features" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-09.png" alt="Low-fidelity Figma prototype of the Achievements and in-app economy features" loading="lazy"></figure>
         <p>Using a low-fidelity prototype (Figma), we were able to assess how children and their mothers perceived the app's Achievements and economy features. The use of coins and the acquisition of new items serve as a constant incentive and challenge to keep children engaged.</p>
         <p>When asked, the mothers reported that the Premium mode seems advantageous because of the extra coins, but that they would initially use the free mode to test the app. They also mentioned that the presence of ads in the videos isn't a problem, since the children are already used to them.</p>
 
@@ -1035,17 +1173,17 @@
         <p>After the tests of the main features with the children yielded mostly very positive results, we moved on to the app's first UI and client approval. In this stage, we demonstrated the app's most important workflows in a simplified manner.</p>
 
         <h4>Onboarding</h4>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-11.png" alt="UI mockup of the onboarding flow featuring a simulated video call from Luccas Neto" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-11.png" alt="UI mockup of the onboarding flow featuring a simulated video call from Luccas Neto" loading="lazy"></figure>
         <p>After the splash screen, the child is directed to a video featuring a mockup UI of a call from Luccas speaking directly to them in a landscape video. Suggested maximum duration: 1 minute.</p>
         <p>After that, the app's control panel will be "turned off" until the child chooses one of the new Power Stones and begins to customize their experience.</p>
 
         <h4>Avatar</h4>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-12.png" alt="UI mockup of the Avatar customization screen with accessories and Power Stones" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-12.png" alt="UI mockup of the Avatar customization screen with accessories and Power Stones" loading="lazy"></figure>
         <p>With the control panel "activated," it's time to customize your adventurer and start exploring the LuccasToon app! Customization options include accessories and special items unlocked through Achievements. The child can acquire items using coins, by watching ads, or through purchases in the App Stores.</p>
         <p>Selling outfits for the avatar was a completely new monetization model for 01 Digital at the time.</p>
 
         <h4>Home and Videos</h4>
-        <div class="case-fig-grid case-fig-grid--2"><figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-13.png" alt="UI mockup of the app home screen with games, profile, and videos" loading="lazy"></figure><figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-14.png" alt="UI mockup of the video browsing and search screen" loading="lazy"></figure></div>
+        <div class="case-fig-grid case-fig-grid--2"><figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-13.png" alt="UI mockup of the app home screen with games, profile, and videos" loading="lazy"></figure><figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-14.png" alt="UI mockup of the video browsing and search screen" loading="lazy"></figure></div>
         <p>On the app's home screen, children can choose between games, view their profile, and watch videos. All of this is done in a playful way, without losing sight of the goal of showcasing the app's features. Among the videos, children can choose their favorite type or search for ones they want to watch again.</p>
         <p>Once the research and approval stages with the client are complete, the app moves on to the UI design for all the flows to be included in the launch version and code implementation by the developers.</p>
       </section>
@@ -1059,26 +1197,26 @@
         <p>Due to the COVID-19 pandemic, testing for this phase was conducted 100% remotely using the Lookback tool.</p>
 
         <h3>Key results from the pre-launch test</h3>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-16.png" alt="Overview graphic introducing the key results from the pre-launch beta test" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-16.png" alt="Overview graphic introducing the key results from the pre-launch beta test" loading="lazy"></figure>
 
         <h4>Onboarding</h4>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-17.png" alt="Child reacting to the onboarding video call from Luccas Neto during beta testing" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-17.png" alt="Child reacting to the onboarding video call from Luccas Neto during beta testing" loading="lazy"></figure>
         <p>The younger children were very excited because they thought it was a real call from Luccas Neto. All children: extremely positive reaction. They retain the information Luccas shared (they pay close attention). Potential opportunity for future videos introducing app features or campaigns.</p>
 
         <h4>Videos</h4>
         <p>Use of horizontal navigation to search for videos. Children did not use the "My Videos" tab. Search optimization: Children use it as if it were the YouTube search (they typed "Luccas Neto," for example). They didn't use Reacts spontaneously, but reacted positively when asked to try them.</p>
 
         <h4>Avatar</h4>
-        <div class="case-fig-grid "><figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-18%201.png" alt="Beta test results for the Avatar section, screen 2" loading="lazy"></figure></div>
+        <div class="case-fig-grid "><figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-18%201.png" alt="Beta test results for the Avatar section, screen 2" loading="lazy"></figure></div>
         <p>Main uses: creating characters that already exist in the Luccas Toon universe, and creating a version of themselves in the app. Difficulty selecting clothing colors (touch area) and removing accessories. The share button was not identified. Switching stones: the flow is not very intuitive, except when the child is already navigating within the Avatar section.</p>
 
         <h4>Escape Room</h4>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-19.png" alt="Beta test results for the Escape Room section, showing confusion points identified during testing" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-19.png" alt="Beta test results for the Escape Room section, showing confusion points identified during testing" loading="lazy"></figure>
         <p>The drawing on the wall and the placement of symbols as "hints" confused the children: they expect the solution to be placing the items exactly as shown in the drawing. Difficulty with some touch areas and the drag gesture. Children kept trying to interact with and solve puzzles they had already completed. It's necessary to indicate that those tasks are already finished.</p>
         <p>Overall, this was the children's favorite part of the entire app.</p>
 
         <h3>Some lessons we learned from this research</h3>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-20.png" alt="Summary graphic of lessons learned from the remote beta testing process" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-20.png" alt="Summary graphic of lessons learned from the remote beta testing process" loading="lazy"></figure>
         <ul class="case-list">
           <li>According to Lookback, at the time of the test (2020), iOS devices did not allow screen sharing and front-facing camera use simultaneously, leaving us unable to see users' reactions in real time</li>
           <li>We asked children to wear headphones during the test and to position themselves close to the Wi-Fi signal</li>
@@ -1094,7 +1232,7 @@
 
         <h3>Insights for our team and process improvements</h3>
         <p class="case-lede">What worked well, and what would we do differently today?</p>
-        <div class="case-fig-grid "><figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-22.png" alt="Line chart showing new user acquisition (downloads) reaching over 2 million" loading="lazy"></figure></div>
+        <div class="case-fig-grid "><figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-22.png" alt="Line chart showing new user acquisition (downloads) reaching over 2 million" loading="lazy"></figure></div>
         <p>After the app's final delivery and release in app stores (Android and iOS devices), we can say there are positives as well as opportunities for improvement:</p>
         <ul class="case-list">
           <li>Conducting remote testing is quite challenging when working with mobile products and child users.</li>
@@ -1107,7 +1245,7 @@
 
         <h3>Roadmap and Improvements</h3>
         <p class="case-lede">Next Steps After Launch</p>
-        <div class="case-fig-grid "><figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/luccastoon_image-luccas-24.png" alt="Chart showing monetization performance from avatar outfit and accessory packs" loading="lazy"></figure></div>
+        <div class="case-fig-grid "><figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-24.png" alt="Chart showing monetization performance from avatar outfit and accessory packs" loading="lazy"></figure></div>
         <p>Immediately following the launch of the Luccas Toon app, several issues and opportunities were identified:</p>
         <ul class="case-list">
           <li><strong>Monetization</strong> – "packs" of outfits and accessories for the avatar were one of the app's major sources of revenue (see chart on the right). How can we maintain this model's long-term sustainability?</li>
@@ -1116,6 +1254,24 @@
           <li><strong>Subscription Benefits</strong> – Reviewing, together with the client, the best benefits for subscribers to the app's content, given that much of the content is available for free on YouTube.</li>
         </ul>
         <p>Currently, 01 Digital continues as the official publisher of the Luccas Toon app and uses the research and design thinking process employed in this project as a model for other consulting firms and clients—a proven approach to applying research and creating user-centered experiences.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>📈 Impact</h2>
+        <ul class="achv-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            <p><strong>600,000+ downloads</strong> in the first month after release on Android and iOS — demonstrating clear alignment between the identified user problem and the proposed solution.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <p><strong>Avatar outfit and accessory packs</strong> became one of the app's major revenue sources, establishing a new monetization model for 01 Digital.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+            <p><strong>Process adopted as a reference model</strong> by 01 Digital for other consulting engagements — the research and design thinking approach from this project became a template for future user-centered product work at the company.</p>
+          </li>
+        </ul>
       </section>
 
       <div class="case-end-nav">
@@ -1141,6 +1297,29 @@
     <div class="wrap case-body">
 
       <section class="case-section">
+        <h2>📋 Executive Summary</h2>
+        <p>Redesign of the Grain Storage (Silo) Declaration ticket flow in Conexão Biotec — a portal used by the Brazilian soybean industry to manage royalty payments. The project addressed pain points on both sides of the workflow: farmers opening tickets and analysts reviewing them. Working against a tight seasonal deadline, discovery, ideation, and prototyping were delivered within a single quarter, with no formal usability testing due to time constraints.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>🗺️ Project Phases</h2>
+        <div class="phase-grid">
+          <div class="phase-card">
+            <h3>Discovery</h3>
+            <p>Field research and interviews to identify pain points on both the farmer and analyst sides of the ticket workflow.</p>
+          </div>
+          <div class="phase-card">
+            <h3>Ideation</h3>
+            <p>Cross-functional workshop with analysts, auditors, and business teams to co-design solutions for the most complex pain points.</p>
+          </div>
+          <div class="phase-card">
+            <h3>Prototyping</h3>
+            <p>Solution design for both ticket opening (farmer flow) and ticket analysis (internal team flow), delivered against a June deadline ahead of the September soybean season.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
         <h2>🌱 Context</h2>
         <p>In Brazil, farmers pay royalties to companies that develop genetically modified soybean seeds resistant to specific pests or herbicides, increasing productivity and reducing costs. These payments are proportional to the area planted with modified seeds, regulated by contracts between farmers and biotechnology companies. This system is crucial for financing research and development of new soybean varieties, promoting a continuous cycle of innovation in the Brazilian agricultural sector.</p>
         <p>The Conexão Biotec portal, maintained by the soy industry, is an essential tool to facilitate these royalty payments. It supports Bayer, Corteva, BASF, and Syngenta industries in efficiently collecting these payments. Bayer is responsible for the portal's operation, ensuring transparent information and agility in responding to farmers regarding royalty payments and volume release at distribution points.</p>
@@ -1160,21 +1339,45 @@
 
       <section class="case-section">
         <h2>🧑🏻‍🌾 Farmer Pain Points <span class="footnote-ref">[1]</span></h2>
-        <ul class="case-list">
-          <li>The <strong>seasonality</strong> of opening and closing the Grain Storage ticket is not clear</li>
-          <li>The main prerequisite of the ticket must be made explicit: the farmer must own a <strong>private silo</strong></li>
-          <li>Allow <strong>review of ticket data</strong> before actually submitting it, letting the user go back and correct any information if needed</li>
-          <li>Make it clear that the <strong>comments field</strong> can be used to report planting conditions that affect land productivity (artificial irrigation, row spacing, etc.) to assist in ticket handling</li>
-          <li>Indicate the possibility of a <strong>crop audit</strong>, signaling the chance of contact via calls and WhatsApp messages</li>
+        <ul class="achv-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <p>The <strong>seasonality</strong> of opening and closing the Grain Storage ticket is not clear</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p>The main prerequisite of the ticket must be made explicit: the farmer must own a <strong>private silo</strong></p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            <p>Allow <strong>review of ticket data</strong> before actually submitting it, letting the user go back and correct any information if needed</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <p>Make it clear that the <strong>comments field</strong> can be used to report planting conditions that affect land productivity (artificial irrigation, row spacing, etc.) to assist in ticket handling</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.09 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.9a16 16 0 0 0 6.01 6.01l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>
+            <p>Indicate the possibility of a <strong>crop audit</strong>, signaling the chance of contact via calls and WhatsApp messages</p>
+          </li>
         </ul>
       </section>
 
       <section class="case-section">
         <h2>👩🏻‍💼 Ticket Analysis Pain Points <span class="footnote-ref">[2]</span></h2>
-        <ul class="case-list">
-          <li><strong>Bulk action on document analysis</strong> is not possible for supporting documents attached to tickets. There are cases with more than 50 documents, requiring each one to be approved/rejected individually</li>
-          <li>Evaluate the possibility of attaching <strong>files larger than 7 MB</strong> to the ticket, since crop audit reports can exceed 30 MB</li>
-          <li><strong>Invoice declarations</strong> for soybean purchases attached to tickets include descriptive volume fields expressed in seeds (big bags and 140,000-seed bags). However, the portal currently uses only kilograms, which creates several obstacles and imprecise calculations when determining the crop area to be audited. This generates misunderstandings with farmers and complicates and prolongs ticket analysis</li>
+        <ul class="achv-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            <p><strong>Bulk action on document analysis</strong> is not possible for supporting documents attached to tickets. There are cases with more than 50 documents, requiring each one to be approved/rejected individually</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+            <p>Evaluate the possibility of attaching <strong>files larger than 7 MB</strong> to the ticket, since crop audit reports can exceed 30 MB</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            <p><strong>Invoice declarations</strong> expressed in seeds (big bags and 140,000-seed bags) conflict with the portal's kilogram-only system, creating obstacles in area calculations and prolonging ticket analysis</p>
+          </li>
         </ul>
         <p class="case-footnote">[1] Identified in previous research conducted by MJV and Accenture consultancies in the field, as well as complaints submitted through the Conexão Biotec portal / WhatsApp channel</p>
         <p class="case-footnote">[2] Analysts, reviewers, and auditors of Storage tickets were interviewed directly by me between April and May 2024, in semi-structured interviews conducted online via Microsoft Teams</p>
@@ -1190,27 +1393,27 @@
 
         <h3>Pain Point 1</h3>
         <p>The seasonality of opening and closing the ticket is not clear.</p>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/soybean_image-cnx-01.png" alt="Onboarding screen explaining the seasonality of the Storage ticket and the documents required to open it" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-01.png" alt="Onboarding screen explaining the seasonality of the Storage ticket and the documents required to open it" loading="lazy"></figure>
         <p>To make it clear that the Storage ticket has variable seasonality and to list the documents required for opening it, an onboarding screen was implemented where this information is presented before the flow even begins.</p>
 
         <h3>Pain Point 2</h3>
         <p>It is not clear that a private silo is a prerequisite for the ticket.</p>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/soybean_image-cnx-02.png" alt="Confirmation dialog window requiring the farmer to confirm private silo ownership before proceeding" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-02.png" alt="Confirmation dialog window requiring the farmer to confirm private silo ownership before proceeding" loading="lazy"></figure>
         <p>Although in many cases dialog windows create unnecessary friction in web systems, this component was introduced here precisely to confirm the ticket's basic premise — without which all requests will be canceled: the farmer must mandatorily own a private silo.</p>
         <p class="case-callout"><strong>Point raised while investigating common reasons for canceled tickets:</strong> User opens a ticket for soybean varieties for which they have no active licensing.</p>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/soybean_image-cnx-03.png" alt="Warning tooltip flagging missing biotechnology licensing when the farmer declares soybean varieties" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-03.png" alt="Warning tooltip flagging missing biotechnology licensing when the farmer declares soybean varieties" loading="lazy"></figure>
         <p>One of the most common reasons for rejected tickets is the lack of a soybean biotechnology licensing agreement. To make this clearer during the opening process, a warning tooltip was added when the farmer is declaring the soybean varieties present in their silo, flagging any missing licenses.</p>
 
         <h3>Pain Points 3 and 4</h3>
         <p>Allow review of ticket data and clarify the function of the Comments field.</p>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/soybean_image-cnx-04.png" alt="Data review step allowing farmers to revisit and edit previously filled ticket information, with placeholder text in the Comments field" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-04.png" alt="Data review step allowing farmers to revisit and edit previously filled ticket information, with placeholder text in the Comments field" loading="lazy"></figure>
         <p>To assist with reviewing ticket data and prevent submissions with incorrect information, a new information review step will help farmers revisit all previously filled data and, if needed, edit anything that is incorrect.</p>
         <p>In the Comments section of this screen, placeholder text was added to the input field with instructions on how to best use this component: <em>"If applicable, report planting conditions that affect technology productivity (artificial irrigation, etc.)."</em></p>
         <p>This way, exceptional cases requiring differentiated audit handling are flagged at the ticket opening stage.</p>
 
         <h3>Pain Point 5</h3>
         <p>Signal the need for contact when a ticket requires an on-site auditor.</p>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/soybean_image-cnx-05.png" alt="Alert message on the ticket tracking screen informing the farmer about an upcoming Crop Monitoring visit" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-05.png" alt="Alert message on the ticket tracking screen informing the farmer about an upcoming Crop Monitoring visit" loading="lazy"></figure>
         <p>To inform the farmer that they must be available for audit scheduling attempts, we added the following alert message to the ticket tracking view at the corresponding step:</p>
         <blockquote class="case-quote"><p>ℹ️ Crop Monitoring — The team of independent assessors will reach out using the contact details registered on the portal (WhatsApp, email, and phone). Facilitating the on-site inspection helps speed up your ticket analysis.</p></blockquote>
         <p>A sensitive aspect of this step is avoiding panic in the user upon learning their ticket is undergoing an audit. For this reason, we use the words monitoring and inspection and emphasize that allowing this visit helps resolve the ticket more quickly.</p>
@@ -1221,7 +1424,7 @@
 
         <h3>Pain Point 1</h3>
         <p>It is not possible to approve or reject attached ticket documents in bulk.</p>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/soybean_image-cnx-06.png" alt="New attached documents module with a parent-child checkbox allowing bulk approval or rejection" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-06.png" alt="New attached documents module with a parent-child checkbox allowing bulk approval or rejection" loading="lazy"></figure>
         <p>The previous version of the Attached Documents module required the analyst to individually select a decision for each document. In the new proposal, by introducing a checkbox with parent-child behavior, the analyst can select all documents in the ticket at once and perform bulk actions based on their selection.</p>
 
         <h3>Pain Point 2</h3>
@@ -1235,30 +1438,45 @@
           <li>For area calculation from kilograms of harvested soybeans, the system must have the correct TSW (thousand-seed weight) for the soybean variety declared in the ticket, along with the relative plantability index (bags per hectare). Both indices can be retrieved by the system from the soybean industry itself, but are subject to variance depending on natural factors or the specifics of each soybean seed lot.</li>
           <li>For area calculation from number of soybean seeds, the system requires the expected population index (plants per hectare) for that seed.</li>
         </ul>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/soybean_image-cnx-07.png" alt="Old version of the ticket analysis screen using only kilogram and variety information" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-07.png" alt="Old version of the ticket analysis screen using only kilogram and variety information" loading="lazy"></figure>
         <p>As seen in the old version of the system, the analyst made their assessment using only kilogram and variety information, with the system automatically populating Plantability and Area fields.</p>
         <p>Due to the high complexity and interdependency of the new data to be added to the ticket, a collective ideation workshop was held with the business team, auditors, reviewers, and analysts. Cross-functional teams mapped the success requirements for redesigning this stage of the ticket, along with a low-fidelity prototyping exercise ("sketch frame") to address the identified needs.</p>
         <p><strong>Invoice Declaration Requirements:</strong></p>
-        <ul class="case-list">
-          <li>User must choose whether to declare data in kilograms or seeds</li>
-          <li>For kilograms, the Plantability recommendation (bags/hectare) will be used</li>
-          <li>For seeds, the Population recommendation (plants/hectare) will be used</li>
-          <li>When filling in the lot field, if information is available in the industry system, all available indices will be auto-populated</li>
-          <li>Allow entry and editing of the TSW (thousand-seed weight) field</li>
+        <ul class="achv-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <p>User must choose whether to declare data in kilograms or seeds</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            <p>For kilograms, the Plantability recommendation (bags/hectare) will be used</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            <p>For seeds, the Population recommendation (plants/hectare) will be used</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <p>When filling in the lot field, if information is available in the industry system, all available indices will be auto-populated</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            <p>Allow entry and editing of the TSW (thousand-seed weight) field</p>
+          </li>
         </ul>
         <p>Below are selected sketches from two participant groups in response to the requirements aligned during the workshop:</p>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/soybean_image-cnx-08.png" alt="Sketch from one participant group: dropdown list for selecting packaging type when soybeans are declared in seeds" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-08.png" alt="Sketch from one participant group: dropdown list for selecting packaging type when soybeans are declared in seeds" loading="lazy"></figure>
         <p>Idea from one group's participants: for soybeans declared in seeds, the user would select the corresponding packaging type from a dropdown list.</p>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/soybean_image-cnx-09.png" alt="Sketch from another participant group: final volume data summary separating kilograms and seeds with calculated areas" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-09.png" alt="Sketch from another participant group: final volume data summary separating kilograms and seeds with calculated areas" loading="lazy"></figure>
         <p>This other group sketched what the final volume data summary would look like, separating data declared in kilograms and seeds with their respective calculated areas.</p>
 
         <h3>📝 Kilograms and Seeds</h3>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/soybean_image-cnx-10.png" alt="Redesigned table with horizontal scrolling showing kilogram and seed indices per invoice row" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-10.png" alt="Redesigned table with horizontal scrolling showing kilogram and seed indices per invoice row" loading="lazy"></figure>
         <p>Due to the high number of new indices added, the table gained horizontal scrolling. Column information varies depending on the selection — via button — of volume in kilograms or seeds (each row can be declared with a different type). Since a single invoice can include many declared varieties, the header was optimized from three to two lines of basic information entry.</p>
 
         <h3>📋 Invoice Declaration Summary</h3>
         <p>With the changes made to invoice data entry, it was also necessary to update the component that allows auditors to view a summary of entered invoices, with their key data (primarily those used to calculate the crop area to be audited in the field based on the volume declared in the invoice).</p>
-        <div class="case-fig-grid case-fig-grid--2"><figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/soybean_image-cnx-11.png" alt="Previous version of the Invoice Declaration Summary using simplistic collapsible rows" loading="lazy"></figure><figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/soybean_image-cnx-12.png" alt="New version of the Invoice Declaration Summary organized by invoice number and declared type" loading="lazy"></figure></div>
+        <div class="case-fig-grid case-fig-grid--2"><figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-11.png" alt="Previous version of the Invoice Declaration Summary using simplistic collapsible rows" loading="lazy"></figure><figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-12.png" alt="New version of the Invoice Declaration Summary organized by invoice number and declared type" loading="lazy"></figure></div>
         <p>The previous version made very simplistic use of collapsible table rows, unnecessarily repeating information and grouping soybeans of the same variety but from different invoices in the same row.</p>
         <p>The new version aims to organize varieties by invoice number and declared type, allowing auditors to more quickly review ticket information. It also presents a volume summary with the key data needed for area calculation without requiring row expansion.</p>
       </section>
@@ -1294,35 +1512,64 @@
     <div class="wrap case-body">
 
       <section class="case-section">
+        <h2>📋 Executive Summary</h2>
+        <p>Users of Conexão Biotec — farmers, agricultural consultants, and seed sellers — faced persistent friction during registration, credential recovery, system navigation, and multi-account management. This case details the end-to-end diagnostic process: from classifying customer support calls using LLMs, through multi-user benchmarking, to cross-functional prototyping of targeted solutions covering system integration, data quality, profile permissioning, and account management.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>🗺️ Project Phases</h2>
+        <div class="phase-grid">
+          <div class="phase-card">
+            <h3>Call Analysis</h3>
+            <p>Ingestion and thematic classification of customer support calls using LLMs; excerpts shared with stakeholders to build awareness of core pain points.</p>
+          </div>
+          <div class="phase-card">
+            <h3>Solution Benchmarking</h3>
+            <p>Multi-user benchmarking examining user management systems with diverse access levels, permissioning structures, onboarding flows, and account-switching patterns.</p>
+          </div>
+          <div class="phase-card">
+            <h3>Technical Refinement &amp; Prototyping</h3>
+            <p>Early involvement of development teams during solution prototyping, with close collaboration with POs and PMs for scope slicing and phased delivery planning.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
         <h2>🔗 Overview &amp; Context</h2>
         <p>Conexão Biotec is a platform utilized within the agricultural ecosystem focused on soybean crops. Users — ranging from farmers and agricultural consultants to seed sellers — frequently encountered friction during registration, credential recovery, system navigation, and multi-account management. This case study details the diagnostic process, problem mapping, solution benchmarking, and the prototyping of targeted solutions executed to optimize user experience and operational efficiency.</p>
       </section>
 
       <section class="case-section">
-        <h2>🧭 Our Process: Mapping Pains &amp; Accelerating Solutions</h2>
-        <p>The diagnosis and prototyping followed a rigorous three-step methodology:</p>
+        <h2>🧭 Methodology: Mapping Pains &amp; Accelerating Solutions</h2>
+        <p>The diagnosis and prototyping followed a rigorous three-step methodology — see Project Phases above for the overview. Below are the key visual outputs from each phase:</p>
 
         <h3>Call Analysis (Customer Support)</h3>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/register_image.png" alt="Process diagram illustrating the Call Analysis stage: ingestion and thematic classification of customer service calls" loading="lazy"></figure>
-        <p>Ingestion and thematic classification of customer service calls using LLMs, accompanied by stakeholder-facing excerpts to build awareness of core pain points.</p>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/register_image.png" alt="Process diagram illustrating the Call Analysis stage: ingestion and thematic classification of customer service calls" loading="lazy"></figure>
 
         <h3>Solution Benchmarking</h3>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/register_image%201.png" alt="Process diagram illustrating the Solution Benchmarking stage across reference tools" loading="lazy"></figure>
-        <p>Multi-user benchmarking examining user management systems with diverse access levels, permissioning, onboarding flows, and account switching structures (utilizing reference tools like ZenDesk).</p>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/register_image%201.png" alt="Process diagram illustrating the Solution Benchmarking stage across reference tools" loading="lazy"></figure>
 
         <h3>Technical Refinement &amp; Prototyping in Wireframes</h3>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/register_image%202.png" alt="Process diagram illustrating the Technical Refinement and Prototyping stage with development and product teams" loading="lazy"></figure>
-        <p>Early involvement of development teams during the prototyping of solutions, alongside close collaboration with Product Owners (POs) and Product Managers (PMs) for scope slicing and phased delivery.</p>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/register_image%202.png" alt="Process diagram illustrating the Technical Refinement and Prototyping stage with development and product teams" loading="lazy"></figure>
 
       </section>
 
       <section class="case-section">
         <h2>📊 Solution Typology &amp; Effort Framework</h2>
         <p>Identified problems and opportunities were categorized based on implementation effort, scope, and strategic impact:</p>
-        <ul class="case-list typology-list">
-          <li><span class="typ-tag typ-quick">Quick Win</span> (Low Effort / Current Experience Scope): Mitigates risks and pains within the current experience.</li>
-          <li><span class="typ-tag typ-enabler">Enabler</span> (Medium Effort / Connection Scope): Reorganizes and improves the existing structure.</li>
-          <li><span class="typ-tag typ-structural">Structural</span> (High Effort / Ecosystem Scope): Transforms the fundamental way the product is structured.</li>
+        <ul class="achv-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <p><span class="typ-tag typ-quick">Quick Win</span> <strong>(Low Effort / Current Experience Scope):</strong> Mitigates risks and pains within the current experience.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+            <p><span class="typ-tag typ-enabler">Enabler</span> <strong>(Medium Effort / Connection Scope):</strong> Reorganizes and improves the existing structure.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <p><span class="typ-tag typ-structural">Structural</span> <strong>(High Effort / Ecosystem Scope):</strong> Transforms the fundamental way the product is structured.</p>
+          </li>
         </ul>
       </section>
 
@@ -1339,7 +1586,7 @@
           <li><span class="typ-tag typ-enabler">Enabler</span> Draw on databases and information from other channels (e.g., audits and external bases) to enrich registrations.</li>
           <li><span class="typ-tag typ-structural">Structural</span> Definition of governance and Master Data Management (MDM) across agricultural ecosystem cells.</li>
         </ul>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/register_image%203.png" alt="Wireframe of the prototyped Single Sign-On solution for Theme 1: System Integration" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/register_image%203.png" alt="Wireframe of the prototyped Single Sign-On solution for Theme 1: System Integration" loading="lazy"></figure>
         <p><strong>Prototyped Solution (Wireframe):</strong> Implementation of Single Sign-On (SSO) login, utilizing data from industry systems to allow quick access via data confirmation, and integrating/sanitizing profile data using the most current system as the "source of truth."</p>
 
         <h3>Data Quality &amp; Reliability</h3>
@@ -1358,7 +1605,7 @@
           <li><span class="typ-tag typ-enabler">Enabler</span> Validate and complement registration via external bases; enable SMS validation code delivery; in-journey prompts to complete missing data; targeted outreach campaigns to encourage profile updates; regular collection of behavioral data with funnel analysis (Analytics); draw on other channels (audits, ticket documents, customer support contacts) to update systems.</li>
           <li><span class="typ-tag typ-structural">Structural</span> Automation rules for inactivating or suspending registrations (e.g., inactivity periods, deaths); pre-defined expiration dates for registrations. Allow email not to be a unique key, triggering internal alerts for repeated usage and identifying partner emails to prevent reuse.</li>
         </ul>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/register_image%205.png" alt="Wireframe of the prototyped contact management and risk assessment solution for Theme 2: Data Quality and Reliability" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/register_image%205.png" alt="Wireframe of the prototyped contact management and risk assessment solution for Theme 2: Data Quality and Reliability" loading="lazy"></figure>
         <p><strong>Prototyped Solution (Wireframe):</strong> Frontend capability for users to manage and register their best contact details. Backend risk assessment based on unsuccessful contact attempts and profile reliability classification.</p>
 
         <h3>Profile &amp; Permissioning</h3>
@@ -1387,7 +1634,7 @@
           <li><span class="typ-tag typ-quick">Quick Win</span> Confirmation codes for changes to phone numbers, emails, or documents — validated through customer support.</li>
           <li><span class="typ-tag typ-enabler">Enabler</span> Facilitated profile switching under the same main ID.</li>
         </ul>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/register_image%206.png" alt="Wireframe of the prototyped account switching component for Theme 4: Account Management" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/register_image%206.png" alt="Wireframe of the prototyped account switching component for Theme 4: Account Management" loading="lazy"></figure>
         <p><strong>Prototyped Solution (Wireframe):</strong> Streamlined account switching component within the top navigation, allowing users to view balances, access registration data, and instantly toggle between associated accounts (e.g., Distributors, Subsidiary CNPJs) without requiring separate login credentials.</p>
       </section>
 
@@ -1418,6 +1665,42 @@
       <section class="case-section">
         <h2>📋 Executive Summary</h2>
         <p>The solution restructures the analyst journey into guided stages, replacing manual and knowledge-dependent activities with standardized workflows, contextual information, and structured analysis checklists. The initiative also establishes the foundation for quality monitoring, auditing, and future AI-assisted decision support.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>👥 Project Team</h2>
+        <p><strong>Continuous Improvement Team</strong></p>
+        <ul class="case-list">
+          <li>Braulio Araujo</li>
+          <li>Sofia Antonio</li>
+          <li>Kellen Ramos</li>
+          <li>Yuri Moskovitz</li>
+          <li>Durval Amorim</li>
+          <li>Victor dos Santos</li>
+          <li>Gabriela Ribeiro</li>
+        </ul>
+      </section>
+
+      <section class="case-section">
+        <h2>🗺️ Project Phases</h2>
+        <div class="phase-grid">
+          <div class="phase-card">
+            <h3>Current State Assessment</h3>
+            <p>Mapping manual operations and limited data collection practices that create bottlenecks in the analyst workflow.</p>
+          </div>
+          <div class="phase-card">
+            <h3>Solution Design</h3>
+            <p>Structuring a five-stage guided workflow covering duplicate verification, document triage, detailed analysis, history visibility, and analysis outcome.</p>
+          </div>
+          <div class="phase-card">
+            <h3>Validation</h3>
+            <p>End-to-end and simplified analysis scenarios tested with analysts to validate the workflow experience and decision-support mechanisms.</p>
+          </div>
+          <div class="phase-card">
+            <h3>Production Rollout</h3>
+            <p>Pilot group selection, portal deployment, analyst training, and adoption measurement.</p>
+          </div>
+        </div>
       </section>
 
       <section class="case-section">
@@ -1483,40 +1766,73 @@
         <h2>✅ Implemented Improvements</h2>
 
         <h3>Duplicate Verification Directly in the Interface</h3>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/tv_duplicity.png" alt="Illustration representing the duplicate verification feature, showing related requests flagged directly in the workflow" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/tv_duplicity.png" alt="Illustration representing the duplicate verification feature, showing related requests flagged directly in the workflow" loading="lazy"></figure>
         <p>The portal displays potentially related requests directly within the workflow, allowing analysts to review duplicate scenarios without leaving the analysis experience.</p>
         <p>Additional contextual information is presented to help prioritize the most relevant requests during duplicate verification.</p>
         <p><strong>Expected Impact:</strong></p>
-        <ul class="case-list">
-          <li>Reduced time spent investigating duplicate requests.</li>
-          <li>Faster decision-making during early stages of analysis.</li>
-          <li>🚀 Easier verification of contract usage across requests through the extraction of contract registration numbers, helping analysts identify related documentation and previous transactions involving the same agreement.</li>
+        <ul class="achv-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <p>Reduced time spent investigating duplicate requests.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <p>Faster decision-making during early stages of analysis.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <p>Easier verification of contract usage across requests through the extraction of contract registration numbers, helping analysts identify related documentation and previous transactions involving the same agreement.</p>
+          </li>
         </ul>
 
         <h3>Customized Analysis Checklists</h3>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/tv_check_files.png" alt="Illustration representing customized analysis checklists for document review" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/tv_check_files.png" alt="Illustration representing customized analysis checklists for document review" loading="lazy"></figure>
         <p>The solution introduces specialized checklists tailored to different transfer scenarios. Each checklist guides analysts through the required validation steps while capturing structured information about approval and rejection decisions.</p>
         <p><strong>Expected Impact:</strong></p>
-        <ul class="case-list">
-          <li>Faster quality-control activities.</li>
-          <li>Reduced variability between analysts.</li>
-          <li>Better visibility into recurring rejection patterns.</li>
-          <li>Increased consistency across documentation reviews.</li>
+        <ul class="achv-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <p>Faster quality-control activities.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <p>Reduced variability between analysts.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg>
+            <p>Better visibility into recurring rejection patterns.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            <p>Increased consistency across documentation reviews.</p>
+          </li>
         </ul>
 
         <h3>Guided Rejection Justifications</h3>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/tv_reject_file.jpg" alt="Illustration representing the guided rejection justification feature" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/tv_reject_file.jpg" alt="Illustration representing the guided rejection justification feature" loading="lazy"></figure>
         <p>Rejection justifications are generated based on checklist responses completed by the analyst. When issues are identified during the review process, the platform provides a standardized justification that can be used during the rejection workflow.</p>
         <p><strong>Expected Impact:</strong></p>
-        <ul class="case-list">
-          <li>Standardized communication.</li>
-          <li>Improved traceability of rejection reasons.</li>
-          <li>Better reporting and audit capabilities.</li>
-          <li>Reduced manual effort during case handling.</li>
+        <ul class="achv-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <p>Standardized communication.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <p>Improved traceability of rejection reasons.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg>
+            <p>Better reporting and audit capabilities.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <p>Reduced manual effort during case handling.</p>
+          </li>
         </ul>
 
         <h3>Documentation Usage History</h3>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/cestgabi/portfolio/refs/heads/main/tv_file_use_historico.png" alt="Illustration representing the documentation usage history feature, showing prior submissions across participants" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/tv_file_use_historico.png" alt="Illustration representing the documentation usage history feature, showing prior submissions across participants" loading="lazy"></figure>
         <p>The portal provides visibility into all previously submitted documentation involving the same participants. During the analysis process, analysts can review historical documentation to verify whether the requested transfer volume remains within the limits established by the supporting contracts and to confirm that the requested volume has not already been consumed in previous transactions.</p>
         <p><strong>Improvement Implemented:</strong> ✅ All documentation associated with the same participants is available for review, allowing analysts to verify whether the requested volume remains within the contractual limits defined by the submitted agreements and whether that volume has already been used in previous transactions.</p>
         <p><strong>Expected Impact:</strong> ⏱️ Improved tracking of contract volume utilization across agreements involving two or more parties, reducing the risk of approving transfer requests that are not supported by the available contractual documentation.</p>
@@ -1524,10 +1840,16 @@
 
       <section class="case-section">
         <h2>🧪 Validation Activities</h2>
-        <h3>End-to-End Analysis Scenario</h3>
-        <p>A complete transfer request analysis was executed to evaluate the full workflow experience, from initial verification to final outcome.</p>
-        <h3>Simplified Analysis Scenario</h3>
-        <p>Duplicate-request scenarios were tested to validate the effectiveness of the duplicate-verification experience and supporting decision-making mechanisms.</p>
+        <div class="phase-grid">
+          <div class="phase-card">
+            <h3>End-to-End Analysis Scenario</h3>
+            <p>A complete transfer request analysis was executed to evaluate the full workflow experience, from initial verification to final outcome.</p>
+          </div>
+          <div class="phase-card">
+            <h3>Simplified Analysis Scenario</h3>
+            <p>Duplicate-request scenarios were tested to validate the effectiveness of the duplicate-verification experience and supporting decision-making mechanisms.</p>
+          </div>
+        </div>
       </section>
 
       <section class="case-section">
@@ -1560,20 +1882,6 @@
       </section>
 
       <section class="case-section">
-        <h2>📈 Expected Outcomes</h2>
-        <p>The initiative is expected to deliver:</p>
-        <ul class="case-list">
-          <li>Reduced onboarding and training time.</li>
-          <li>Increased consistency across analysis decisions.</li>
-          <li>Improved operational traceability.</li>
-          <li>Better support for quality-control and auditing activities.</li>
-          <li>Reduced manual effort during document analysis.</li>
-          <li>Structured data generation to enable future reporting and automation initiatives.</li>
-          <li>Readiness for future AI-assisted workflows.</li>
-        </ul>
-      </section>
-
-      <section class="case-section">
         <h2>➡️ Next Steps</h2>
         <h3>Production Rollout</h3>
         <ul class="case-list">
@@ -1593,16 +1901,16 @@
       </section>
 
       <section class="case-section">
-        <h2>👥 Project Team</h2>
-        <p><strong>Continuous Improvement Team</strong></p>
+        <h2>📈 Impact</h2>
+        <p>The initiative is expected to deliver:</p>
         <ul class="case-list">
-          <li>Braulio Araujo</li>
-          <li>Sofia Antonio</li>
-          <li>Kellen Ramos</li>
-          <li>Yuri Moskovitz</li>
-          <li>Durval Amorim</li>
-          <li>Victor dos Santos</li>
-          <li>Gabriela Ribeiro</li>
+          <li>Reduced onboarding and training time.</li>
+          <li>Increased consistency across analysis decisions.</li>
+          <li>Improved operational traceability.</li>
+          <li>Better support for quality-control and auditing activities.</li>
+          <li>Reduced manual effort during document analysis.</li>
+          <li>Structured data generation to enable future reporting and automation initiatives.</li>
+          <li>Readiness for future AI-assisted workflows.</li>
         </ul>
       </section>
 
@@ -1615,6 +1923,167 @@
 
 </main>
 
+  <!-- ================= CASE: ACSSUS ================= -->
+  <section id="page-case-acssus" data-page hidden>
+    <div class="page-hero wrap case-hero">
+      <p class="eyebrow">Selected work</p>
+      <h1>ACSSUS — Social Impact E-commerce for Handcrafted Jewelry</h1>
+      <div class="case-meta-row">
+        <span class="year">2026</span>
+        <span class="tag">ux strategy</span>
+        <span class="tag">financial modeling</span>
+        <span class="tag">academic</span>
+      </div>
+      <p class="case-about">Master's project (ESPM) proposing a digital sales channel for an Amazonian NGO — integrating UX strategy and financial modeling to create an autonomous revenue stream for artisans in Parintins.</p>
+    </div>
+
+    <div class="wrap case-body">
+
+      <section class="case-section">
+        <h2>📋 Executive Summary</h2>
+        <p>ACSSUS is a nonprofit founded in 2011 in Parintins, Amazonas, that trains riverside women to produce bio-jewelry using materials sourced from Amazon biodiversity. With nearly all revenue coming from volatile public grants, the organization had only R$ 1,508.25 in available cash at the start of 2026. Our team proposed a digital sales channel — grounded in consumer research and a full financial model — to create a stable, autonomous revenue stream and reduce dependency on sponsorships.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>🧑‍🤝‍🧑 Team</h2>
+        <ul class="case-list">
+          <li>Ana Nascimento</li>
+          <li>César Assis</li>
+          <li>Eliza Carvalho</li>
+          <li>Gabriela César — UX Strategy + Financial Modeling</li>
+          <li>Italo Utchuk</li>
+        </ul>
+        <p><em>Academic project — Master's in Strategic UX Design Management, ESPM, São Paulo. Advisor: Profa. Ma. Thais Campas Passos.</em></p>
+      </section>
+
+      <section class="case-section">
+        <h2>📖 Background</h2>
+        <p>ACSSUS (Associação Cidadania, Social e Sustentabilidade) offers vocational training for riverside communities in the Brazilian Amazon, with a focus on women who handcraft bio-jewelry — accessories made from native seeds, fibers, and resins such as tucumã palm, açaí, cipó vine, and paxiúba palm, all harvested non-predatorily.</p>
+        <p>The organization's cash flow was extremely volatile: revenue came almost entirely from private donations and government funding, which created acute seasonal gaps. Our working hypothesis was that ACSSUS already had a skilled, locally trained workforce and could leverage digital sales to create income that didn't depend on grant cycles.</p>
+        <div class="case-callout">
+          <p><strong>Starting point:</strong> at the beginning of 2026, ACSSUS had only <strong>R$ 1,508.25 in available cash</strong> after covering fixed operating costs (source: ACSSUS Balance Sheet, base year 2025).</p>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>🗺️ Process — Double Diamond</h2>
+        <div class="phase-grid">
+          <div class="phase-card">
+            <h3>Discover</h3>
+            <p>Desk research, financial report analysis, competitive benchmarking of bio-jewelry brands, and a CSD Matrix to align the team's shared knowledge.</p>
+          </div>
+          <div class="phase-card">
+            <h3>Define</h3>
+            <p>Consumer survey (n = 89), interview with the NGO director, analysis of the Mapa do Consumo Sustentável 2026, personas, AS-IS journey map, MoSCoW prioritization, and MVP definition.</p>
+          </div>
+          <div class="phase-card">
+            <h3>Develop</h3>
+            <p>Business Model Canvas for the digital sales channel and TO-BE journey map connecting personas to the proposed solution.</p>
+          </div>
+          <div class="phase-card">
+            <h3>Deliver</h3>
+            <p>Two complementary digital products: a consumer-facing Sales Landing Page and an Internal Management Platform for the NGO operations team and artisans.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>🔍 My Role</h2>
+        <p>I contributed across two complementary tracks: <strong>UX Strategy</strong> and <strong>Financial Modeling</strong>.</p>
+
+        <h3>UX Strategy</h3>
+        <ul class="case-list">
+          <li>Critical analysis of the NGO's financial report as a diagnostic input</li>
+          <li>Participation in the design and analysis of a consumer survey (n = 89 valid respondents, 78 complete; data collection: May 6–23, 2026)</li>
+          <li>Creation of synthesis artifacts: personas, AS-IS journey map, MoSCoW prioritization, MVP definition, and "How Might We" problem framing</li>
+          <li>Structuring of the Business Model Canvas and TO-BE customer journey</li>
+        </ul>
+
+        <h3>Financial Modeling</h3>
+        <ul class="case-list">
+          <li>Built the financial model from scratch</li>
+          <li>Defined all model parameters: product mix, pricing, cost structure (artisan revenue share, marketplace commission, logistics)</li>
+          <li>Analyzed ACSSUS's financial report to map revenue vulnerabilities and opportunities</li>
+          <li>Translated the numbers into a strategic narrative to support co-sponsorship pitching with an ESG argument</li>
+        </ul>
+      </section>
+
+      <section class="case-section">
+        <h2>📊 Financial Model</h2>
+        <p class="case-lede">One of this project's key differentiators was integrating financial feasibility into the UX strategy from day one — not as a separate deliverable, but as an active decision-making criterion for scope and prioritization.</p>
+
+        <h3>Model Parameters</h3>
+        <div class="table-scroll">
+          <table class="case-table">
+            <thead>
+              <tr><th>Parameter</th><th>Value</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Estimated monthly volume</td><td>~420 units</td></tr>
+              <tr><td>Product mix</td><td>Individual items (necklaces R$ 120; earrings and bracelets R$ 110) and 3-piece kits (R$ 240)</td></tr>
+              <tr><td>Operation</td><td>35 artisans × ~12 pieces/month each</td></tr>
+              <tr><td>Artisan revenue share</td><td>50% of sale price</td></tr>
+              <tr><td>Marketplace commission</td><td>12% (Mercado Livre)</td></tr>
+              <tr><td>Contribution margin</td><td>16–18%</td></tr>
+              <tr><td>Break-even</td><td>21st month of operation</td></tr>
+              <tr><td>Required initial investment</td><td>R$ 49,470</td></tr>
+              <tr><td>— operational setup</td><td>R$ 27,650 (platform, photography, packaging, training)</td></tr>
+              <tr><td>— early-stage deficit coverage</td><td>R$ 21,820</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Logistics Strategy</h3>
+        <p>Average shipping cost for a single item from Parintins to the Southeast region of Brazil ranges from R$ 77 to R$ 115 — approximately 20% of an individual item's price. To protect margin, we designed a model based on monthly or bi-weekly bulk shipments to a marketplace distribution center in São Paulo, from which orders are fulfilled at a reduced cost across the South and Southeast.</p>
+
+        <h3>3-Year Projection</h3>
+        <ul class="case-list">
+          <li>Projected gross revenue: <strong>R$ 831,000</strong></li>
+          <li>Value retained in Parintins (artisan transfers + local hires + operational expenses): <strong>~R$ 539,000</strong></li>
+        </ul>
+
+        <h3>ESG Case for Fundraising</h3>
+        <p>The R$ 49,470 initial investment was framed as a one-time co-sponsorship. ACSSUS has a proven track record with major partners — including Coca-Cola, Esportes da Sorte, and Sebrae — and the digital channel creates a measurable social impact case, with full product traceability and locally generated income, making it a strong ESG opportunity for an investor partner.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>⚠️ Tensions and Critical Decisions</h2>
+
+        <h3>Shipping Costs as the Main Margin Threat</h3>
+        <p>Logistics was the primary risk factor in the model. The decision to use a third-party distribution center in São Paulo was not an assumption — it was the direct result of comparing scenarios numerically. Real shipping benchmarking from Parintins was an essential input to the financial model.</p>
+
+        <h3>Is a 50% Revenue Share Enough for the Artisans?</h3>
+        <p>Without direct access to the artisans for primary research — a population with limited digital access — it was not possible to validate whether the 50% share covers the actual cost of production in labor hours and materials. This limitation was explicitly documented, with a recommendation to validate before implementation, to ensure the initiative does not inadvertently contribute to the precarious working conditions it aims to address.</p>
+
+        <h3>Recommended Market Test Before Full Launch</h3>
+        <p>Based on the model, we recommended the NGO start with higher-value items — 3-piece kits at R$ 240 — to map real demand and price flexibility before scaling to the full product mix.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>📈 Results and Learnings</h2>
+        <p>The project delivered a grounded, viable proposal for the NGO — not just wireframes, but an integrated strategy with a business model, risk analysis, and a fundraising plan.</p>
+
+        <h3>What Worked</h3>
+        <ul class="case-list">
+          <li>Embedding financial modeling into the UX process prevented the team from prioritizing features that would be operationally unviable.</li>
+          <li>The quantitative survey (n = 89) grounded pricing and shipping parameters in real data, before the business plan was drafted.</li>
+          <li>The ESG argument emerged from the data — it was not added as a cosmetic layer, but built as a structural part of the business model.</li>
+        </ul>
+
+        <h3>What Constrained the Project</h3>
+        <ul class="case-list">
+          <li>Lack of direct access to the artisans: decisions on revenue share and production load were made using secondary data and conservative assumptions.</li>
+          <li>The NGO has no available cash to absorb the early deficit months — external funding is a prerequisite for operations, not optional.</li>
+        </ul>
+      </section>
+
+      <div class="case-end-nav">
+        <a class="btn" href="javascript:void(0)" data-nav="home">Back to Home</a>
+      </div>
+
+    </div>
+  </section>
+
 <footer class="site-footer">
   <div class="wrap">
     <p class="footer-line">Gabriela César · Design Lead &amp; UX Strategist · <a href="mailto:cestgabiloja@gmail.com">cestgabiloja@gmail.com</a> · <a href="https://www.linkedin.com/in/gabrielacesar/?locale=en-US" target="_blank" rel="noopener">linkedin.com</a></p>
@@ -1623,25 +2092,23 @@
 
 <script>
 (function(){
-  var validPages = ['home','about','experience','skills','education','case-luccastoon','case-soybean','case-signon','case-transfer'];
+  var validPages = ['home','about','experience','skills','education','case-luccastoon','case-soybean','case-signon','case-transfer','case-acssus'];
 
-  // Navigation state lives in memory only — deliberately NOT using
-  // location.hash / history.pushState, since sandboxed preview iframes
-  // can have an opaque origin that silently blocks the History API,
-  // which was breaking every internal link.
-  var current = 'home';
+  // Hash-based routing: each page gets a dedicated URL fragment so cases
+  // can be sent as direct links (e.g. index.html#case-luccastoon).
+  // Falls back gracefully in sandboxed iframes that block the History API —
+  // the hash write fails silently; navigation still works via in-memory state.
 
   function reduceMotion(){
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
-  // Keep anchor targets from landing underneath the sticky header.
   function syncHeaderHeight(){
     var h = document.getElementById('topbar').offsetHeight;
     document.documentElement.style.setProperty('--header-h', h + 'px');
   }
 
-  function updateCurrentNavIndicator(){
+  function updateCurrentNavIndicator(current){
     document.querySelectorAll('.qn-link').forEach(function(link){
       var isCurrent = (link.getAttribute('data-nav') === current) && !link.hasAttribute('data-anchor');
       if(isCurrent){
@@ -1652,17 +2119,16 @@
     });
   }
 
-  function render(anchorId){
+  function render(page, anchorId, isInitialLoad){
     document.querySelectorAll('[data-page]').forEach(function(sec){
-      sec.hidden = (sec.id !== 'page-' + current);
+      sec.hidden = (sec.id !== 'page-' + page);
     });
-    updateCurrentNavIndicator();
+    updateCurrentNavIndicator(page);
 
     if(anchorId){
       var anchorEl = document.getElementById(anchorId);
       if(anchorEl){
         anchorEl.setAttribute('tabindex','-1');
-        // Wait a frame so the target section is laid out (unhidden) before measuring/scrolling.
         requestAnimationFrame(function(){
           anchorEl.scrollIntoView({behavior: reduceMotion() ? 'auto' : 'smooth', block:'start'});
           anchorEl.focus({preventScroll:true});
@@ -1671,20 +2137,34 @@
       }
     }
 
-    // Default: move focus to the page heading (no silent context change) and scroll to top.
-    var target = document.getElementById('page-' + current);
-    var heading = target ? target.querySelector('h1') : null;
-    if(heading){
-      heading.setAttribute('tabindex','-1');
-      heading.focus({preventScroll:false});
+    /* Skip programmatic focus on first paint — prevents the visible focus ring
+       appearing on "Gabriela César" (h1) when the page is opened directly.
+       Focus is still moved on user-initiated navigation (nav clicks, hash changes). */
+    if(!isInitialLoad){
+      var target = document.getElementById('page-' + page);
+      var heading = target ? target.querySelector('h1') : null;
+      if(heading){
+        heading.setAttribute('tabindex','-1');
+        heading.focus({preventScroll:false});
+      }
     }
     window.scrollTo({top:0, behavior: reduceMotion() ? 'auto' : 'smooth'});
   }
 
+  function getPageFromHash(){
+    var hash = (window.location.hash || '').replace(/^#/, '').trim();
+    // Support both bare page ids and "page-xxx" prefixed ids
+    var page = hash.replace(/^page-/, '');
+    return (validPages.indexOf(page) !== -1) ? page : 'home';
+  }
+
   function navigateTo(page, anchorId){
     if(validPages.indexOf(page) === -1) page = 'home';
-    current = page;
-    render(anchorId || null);
+    // Write hash for shareable URL; suppress the browser's own scroll-to-anchor
+    try {
+      history.replaceState(null, '', page === 'home' ? '#home' : '#' + page);
+    } catch(e){ /* sandboxed iframe — silent fail */ }
+    render(page, anchorId || null);
   }
 
   function setIconHidden(el, hide){
@@ -1710,16 +2190,18 @@
     syncHeaderHeight();
   });
 
-  // Single routing mechanism: intercept clicks on any [data-nav] element
-  // and switch pages via in-memory state. No History API, no hash.
-  // data-anchor (used by the "Portfolio" quick link) scrolls to a section
-  // within the target page instead of resetting scroll to top.
   document.addEventListener('click', function(e){
     var link = e.target.closest('[data-nav]');
     if(!link) return;
     e.preventDefault();
     navigateTo(link.getAttribute('data-nav'), link.getAttribute('data-anchor'));
     closeMobileMenu();
+  });
+
+  // Support browser back/forward navigation when hash changes externally
+  window.addEventListener('hashchange', function(){
+    var page = getPageFromHash();
+    render(page, null);
   });
 
   document.addEventListener('keydown', function(e){
@@ -1730,7 +2212,10 @@
   if(document.fonts && document.fonts.ready){ document.fonts.ready.then(syncHeaderHeight); }
 
   syncHeaderHeight();
-  render();
+
+  // On initial load, honour any hash already in the URL (direct link to a case)
+  var initialPage = getPageFromHash();
+  render(initialPage, null, true /* isInitialLoad — skip h1 focus to avoid focus ring on page open */);
 })();
 </script>
 
