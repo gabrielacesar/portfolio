@@ -28,6 +28,7 @@
 <meta name="twitter:description" content="Design Lead and UX Strategist with 16+ years of experience. Specialized in design leadership, DesignOps, team development, and UX strategy for complex B2B products.">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/og-cover.png">
 
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Crect x='0' y='0' width='9' height='9' rx='1.5' fill='%23751600' opacity='0.22'/%3E%3Crect x='13' y='0' width='9' height='9' rx='1.5' fill='%23751600'/%3E%3Crect x='0' y='13' width='9' height='9' rx='1.5' fill='%23751600' opacity='0.22'/%3E%3Crect x='13' y='13' width='9' height='9' rx='1.5' fill='%23751600' opacity='0.22'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Karla:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -162,6 +163,21 @@
   .site-footer a:focus-visible{
     outline-color: var(--text-cream);
   }
+
+  .navbar-brand{
+    display: flex; align-items: center; gap: var(--space-xs);
+    color: var(--text-cream);
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-size-sm);
+    text-decoration: none;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .navbar-brand svg{ width: 1.25rem; height: 1.25rem; flex-shrink: 0; }
+  .page-hero-icon{ margin-bottom: var(--space-sm); }
+  .page-hero-icon svg{ width: 2rem; height: 2rem; }
+  .case-hero .page-hero-icon svg{ width: 2rem; height: 2rem; }
 
   .skip-link{
     position: absolute; left: -999px; top: 0;
@@ -377,6 +393,10 @@
     color: var(--text-maroon); font-size: var(--text-size-xs);
     display:block; margin-bottom: var(--space-xs);
   }
+  .mini-card-icon{
+    display:block; margin-bottom: var(--space-xs); line-height: 0;
+  }
+  .mini-card-icon svg{ width: 1.5rem; height: 1.5rem; display:block; }
   .mini-card-title{
     font-family: var(--font-display); font-weight: var(--weight-bold);
     font-size: var(--text-size-base); margin:0; color: var(--text-dark);
@@ -675,6 +695,89 @@
     padding: 0.05rem var(--space-sm); margin-left: var(--space-sm); vertical-align: middle;
   }
 
+  /* ============ CASE TOC SIDEBAR ============
+     Floating sticky sidebar, desktop-only (≥ 72rem).
+     Lives outside .wrap so it can bleed into the left margin.
+     Hidden on all non-case pages via JS toggling [hidden].
+  */
+  #case-toc{
+    position: fixed;
+    top: calc(var(--header-h) + var(--space-lg));
+    left: max(var(--space-sm), calc(50% - var(--max-width)/2 - 13rem));
+    width: 11rem;
+    z-index: 20;
+    display: none; /* shown by JS only on cases + only on wide viewports */
+  }
+  /* Only render on viewports wide enough to have left margin */
+  @media (min-width: 72rem){
+    #case-toc{ display: block; }
+    #case-toc[hidden]{ display: none !important; }
+  }
+  .case-toc__label{
+    font-family: var(--font-tag);
+    letter-spacing: 0.08em;
+    font-size: var(--text-size-xs);
+    color: var(--text-maroon);
+    margin-bottom: var(--space-xs);
+    display: block;
+  }
+  .case-toc__list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 2px solid var(--border-soft);
+  }
+  .case-toc__list li{ margin: 0; }
+  .case-toc__link{
+    display: block;
+    padding: 0.3rem 0 0.3rem var(--space-sm);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    line-height: 1.3;
+    color: var(--text-dark);
+    text-decoration: none;
+    opacity: 0.55;
+    border-left: 2px solid transparent;
+    margin-left: -2px;
+    transition: opacity 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+  .case-toc__link:hover{
+    opacity: 1;
+    color: var(--text-maroon);
+  }
+  .case-toc__link[aria-current="true"]{
+    opacity: 1;
+    color: var(--text-maroon);
+    font-weight: var(--weight-bold);
+    border-left-color: var(--text-maroon);
+  }
+
+  /* ── Dark-bg adaptive states ──────────────────────────────────────────────
+     Topbar: thin cream border-bottom separates the bar from a maroon section.
+     ToC: label + links invert to cream when floating over a maroon section.
+     Both are driven by JS adding/removing these classes on scroll.
+  */
+  #topbar.topbar--on-dark{
+    border-bottom: 1.5px solid rgba(255,252,246,0.35);
+  }
+  #case-toc.toc--on-dark .case-toc__label{
+    color: var(--text-cream);
+  }
+  #case-toc.toc--on-dark .case-toc__list{
+    border-left-color: rgba(255,252,246,0.35);
+  }
+  #case-toc.toc--on-dark .case-toc__link{
+    color: var(--text-cream);
+  }
+  #case-toc.toc--on-dark .case-toc__link:hover{
+    color: var(--text-cream);
+    opacity: 1;
+  }
+  #case-toc.toc--on-dark .case-toc__link[aria-current="true"]{
+    color: var(--text-cream);
+    border-left-color: var(--text-cream);
+  }
+
   .case-end-nav{
     display:flex; flex-wrap:wrap; gap: var(--space-md);
     margin-top: 0;
@@ -893,9 +996,10 @@
   <section id="page-home" data-page>
     <div class="hero-grid wrap">
       <div class="hero">
+        <div class="page-hero-icon" aria-hidden="true"><svg viewBox="0 0 22 22" fill="none"><rect x="0" y="0" width="9" height="9" rx="1.5" fill="#751600" opacity="0.22"/><rect x="13" y="0" width="9" height="9" rx="1.5" fill="#751600"/><rect x="0" y="13" width="9" height="9" rx="1.5" fill="#751600" opacity="0.22"/><rect x="13" y="13" width="9" height="9" rx="1.5" fill="#751600" opacity="0.22"/></svg></div>
         <h1>Gabriela César</h1>
         <p class="role-tag">Design Lead &amp; UX Strategist</p>
-        <p class="lede">I'm a product designer with <strong>5+ years helping teams solve complex problems</strong> through <strong>UX strategy, product discovery, and DesignOps</strong>. I enjoy partnering with product, engineering, and business stakeholders to ask the right questions, run fast experiments (including AI-backed prototypes), and build design systems that scale. I focus on <strong>practical, user-centered solutions that improve outcomes</strong> and make people's lives easier.</p>
+        <p class="lede">I'm a product designer with <strong>5+ years helping teams solve complex problems</strong> through <strong>UX strategy, product discovery, and DesignOps</strong>. I work closely with product, engineering, and business stakeholders to ask the right questions, run fast experiments (including AI-backed prototypes), and build design systems that scale. I focus on <strong>practical, user-centered solutions that improve outcomes</strong> and make people's lives easier.</p>
 
         <ul class="contact-row" aria-label="Contact me">
           <li>
@@ -921,12 +1025,12 @@
         <p>Some achievements and important milestones:</p>
         <ul class="achv-list">
           <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
             <p>Luccas Toon app built from user research to app launch, with a 4.3-star rating in stores</p>
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-            <p>Design leadership for 2023 Black Friday campaign, with website sales over USD 160,000</p>
+            <p>Design leadership for 2023 Black Friday campaign, generating over USD 160,000 in website sales</p>
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
@@ -944,26 +1048,31 @@
         <div class="mini-card-row" role="list">
           <a class="mini-card" href="javascript:void(0)" data-nav="case-acssus" role="listitem">
             <span class="mini-card-year">2026</span>
+            <span class="mini-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="9.5"/><path d="M12 9.5 C8.5 11 7 14 8.5 17.5 C10 21 14 21 15.5 17.5 C17 14 15.5 11 12 9.5Z"/><line x1="12" y1="10.5" x2="12" y2="19.5" stroke-width="1" opacity="0.45"/></svg></span>
             <h3 class="mini-card-title">ACSSUS (NGO) — Social Impact E-commerce</h3>
             <span class="mini-card-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </a>
           <a class="mini-card" href="javascript:void(0)" data-nav="case-transfer" role="listitem">
             <span class="mini-card-year">2026</span>
+            <span class="mini-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg></span>
             <h3 class="mini-card-title">Transfer Analysis Portal</h3>
             <span class="mini-card-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </a>
           <a class="mini-card" href="javascript:void(0)" data-nav="case-signon" role="listitem">
             <span class="mini-card-year">2025</span>
+            <span class="mini-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="11" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="16" r="1.5" fill="#751600" stroke="none"/></svg></span>
             <h3 class="mini-card-title">Sign-on: discovering pain points and exploring opportunities</h3>
             <span class="mini-card-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </a>
           <a class="mini-card" href="javascript:void(0)" data-nav="case-soybean" role="listitem">
             <span class="mini-card-year">2024</span>
+            <span class="mini-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></span>
             <h3 class="mini-card-title">Soybean storage silo declaration ticket</h3>
             <span class="mini-card-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </a>
           <a class="mini-card" href="javascript:void(0)" data-nav="case-luccastoon" role="listitem">
             <span class="mini-card-year">2020</span>
+            <span class="mini-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="#751600" stroke="none"/></svg></span>
             <h3 class="mini-card-title">App Discovery: Luccas Toon</h3>
             <span class="mini-card-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </a>
@@ -1001,6 +1110,7 @@
   <section id="page-about" data-page hidden>
     <div class="page-hero wrap">
       <p class="eyebrow">My trajectory</p>
+      <div class="page-hero-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
       <h1>About Me</h1>
     </div>
     <div class="wrap" style="padding-bottom: var(--space-xl);">
@@ -1008,7 +1118,7 @@
         <h2>Career</h2>
         <p>I'm a professional with 16+ years of experience in various design roles. I began my career in the publishing industry working on all kinds of books and magazines <span class="emoji" aria-hidden="true">📚</span>, but soon expanded my work to advertising and marketing agencies as well.</p>
         <p>Since 2019, I've been dedicated to creating exceptional user experiences for apps <span class="emoji" aria-hidden="true">📱</span> and web platforms <span class="emoji" aria-hidden="true">🖥️</span>. I believe that my commitment to user-centered design, critical thinking, and adaptability make me a valuable professional for scaling a company's design culture. I'm a #lifelonglearning enthusiast and volunteered as a UX instructor for beginners through the <a href="https://codificadas.ime.usp.br/" target="_blank" rel="noopener">CodificADAs</a> initiative in January 2024.</p>
-        <p>I often expand my knowledge in the field through open courses, design conferences, and by reading articles and books. The last conference I attended was ILA 23 in La Plata <span class="emoji" aria-hidden="true">🇦🇷</span>. It was amazing to attend talks in English, Spanish, and Portuguese!</p>
+        <p>I often expand my knowledge through online courses, design conferences, and by reading articles and books. The last conference I attended was ILA 23 (Interaction Latin America) in La Plata <span class="emoji" aria-hidden="true">🇦🇷</span>. It was amazing to attend talks in English, Spanish, and Portuguese!</p>
       </div>
       <div class="about-block">
         <h2>Offline Life</h2>
@@ -1026,6 +1136,7 @@
   <section id="page-experience" data-page hidden>
     <div class="page-hero wrap">
       <p class="eyebrow">My trajectory</p>
+      <div class="page-hero-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
       <h1>Work experience</h1>
     </div>
     <div class="wrap" style="padding-bottom: var(--space-xl);">
@@ -1056,7 +1167,7 @@
         <span class="period">OCT. 2022 – DEC. 2023</span>
         <h3>Lead Product Designer · Afya / Medcel</h3>
         <ul>
-          <li>Led a team of seven designers through transformative challenges, keeping the team inspired and maintaining a zero-turnover rate throughout my management tenure. Streamlined processes for efficiency, meticulously documenting them. Facilitated stakeholder collaboration, prioritizing user-centered, research-driven design solutions, in line with a commitment to innovation and delivering a seamless experience for our students.</li>
+          <li>Led a team of seven designers through transformative challenges, keeping the team inspired and maintaining a zero-turnover rate throughout my management tenure. Streamlined and documented team processes. Facilitated stakeholder collaboration, prioritizing user-centered, research-driven design solutions, in line with a commitment to innovation and delivering a seamless experience for our students.</li>
         </ul>
       </div>
 
@@ -1064,7 +1175,7 @@
         <span class="period">JUN. 2021 – OCT. 2022</span>
         <h3>UX Researcher and ResearchOps · Afya / Medcel</h3>
         <ul>
-          <li>As the sole Researcher in a team of nine Product Designers, my responsibilities extended beyond research. I enabled designers to conduct their research and streamlined operations for our Customer Committee. Specialized in both quantitative and qualitative methods — from user interviews to usability testing — advocating for user-centered decision-making.</li>
+          <li>As the sole Researcher in a team of nine Product Designers, my scope extended beyond research. I enabled designers to conduct their research and streamlined operations for our Customer Committee. Specialized in both quantitative and qualitative methods — from user interviews to usability testing — and advocated for user-centered decision-making.</li>
         </ul>
       </div>
 
@@ -1095,18 +1206,43 @@
   <section id="page-skills" data-page hidden>
     <div class="page-hero wrap">
       <p class="eyebrow">My trajectory</p>
+      <div class="page-hero-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
       <h1>Skills</h1>
     </div>
     <div class="wrap" style="padding-bottom: var(--space-xl);">
       <h2>Skills and Competencies</h2>
       <ul class="skills-list">
         <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-          <span>Graphic design and prototyping software: InDesign, Photoshop, Illustrator, Figma</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>UX leadership and team development (mentoring, IDPs, 1:1s, and structured feedback)</span>
         </li>
         <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          <span>Wireframing and screen prototyping for mobile devices and web</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+          <span>Stakeholder management and cross-functional leadership</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <span>DesignOps (process structuring, governance, and design maturity)</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+          <span>ResearchOps (structuring and scaling research practices)</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Facilitation of strategic workshops and Design Critiques</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Workshop planning, facilitation, and group dynamics</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+          <span>Problem-solving and Design Thinking</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span>Jobs-to-be-done discovery framework</span>
         </li>
         <li>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -1117,20 +1253,16 @@
           <span>Research analysis, documentation and presentation: reporting results and insights</span>
         </li>
         <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          <span>Planning and conducting workshops, group dynamics, and workshop facilitation</span>
-        </li>
-        <li>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg>
           <span>Benchmarking and SWOT analysis</span>
         </li>
         <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          <span>Jobs-to-be-done discovery framework</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <span>Wireframing and screen prototyping for mobile devices and web</span>
         </li>
         <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
-          <span>Problem-solving and Design Thinking</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+          <span>Graphic design and prototyping software: InDesign, Photoshop, Illustrator, Figma</span>
         </li>
       </ul>
 
@@ -1145,6 +1277,7 @@
   <section id="page-education" data-page hidden>
     <div class="page-hero wrap">
       <p class="eyebrow">My trajectory</p>
+      <div class="page-hero-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg></div>
       <h1>Formal Education</h1>
     </div>
     <div class="wrap" style="padding-bottom: var(--space-xl);">
@@ -1185,6 +1318,7 @@
   <section id="page-case-luccastoon" data-page hidden>
     <div class="page-hero wrap case-hero">
       <p class="eyebrow">2020</p>
+      <div class="page-hero-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="#751600" stroke="none"/></svg></div>
       <h1>App Discovery: Luccas Toon</h1>
       <div class="case-meta-row">
         <span class="tag--role">game designer</span>
@@ -1198,7 +1332,7 @@
       <section class="case-section case-section--cream">
       <div class="wrap">
         <h2>📋 Executive Summary</h2>
-        <p>01 Digital was hired by YouTuber Luccas Neto to design his first app from scratch. Faced with YouTube's changing monetization policies for children's content, the client sought to diversify his revenue streams. The project followed a full discovery-to-delivery process — from user research with children and guardians, through ideation workshops, rapid prototyping, and usability testing — resulting in an app that surpassed 600,000 downloads in its first month on the market.</p>
+        <p>01 Digital was hired by YouTuber Luccas Neto to design his first app from scratch. Faced with YouTube's changing monetization policies for children's content, the client sought to diversify his revenue streams. The project followed a full discovery-to-delivery process — because designing for children without actually listening to them would have been a shot in the dark. From user research with children and guardians, through ideation workshops, rapid prototyping, and usability testing — resulting in an app that surpassed 600,000 downloads in its first month on the market.</p>
       </div>
       </section>
 
@@ -1252,7 +1386,7 @@
         <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-01.png" alt="Screenshot of YouTube comments from children expressing affection for Luccas Neto, used as research input" loading="lazy"></figure>
         <p>We analyzed hundreds of comments posted on Luccas Neto's YouTube channel, and after careful analysis, we identified some key needs:</p>
         <ul class="case-list">
-          <li>closer contact with Luccas, to receive individual attention</li>
+          <li>a more personal connection with Luccas</li>
           <li>learning more about Luccas, to be part of the Aventureiros</li>
         </ul>
         <p>Understanding the children's needs was the starting point for deciding what the new product should address and what its main objective would be, from the end-user's perspective.</p>
@@ -1300,7 +1434,7 @@
         <figure class="case-fig case-fig--borderless"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-03.png" alt="Photo of the team's ideation workshop with sticky notes on a wall, captioned: Yes, UX Designers are the driving force of the post-it industry" loading="lazy"></figure>
         <p>The 01 Digital design team brought together representatives from various business and technology areas to brainstorm which product features could be created to meet the needs of its users. The ideation process took place in three stages:</p>
         <ul class="case-list">
-          <li><strong>Crazy 8</strong> – a workshop tool that allowed the team to generate as many ideas as possible within a limited timeframe.</li>
+          <li><strong>Crazy Eights</strong> – an ideation exercise designed to generate as many ideas as possible within a limited timeframe.</li>
           <li><strong>Clustering</strong> – grouping proposals into categories based on similarity</li>
           <li><strong>Value vs. Complexity Matrix</strong> – categorizing features based on ease of implementation and value delivered to the end user</li>
         </ul>
@@ -1581,7 +1715,7 @@
         </ul>
         <p>Although it wasn't the primary objective, the test also raised some questions about the monetization model, possibilities for evolving existing features, and suggestions for new features from the children:</p>
         <ul class="case-list">
-          <li>The children have already watched all of Luccas Neto's videos on other streaming platforms. What will be our unique selling point when selling Luccas's videos through our own app?</li>
+          <li>The children have already watched all of Luccas Neto's videos on other streaming platforms. What will be our value proposition for Luccas's video content on his own app?</li>
           <li>While browsing, the children look for free alternatives or stop using a feature when they realize it's a paid one</li>
           <li>Suggestions for more features "using" the Avatar character they created; online/collaborative games and activities with slime and dinosaurs</li>
         </ul>
@@ -1592,8 +1726,8 @@
         <p>After the app's final delivery and release in app stores (Android and iOS devices), we can say there are positives as well as opportunities for improvement:</p>
         <ul class="case-list">
           <li>Conducting remote testing is quite challenging when working with mobile products and child users.</li>
-          <li>Since the app was already published in beta, it required more effort from the tutors to install the app and conduct the tests.</li>
-          <li>We regret not having documented our processes better, as we had difficulty reviewing previous stages and decision-making processes.</li>
+          <li>Since the app was already published in beta, it required more effort from the guardians to install the app and conduct the tests.</li>
+          <li>We regret not having documented our processes better — and we felt that pain every time we needed to revisit a decision we could no longer trace back.</li>
           <li>We had over 600,000 downloads in the first month after the app's release (see chart on the right). This demonstrates a clear alignment between the user's problem and the proposed solution.</li>
           <li>We were also fortunate to have a client who was a true partner in our initiative, as YouTuber Luccas Neto collaborated creatively on the app, providing assets for the games (e.g., games and videos) and his entire visual identity kit to support our design team. In addition, Luccas himself promoted the app extensively on his channel, including a launch campaign.</li>
           <li>Another notable positive aspect was the collaboration among various teams at 01 Digital, such as Marketing, Development, and Design. Without the sense that this project was the result of collective effort and cooperation, we wouldn't have achieved such a positive outcome in such a short time.</li>
@@ -1609,7 +1743,7 @@
           <li><strong>Creative collaboration</strong> – Client Luccas Neto hired 01 Digital to develop a second app, this time focused on preteens. How can we keep the client satisfied and create another app that follows the successful model?</li>
           <li><strong>Subscription Benefits</strong> – Reviewing, together with the client, the best benefits for subscribers to the app's content, given that much of the content is available for free on YouTube.</li>
         </ul>
-        <p>Currently, 01 Digital continues as the official publisher of the Luccas Toon app and uses the research and design thinking process employed in this project as a model for other consulting firms and clients—a proven approach to applying research and creating user-centered experiences.</p>
+        <p>To this day, 01 Digital remains the official publisher of the Luccas Toon app and uses the research and design thinking process employed in this project as a model for other consulting firms and clients — a proven approach to applying research and creating user-centered experiences.</p>
       </div>
       </section>
 
@@ -1647,6 +1781,7 @@
   <section id="page-case-soybean" data-page hidden>
     <div class="page-hero wrap case-hero">
       <p class="eyebrow">2024</p>
+      <div class="page-hero-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
       <h1>Soybean storage silo declaration ticket</h1>
       <div class="case-meta-row">
         <span class="tag--role">product designer</span>
@@ -1694,8 +1829,8 @@
       <div class="wrap">
         <h2>🔍 Discovery & Problem Framing</h2>
         <h3>Pain Points Overview</h3>
-        <p>One of the second-quarter 2024 priorities for the Conexão Biotec portal was improving the flow for opening and analyzing Grain Storage (Silo) Declaration tickets. The main reason is the slowness in handling these tickets, which can take 8 to 14 days for full resolution, even though they represent less than 30% of the portal's total ticket volume.</p>
-        <p>Since soybean season in Brazil typically begins around September–October, it was determined that improvements should be delivered by the Design team by the end of June, so development could begin in July, with subsequent testing and production release in September.</p>
+        <p>One of the second-quarter 2024 priorities for the Conexão Biotec portal was improving the flow for opening and analyzing Grain Storage (Silo) Declaration tickets. The main reason is the slow resolution time for these tickets, which can take 8 to 14 days, even though they represent less than 30% of the portal's total ticket volume.</p>
+        <p>Since soybean season in Brazil typically begins around September–October, the team set a target to deliver design improvements by end of June, so development could begin in July, with testing and production release in September.</p>
 
         <h3>Soybean Grain Storage</h3>
         <p>If a farmer mixes patented biotech soybeans with conventional soybeans, they may face legal issues and fines when delivering the soybeans to a distribution point, since patented biotech soybeans have specific usage rules. However, storing soybeans in privately owned silos helps the farmer maintain grain quality, protect against pests, save on transportation costs, and hold the harvest until prices improve.</p>
@@ -1760,7 +1895,7 @@
         <h4>Pain Point 2</h4>
         <p>It is not clear that a private silo is a prerequisite for the ticket.</p>
         <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-02.png" alt="Confirmation dialog window requiring the farmer to confirm private silo ownership before proceeding" loading="lazy"></figure>
-        <p>Although in many cases dialog windows create unnecessary friction in web systems, this component was introduced here precisely to confirm the ticket's basic premise — without which all requests will be canceled: the farmer must mandatorily own a private silo.</p>
+        <p>Although in many cases dialog windows create unnecessary friction in web systems, this component was introduced here precisely to confirm the ticket's basic premise — without which all requests will be canceled: ownership of a private silo is a hard requirement.</p>
         <p class="case-callout"><strong>Point raised while investigating common reasons for canceled tickets:</strong> User opens a ticket for soybean varieties for which they have no active licensing.</p>
         <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-05.png" alt="Warning tooltip flagging missing biotechnology licensing when the farmer declares soybean varieties" loading="lazy"></figure>
         <p>One of the most common reasons for rejected tickets is the lack of a soybean biotechnology licensing agreement. To make this clearer during the opening process, a warning tooltip was added when the farmer is declaring the soybean varieties present in their silo, flagging any missing licenses.</p>
@@ -1857,7 +1992,7 @@
       <section class="case-section case-section--maroon">
       <div class="wrap">
         <h2>📈 Results & Learnings</h2>
-        <p>While there are many considerations specific to the soybean royalty collection business model, many of the pain points encountered by users would have been resolved had the original screen design followed good UX practices or been submitted to a heuristic analysis.</p>
+        <p>Many of the pain points we found would have been caught much earlier — had anyone run even a basic heuristic analysis on the original screens. That's not a criticism of the original team; it's a reminder that skipping UX review has real downstream costs.</p>
         <p>As a point for improvement — beyond the items prototyped above — it is worth emphasizing that future initiative timelines must consider user testing as an integral and mandatory part of portal flow redesign projects.</p>
       </div>
       </section>
@@ -1876,6 +2011,7 @@
   <section id="page-case-signon" data-page hidden>
     <div class="page-hero wrap case-hero">
       <p class="eyebrow">2025</p>
+      <div class="page-hero-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="11" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="16" r="1.5" fill="#751600" stroke="none"/></svg></div>
       <h1>Sign-on: discovering pain points and exploring opportunities</h1>
       <div class="case-meta-row">
         <span class="tag--role">product designer</span>
@@ -1916,7 +2052,7 @@
       <section class="case-section case-section--cream">
       <div class="wrap">
         <h2>📖 Context</h2>
-        <p>Conexão Biotec is a platform utilized within the agricultural ecosystem focused on soybean crops. Users — ranging from farmers and agricultural consultants to seed sellers — frequently encountered friction during registration, credential recovery, system navigation, and multi-account management. This case study details the diagnostic process, problem mapping, solution benchmarking, and the prototyping of targeted solutions executed to optimize user experience and operational efficiency.</p>
+        <p>Conexão Biotec is a platform used within the agricultural ecosystem focused on soybean crops. Users — ranging from farmers and agricultural consultants to seed sellers — frequently encountered friction during registration, credential recovery, system navigation, and multi-account management. This case study walks through the full diagnostic process: how we listened to support calls, mapped the real sources of friction, benchmarked solutions, and prototyped targeted fixes — always with one goal in mind: making the system work for the people using it, not just for the people who built it.</p>
       </div>
       </section>
 
@@ -1951,7 +2087,7 @@
 
         <h3>System Integration</h3>
         <p><strong>Challenge:</strong> How databases communicate between System 1 and System 2.</p>
-        <blockquote class="case-quote"><p>"I understood what happened in your case... It's because she [producer] is registered in the system, but it wasn't reflecting here in [System 1], so that's why it wasn't appearing [in the ticket]. But I'll update this for you on my end."</p><cite>— Support Agent</cite></blockquote>
+        <blockquote class="case-quote"><p>"I understood what happened in your case... It's because she [the farmer] is registered in the system, but it wasn't reflecting here in [System 1], so that's why it wasn't appearing [in the ticket]. But I'll update this for you on my end."</p><cite>— Support Agent</cite></blockquote>
         <p><strong>Core Problem:</strong> Divergence between system databases.</p>
         <p><strong>Opportunities:</strong></p>
         <ul class="case-list">
@@ -1975,7 +2111,7 @@
         <p><strong>Opportunities:</strong></p>
         <ul class="case-list">
           <li><span class="typ-tag typ-quick">Quick Win</span> Restructure registration/profile fields.</li>
-          <li><span class="typ-tag typ-enabler">Enabler</span> Validate and complement registration via external bases; enable SMS validation code delivery; in-journey prompts to complete missing data; targeted outreach campaigns to encourage profile updates; regular collection of behavioral data with funnel analysis (Analytics); draw on other channels (audits, ticket documents, customer support contacts) to update systems.</li>
+          <li><span class="typ-tag typ-enabler">Enabler</span> Validate and complement registration via external bases; enable SMS validation code delivery; in-journey prompts to complete missing data; targeted outreach campaigns to encourage profile updates; regular collection of behavioral data with funnel analysis (Analytics); leverage data from other channels (audits, ticket documents, customer support contacts) to update systems.</li>
           <li><span class="typ-tag typ-structural">Structural</span> Automation rules for inactivating or suspending registrations (e.g., inactivity periods, deaths); pre-defined expiration dates for registrations. Allow email not to be a unique key, triggering internal alerts for repeated usage and identifying partner emails to prevent reuse.</li>
         </ul>
         <figure class="case-fig case-fig--borderless"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/register_image%205.png" alt="Wireframe of the prototyped contact management and risk assessment solution for Theme 2: Data Quality and Reliability" loading="lazy"></figure>
@@ -2030,20 +2166,21 @@
   <section id="page-case-transfer" data-page hidden>
     <div class="page-hero wrap case-hero">
       <p class="eyebrow">2026</p>
+      <div class="page-hero-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg></div>
       <h1>Transfer Analysis Portal</h1>
       <div class="case-meta-row">
         <span class="tag--role">discovery leadership</span>
         <span class="tag--role">design mentor</span>
         <span class="tag--role">ux designer</span>
       </div>
-      <p class="case-about">The project introduces a new transfer analysis workflow designed to improve analysis quality, reduce onboarding effort, and prepare the operation for future automation initiatives.</p>
+      <p class="case-about">The project introduces a new transfer analysis workflow designed to improve analysis quality, reduce analyst onboarding time, and prepare the operation for future automation initiatives.</p>
     </div>
 
 
       <section class="case-section case-section--cream">
       <div class="wrap">
         <h2>📋 Executive Summary</h2>
-        <p>The solution restructures the analyst journey into guided stages, replacing manual and knowledge-dependent activities with standardized workflows, contextual information, and structured analysis checklists. The initiative also establishes the foundation for quality monitoring, auditing, and future AI-assisted decision support.</p>
+        <p>The solution restructures the analyst journey into guided stages, replacing manual and knowledge-dependent activities with standardized workflows, contextual information, and structured analysis checklists. The initiative also reduces analyst onboarding time and establishes the foundation for quality monitoring, auditing, and future AI-assisted decision support.</p>
       </div>
       </section>
 
@@ -2258,7 +2395,7 @@
         <p><strong>Guided Analysis Experience</strong></p>
         <ul class="case-list">
           <li>Analysts appreciated having review instructions available directly within the workflow.</li>
-          <li>Structured checkpoints reduced dependency on previously memorized procedures.</li>
+          <li>Structured checkpoints freed analysts from relying on memorized procedures.</li>
         </ul>
 
         <h4>Areas Requiring Attention</h4>
@@ -2324,6 +2461,7 @@
   <section id="page-case-acssus" data-page hidden>
     <div class="page-hero wrap case-hero">
       <p class="eyebrow">2026</p>
+      <div class="page-hero-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="9.5"/><path d="M12 9.5 C8.5 11 7 14 8.5 17.5 C10 21 14 21 15.5 17.5 C17 14 15.5 11 12 9.5Z"/><line x1="12" y1="10.5" x2="12" y2="19.5" stroke-width="1" opacity="0.45"/></svg></div>
       <h1>ACSSUS (NGO) — Social Impact E-commerce</h1>
       <div class="case-meta-row">
         <span class="tag--role">ux strategy</span>
@@ -2337,7 +2475,7 @@
       <section class="case-section case-section--cream">
       <div class="wrap">
         <h2>📋 Executive Summary</h2>
-        <p>ACSSUS is a nonprofit founded in 2011 in Parintins, Amazonas, that trains riverside women to produce bio-jewelry using materials sourced from Amazon biodiversity. With nearly all revenue coming from volatile public grants, the organization had only R$ 1,508.25 in available cash at the start of 2026. Our team proposed a digital sales channel — grounded in consumer research and a full financial model — to create a stable, autonomous revenue stream and reduce dependency on sponsorships.</p>
+        <p>ACSSUS is a nonprofit founded in 2011 in Parintins, Amazonas, that trains riverside women to produce bio-jewelry using materials sourced from Amazon biodiversity. With nearly all revenue coming from volatile public grants, the organization had only R$ 1,508.25 in available cash at the start of 2026. Our team proposed a digital sales channel — grounded in consumer research and a full financial model — because R$ 1,508.25 in available cash is not a funding gap; it's a survival problem. The goal was to create a stable, autonomous revenue stream and reduce the NGO's dependency on grant cycles.</p>
       </div>
       </section>
 
@@ -2408,7 +2546,7 @@
         <h3>UX Strategy</h3>
         <ul class="case-list">
           <li>Mapped the AS-IS sales journey and defined the TO-BE experience for ACSSUS bio-jewelry, identifying revenue opportunities and ESG pillars grounded in the 2025 financial report</li>
-          <li>Participation in the design and analysis of a consumer survey (n = 89 valid respondents, 78 complete; data collection: May 6–23, 2026)</li>
+          <li>Participated in the design and analysis of a consumer survey (n = 89 valid respondents, 78 complete; data collection: May 6–23, 2026)</li>
           <li>Creation of synthesis artifacts: personas, MoSCoW prioritization, MVP definition, and "How Might We" problem framing</li>
           <li>Logistics and e-commerce benchmarking to design a high-level solution architecture and integration plan</li>
           <li>Structuring of the Business Model Canvas connecting the TO-BE journey to the proposed digital channel</li>
@@ -2642,11 +2780,11 @@
               <p style="font-family:var(--font-tag);font-size:var(--text-size-xs);letter-spacing:0.07em;color:var(--text-maroon);margin:0 0 var(--space-xs) 0;">Local investment &amp; education</p>
               <ul class="bench-findings">
                 <li>Income generation for riverside women (revenue share + hiring)</li>
-                <li>Additional training to enable artisans to operate the e-commerce backoffice directly</li>
+                <li>Additional training to enable artisans to operate the e-commerce back office directly</li>
               </ul>
               <p style="font-family:var(--font-tag);font-size:var(--text-size-xs);letter-spacing:0.07em;color:var(--text-maroon);margin:var(--space-sm) 0 var(--space-xs) 0;">How to measure</p>
               <ul class="bench-findings">
-                <li>Artisans trained → conversion rate into active sellers on the backoffice portal</li>
+                <li>Artisans trained → conversion rate into active sellers on the back office portal</li>
                 <li>Value returned to the community: CLT contracts, individual service agreements, and sales transfers</li>
               </ul>
             </div>
@@ -2707,67 +2845,52 @@
         <p>The screens were designed by Ítalo Utchuk.</p>
 
         <h3>Solution Architecture</h3>
-        <p>The solution is built around three layers: a central backoffice that serves as the single source of truth, an integration hub that manages inventory, invoicing, and cash flow, and two complementary sales channels — each targeting a distinct audience and operating logic.</p>
+        <p>The solution is built around three layers: a central back office that serves as the single source of truth, an integration hub that manages inventory, invoicing, and cash flow, and two complementary sales channels — each targeting a distinct audience and operating logic.</p>
 
         <figure class="case-fig case-fig--borderless" aria-label="Solution architecture diagram">
-          <svg width="100%" viewBox="0 0 680 590" role="img" style="display:block;">
+          <style>
+            .arch-desktop{display:block;}
+            .arch-mobile{display:none;}
+            @media(max-width:600px){.arch-desktop{display:none;}.arch-mobile{display:block;}}
+          </style>
+          <!-- DESKTOP -->
+          <svg class="arch-desktop" width="100%" viewBox="0 0 680 600" role="img" style="display:block;">
             <title>ACSSUS solution architecture</title>
-            <desc>Three-layer diagram: backoffice at the top feeds the integration hub, which distributes to Nuvemshop (catalog channel) and Mercado Livre (store channel), both connected at the bottom by a catalog and shipping integration node.</desc>
+            <desc>Three-layer diagram: back office at the top feeds the integration hub, which distributes to Nuvemshop (catalog channel) and Mercado Livre (store channel), both connected at the bottom by a catalog and shipping integration node.</desc>
             <defs>
-              <marker id="arch-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <marker id="arch-arrow-d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                 <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </marker>
             </defs>
-
-            <!-- BACKOFFICE — teal -->
             <rect x="200" y="40" width="280" height="96" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
             <text x="340" y="72" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="15" font-weight="700" fill="#085041">Backoffice</text>
             <text x="340" y="94" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#0F6E56">Artisans · Products · Categories · Prices</text>
             <text x="340" y="112" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#0F6E56">Payment management · ESG indicators</text>
-
-            <!-- connector backoffice → hub -->
-            <line x1="340" y1="136" x2="340" y2="184" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#arch-arrow)"/>
-
-            <!-- INTEGRATION HUB — green -->
+            <line x1="340" y1="136" x2="340" y2="184" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#arch-arrow-d)"/>
             <rect x="180" y="188" width="320" height="86" rx="12" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
             <text x="340" y="218" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="15" font-weight="700" fill="#27500A">Integration hub</text>
             <text x="340" y="240" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#3B6D11">Inventory · invoicing · cash flow</text>
             <text x="340" y="258" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#3B6D11">Consolidated entries and exits</text>
-
-            <!-- channel labels -->
-            <text x="90" y="324" text-anchor="middle" font-family="'Karla', sans-serif" font-size="12" fill="#5F5E5A">"catalog"</text>
-            <text x="590" y="324" text-anchor="middle" font-family="'Karla', sans-serif" font-size="12" fill="#5F5E5A">"store"</text>
-
-            <!-- hub → left L-bend -->
-            <path d="M200 234 L90 234 L90 358" fill="none" stroke="#B4B2A9" stroke-width="0.5" marker-end="url(#arch-arrow)"/>
-            <!-- hub → right L-bend -->
-            <path d="M480 234 L590 234 L590 358" fill="none" stroke="#B4B2A9" stroke-width="0.5" marker-end="url(#arch-arrow)"/>
-            <!-- bottom left closing -->
+            <path d="M270 274 L270 310 L90 310 L90 358" fill="none" stroke="#B4B2A9" stroke-width="0.5" marker-end="url(#arch-arrow-d)"/>
+            <path d="M410 274 L410 310 L590 310 L590 358" fill="none" stroke="#B4B2A9" stroke-width="0.5" marker-end="url(#arch-arrow-d)"/>
+            <rect x="52" y="300" width="76" height="18" rx="2" fill="#FFFCF6"/>
+            <text x="90" y="310" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#5F5E5A">"catalog"</text>
+            <rect x="552" y="300" width="76" height="18" rx="2" fill="#FFFCF6"/>
+            <text x="590" y="310" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#5F5E5A">"store"</text>
             <path d="M90 478 L90 526 L272 526" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
-            <!-- bottom right closing -->
             <path d="M590 478 L590 526 L408 526" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
-
-            <!-- NUVEMSHOP — amber -->
             <rect x="22" y="358" width="196" height="120" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
             <text x="120" y="392" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="15" font-weight="700" fill="#633806">Nuvemshop</text>
             <text x="120" y="414" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#854F0B">NGO landing page</text>
-            <text x="120" y="432" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#854F0B">Own checkout</text>
-
-            <!-- MERCADO LIVRE — coral -->
+            <text x="120" y="432" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#854F0B">Built-in checkout</text>
             <rect x="462" y="358" width="196" height="120" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
             <text x="560" y="392" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="15" font-weight="700" fill="#4A1B0C">Mercado Livre</text>
             <text x="560" y="414" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#993C1D">API integration</text>
             <text x="560" y="432" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#993C1D">Checkouts and shipping</text>
-
-            <!-- logistics dashed arrow -->
-            <line x1="220" y1="418" x2="460" y2="418" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="5 4" marker-end="url(#arch-arrow)"/>
+            <line x1="220" y1="418" x2="460" y2="418" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="5 4" marker-end="url(#arch-arrow-d)"/>
             <text x="340" y="408" text-anchor="middle" font-family="'Karla', sans-serif" font-size="11" fill="#888780">logistics</text>
-
-            <!-- CATALOG + SHIPPING INTEGRATION — gray -->
             <rect x="185" y="514" width="310" height="42" rx="10" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
             <text x="340" y="535" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="13" font-weight="600" fill="#2C2C2A">Catalog and shipping integration</text>
-
-            <!-- legend -->
             <rect x="126" y="572" width="10" height="10" rx="2" fill="#1D9E75"/>
             <text x="142" y="581" font-family="'Karla', sans-serif" font-size="11" fill="#5F5E5A">Central platform</text>
             <rect x="256" y="572" width="10" height="10" rx="2" fill="#639922"/>
@@ -2777,7 +2900,54 @@
             <rect x="514" y="572" width="10" height="10" rx="2" fill="#993C1D"/>
             <text x="530" y="581" font-family="'Karla', sans-serif" font-size="11" fill="#5F5E5A">Store channel</text>
           </svg>
-          <figcaption>Solution architecture — three-layer model connecting the backoffice, integration hub, and two sales channels.</figcaption>
+          <!-- MOBILE: canais lado a lado, compactos -->
+          <svg class="arch-mobile" width="100%" viewBox="0 0 340 490" role="img" style="display:block;">
+            <title>ACSSUS solution architecture — mobile</title>
+            <desc>Compact vertical layout: back office and integration hub on top; Nuvemshop and Mercado Livre side by side; catalog and shipping integration at the base.</desc>
+            <defs>
+              <marker id="arch-arrow-m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </marker>
+            </defs>
+            <rect x="10" y="20" width="320" height="80" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+            <text x="170" y="47" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="13" font-weight="700" fill="#085041">Backoffice</text>
+            <text x="170" y="66" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#0F6E56">Artisans · Products · Categories · Prices</text>
+            <text x="170" y="82" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#0F6E56">Payment management · ESG indicators</text>
+            <line x1="170" y1="100" x2="170" y2="128" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#arch-arrow-m)"/>
+            <rect x="10" y="132" width="320" height="72" rx="10" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+            <text x="170" y="157" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="13" font-weight="700" fill="#27500A">Integration hub</text>
+            <text x="170" y="176" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#3B6D11">Inventory · invoicing · cash flow</text>
+            <text x="170" y="192" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#3B6D11">Consolidated entries and exits</text>
+            <path d="M120 204 L120 224 L87 224 L87 252" fill="none" stroke="#B4B2A9" stroke-width="0.5" marker-end="url(#arch-arrow-m)"/>
+            <rect x="50" y="215" width="58" height="14" rx="2" fill="#FFFCF6"/>
+            <text x="79" y="222" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#5F5E5A">"catalog"</text>
+            <path d="M220 204 L220 224 L253 224 L253 252" fill="none" stroke="#B4B2A9" stroke-width="0.5" marker-end="url(#arch-arrow-m)"/>
+            <rect x="232" y="215" width="44" height="14" rx="2" fill="#FFFCF6"/>
+            <text x="254" y="222" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#5F5E5A">"store"</text>
+            <rect x="10" y="256" width="155" height="90" rx="10" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+            <text x="87" y="284" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" font-weight="700" fill="#633806">Nuvemshop</text>
+            <text x="87" y="304" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#854F0B">NGO landing page</text>
+            <text x="87" y="320" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#854F0B">Built-in checkout</text>
+            <rect x="175" y="256" width="155" height="90" rx="10" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+            <text x="253" y="284" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" font-weight="700" fill="#4A1B0C">Mercado Livre</text>
+            <text x="253" y="304" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#993C1D">API integration</text>
+            <text x="253" y="320" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#993C1D">Checkouts and shipping</text>
+            <line x1="166" y1="301" x2="174" y2="301" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arch-arrow-m)"/>
+            <path d="M87 346 L87 368 L170 368" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+            <path d="M253 346 L253 368 L170 368" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+            <line x1="170" y1="368" x2="170" y2="382" stroke="#B4B2A9" stroke-width="0.5" marker-end="url(#arch-arrow-m)"/>
+            <rect x="10" y="386" width="320" height="36" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+            <text x="170" y="404" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="11" font-weight="600" fill="#2C2C2A">Catalog and shipping integration</text>
+            <rect x="10" y="436" width="8" height="8" rx="1" fill="#1D9E75"/>
+            <text x="22" y="444" font-family="'Karla', sans-serif" font-size="9" fill="#5F5E5A">Central platform</text>
+            <rect x="115" y="436" width="8" height="8" rx="1" fill="#639922"/>
+            <text x="127" y="444" font-family="'Karla', sans-serif" font-size="9" fill="#5F5E5A">Hub / integration</text>
+            <rect x="230" y="436" width="8" height="8" rx="1" fill="#BA7517"/>
+            <text x="242" y="444" font-family="'Karla', sans-serif" font-size="9" fill="#5F5E5A">Catalog channel</text>
+            <rect x="10" y="456" width="8" height="8" rx="1" fill="#993C1D"/>
+            <text x="22" y="464" font-family="'Karla', sans-serif" font-size="9" fill="#5F5E5A">Store channel</text>
+          </svg>
+          <figcaption>Solution architecture — three-layer model connecting the back office, integration hub, and two sales channels.</figcaption>
         </figure>
 
         <h3>Consumer-Facing E-commerce</h3>
@@ -2812,7 +2982,7 @@
 
         <h3>Project Limitations</h3>
         <ul class="case-list">
-          <li>Lack of direct access to the artisans: decisions on revenue share and production load were made using secondary data and conservative assumptions.</li>
+          <li>No direct access to artisans: decisions on revenue share and production load were made using secondary data and conservative assumptions.</li>
           <li>The NGO has no available cash to absorb the early deficit months — external funding is a prerequisite for operations, not optional.</li>
         </ul>
       </div>
@@ -2832,6 +3002,12 @@
     <p class="footer-line">Gabriela César · Design Lead &amp; UX Strategist · <a href="mailto:cestgabiloja@gmail.com">cestgabiloja@gmail.com</a> · <a href="https://www.linkedin.com/in/gabrielacesar/?locale=en-US" target="_blank" rel="noopener">linkedin.com</a></p>
   </div>
 </footer>
+
+<!-- ============ CASE TOC SIDEBAR (desktop only, populated by JS) ============ -->
+<nav id="case-toc" aria-label="On this page" hidden>
+  <span class="case-toc__label">On this page</span>
+  <ul class="case-toc__list" id="case-toc-list"></ul>
+</nav>
 
 <script>
 (function(){
@@ -2959,6 +3135,175 @@
   // On initial load, honour any hash already in the URL (direct link to a case)
   var initialPage = getPageFromHash();
   render(initialPage, null, true /* isInitialLoad — skip h1 focus to avoid focus ring on page open */);
+})();
+</script>
+
+<script>
+/* ── Case ToC sidebar ───────────────────────────────────────────────────── */
+(function(){
+  var CASE_PAGES = ['case-luccastoon','case-soybean','case-signon','case-transfer','case-acssus'];
+  var toc    = document.getElementById('case-toc');
+  var tocList = document.getElementById('case-toc-list');
+  var observer = null;
+  var currentLinks = [];
+
+  /* Strip emoji and HTML tags from heading text */
+  function cleanText(el){
+    return (el.textContent || el.innerText || '').replace(/[\u{1F000}-\u{1FFFF}]/gu,'').trim();
+  }
+
+  /* Assign stable anchor IDs to H2s that don't already have one */
+  function ensureId(el, pageId, index){
+    if(!el.id){
+      el.id = pageId + '-h2-' + index;
+    }
+    return el.id;
+  }
+
+  /* Build and show the ToC for the given case page */
+  function buildToc(pageId){
+    /* Tear down previous observer */
+    if(observer){ observer.disconnect(); observer = null; }
+    currentLinks = [];
+    tocList.innerHTML = '';
+
+    var pageEl = document.getElementById('page-' + pageId);
+    if(!pageEl) return;
+
+    var headings = Array.from(pageEl.querySelectorAll('.case-section > .wrap > h2'));
+    if(headings.length === 0){ toc.hidden = true; return; }
+
+    headings.forEach(function(h, i){
+      var id   = ensureId(h, pageId, i);
+      var text = cleanText(h);
+      if(!text) return;
+
+      var li = document.createElement('li');
+      var a  = document.createElement('a');
+      a.href = '#' + id;
+      a.className = 'case-toc__link';
+      a.textContent = text;
+      a.setAttribute('aria-current','false');
+
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        var target = document.getElementById(id);
+        if(!target) return;
+        target.setAttribute('tabindex','-1');
+        target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      li.appendChild(a);
+      tocList.appendChild(li);
+      currentLinks.push({ id: id, link: a });
+    });
+
+    toc.hidden = false;
+
+    /* IntersectionObserver: highlight the ToC item whose section is in view */
+    var headerH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 80;
+    observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var match = currentLinks.find(function(cl){ return cl.id === entry.target.id; });
+        if(!match) return;
+        match.link.setAttribute('aria-current', entry.isIntersecting ? 'true' : 'false');
+      });
+      /* If nothing is intersecting (fast scroll gap), keep the last active */
+      var anyActive = currentLinks.some(function(cl){ return cl.link.getAttribute('aria-current') === 'true'; });
+      if(!anyActive && currentLinks.length){
+        /* Find the heading closest above the viewport center */
+        var mid = window.scrollY + window.innerHeight / 2;
+        var best = null;
+        currentLinks.forEach(function(cl){
+          var el = document.getElementById(cl.id);
+          if(el && el.getBoundingClientRect().top + window.scrollY <= mid) best = cl;
+        });
+        if(best) best.link.setAttribute('aria-current','true');
+      }
+    }, {
+      rootMargin: '-' + (headerH + 8) + 'px 0px -60% 0px',
+      threshold: 0
+    });
+
+    headings.forEach(function(h){ observer.observe(h); });
+  }
+
+  /* Hide the ToC (non-case pages) */
+  function hideToc(){
+    if(observer){ observer.disconnect(); observer = null; }
+    currentLinks = [];
+    tocList.innerHTML = '';
+    toc.hidden = true;
+  }
+
+  /* Hook into navigateTo — patch render() to call us after each navigation */
+  var _origRender = window._tocRenderHook; // safety: avoid double-patching
+  if(!_origRender){
+    var renderEl = document.querySelector('[data-page]');
+    /* We watch the page visibility changes via MutationObserver on [data-page] sections */
+    var pageObs = new MutationObserver(function(){
+      var visible = Array.from(document.querySelectorAll('[data-page]:not([hidden])'));
+      if(visible.length === 0){ hideToc(); if(window._darkBgUpdate) window._darkBgUpdate(); return; }
+      var visId = visible[0].id.replace(/^page-/,''); // e.g. "case-luccastoon"
+      if(CASE_PAGES.indexOf(visId) !== -1){
+        buildToc(visId);
+      } else {
+        hideToc();
+      }
+      if(window._darkBgUpdate) window._darkBgUpdate();
+    });
+    document.querySelectorAll('[data-page]').forEach(function(sec){
+      pageObs.observe(sec, { attributes: true, attributeFilter: ['hidden'] });
+    });
+    window._tocRenderHook = true;
+  }
+
+  /* Initial state */
+  var initVisible = Array.from(document.querySelectorAll('[data-page]:not([hidden])'));
+  if(initVisible.length){
+    var initId = initVisible[0].id.replace(/^page-/,'');
+    if(CASE_PAGES.indexOf(initId) !== -1) buildToc(initId); else hideToc();
+  } else {
+    hideToc();
+  }
+
+  /* ── Dark-bg detection ──────────────────────────────────────────────────
+     Checks whether the topbar bottom edge (or the ToC midpoint) overlaps a
+     .section--maroon or .case-section--maroon element. Adds/removes
+     modifier classes so CSS can adapt without hardcoded colors in JS.
+  */
+  var topbarEl = document.getElementById('topbar');
+  var darkSelectors = '.section--maroon, .case-section--maroon, footer.site-footer';
+
+  function isRectOnDark(testY){
+    var darkEls = Array.from(document.querySelectorAll(darkSelectors));
+    return darkEls.some(function(el){
+      var r = el.getBoundingClientRect();
+      return testY >= r.top && testY <= r.bottom;
+    });
+  }
+
+  function updateDarkBgState(){
+    /* Topbar: test the bottom edge of the bar */
+    if(topbarEl){
+      var tbBottom = topbarEl.getBoundingClientRect().bottom;
+      var tbOnDark = isRectOnDark(tbBottom);
+      topbarEl.classList.toggle('topbar--on-dark', tbOnDark);
+    }
+
+    /* ToC: test the vertical midpoint of the sidebar */
+    if(!toc || toc.hidden) return;
+    var tocR = toc.getBoundingClientRect();
+    var tocMid = tocR.top + tocR.height / 2;
+    var tocOnDark = isRectOnDark(tocMid);
+    toc.classList.toggle('toc--on-dark', tocOnDark);
+  }
+
+  window.addEventListener('scroll', updateDarkBgState, { passive: true });
+  window.addEventListener('resize', updateDarkBgState, { passive: true });
+  /* Re-run after page navigation (ToC rebuild changes visibility) */
+  window._darkBgUpdate = updateDarkBgState;
+  updateDarkBgState();
 })();
 </script>
 
@@ -3216,6 +3561,7 @@
   initAcssusEsgCarousel();
 })();
 </script>
+
 
 </body>
 </html>
