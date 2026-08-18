@@ -618,6 +618,41 @@
   }
   .case-table th{ background: var(--bg-peach); font-family: var(--font-tag); letter-spacing: 0.04em; }
 
+  /* ── Responsive table: card-mode on small screens ── */
+  @media (max-width: 35.99rem){
+    .table-responsive{ overflow-x: visible; }
+    .table-responsive .case-table,
+    .table-responsive .case-table thead,
+    .table-responsive .case-table tbody,
+    .table-responsive .case-table th,
+    .table-responsive .case-table td,
+    .table-responsive .case-table tr{ display: block; width: 100%; min-width: 0; }
+    .table-responsive .case-table thead{ display: none; }
+    .table-responsive .case-table tr{
+      border: var(--border-width) solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-sm);
+      padding: var(--space-xs);
+      background: var(--bg-cream);
+    }
+    .table-responsive .case-table td{
+      border: none;
+      border-bottom: 1px solid var(--border-soft);
+      padding: var(--space-xs) var(--space-sm);
+      display: flex; gap: var(--space-xs);
+    }
+    .table-responsive .case-table td:last-child{ border-bottom: none; }
+    .table-responsive .case-table td::before{
+      content: attr(data-label);
+      font-family: var(--font-tag);
+      font-size: var(--text-size-xs);
+      letter-spacing: 0.04em;
+      color: var(--text-maroon);
+      min-width: 9rem;
+      flex-shrink: 0;
+    }
+  }
+
   .phase-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(13rem,1fr)); gap: var(--space-md); margin-top: var(--space-md); }
   .phase-card{ background: var(--bg-peach); border-radius: var(--radius-md); padding: var(--space-md); }
   .phase-card h3{ margin-top:0; }
@@ -2372,17 +2407,23 @@
 
         <h3>UX Strategy</h3>
         <ul class="case-list">
-          <li>Critical analysis of the NGO's financial report as a diagnostic input</li>
+          <li>Mapped the AS-IS sales journey and defined the TO-BE experience for ACSSUS bio-jewelry, identifying revenue opportunities and ESG pillars grounded in the 2025 financial report</li>
           <li>Participation in the design and analysis of a consumer survey (n = 89 valid respondents, 78 complete; data collection: May 6–23, 2026)</li>
-          <li>Creation of synthesis artifacts: personas, AS-IS journey map, MoSCoW prioritization, MVP definition, and "How Might We" problem framing</li>
-          <li>Structuring of the Business Model Canvas and TO-BE customer journey</li>
+          <li>Creation of synthesis artifacts: personas, MoSCoW prioritization, MVP definition, and "How Might We" problem framing</li>
+          <li>Logistics and e-commerce benchmarking to design a high-level solution architecture and integration plan</li>
+          <li>Structuring of the Business Model Canvas connecting the TO-BE journey to the proposed digital channel</li>
         </ul>
+
+        <figure class="case-fig" style="margin-top:var(--space-lg);">
+          <img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/acssus-workshops.png" alt="Casa das Artes, the physical space inside ACSSUS where women from riverside communities learn to handcraft bio-jewelry" loading="lazy">
+          <figcaption>Casa das Artes — the vocational training space inside ACSSUS where riverside women learn to handcraft bio-jewelry.</figcaption>
+        </figure>
 
         <h3>Financial Modeling</h3>
         <ul class="case-list">
-          <li>Built the financial model from scratch</li>
+          <li>Built the financial model from scratch, covering ticket elasticity, margin structure, and key indicators — NPV and IRR — to assess long-term viability</li>
           <li>Defined all model parameters: product mix, pricing, cost structure (artisan revenue share, marketplace commission, logistics)</li>
-          <li>Analyzed ACSSUS's financial report to map revenue vulnerabilities and opportunities</li>
+          <li>Analyzed ACSSUS's financial report to map revenue vulnerabilities, opportunities, and alignment with the organization's operational reserve goals</li>
           <li>Translated the numbers into a strategic narrative to support co-sponsorship pitching with an ESG argument</li>
         </ul>
       </div>
@@ -2391,32 +2432,159 @@
       <section class="case-section case-section--peach">
       <div class="wrap">
         <h2>💡 Solution & Delivery</h2>
+
+        <h3>Pricing Strategy</h3>
+        <p>Shipping and delivery time were the two factors most cited as purchase barriers in our consumer survey (n = 89, May 2026, São Paulo). Pricing had to account for this — and for the realities of the Parintins supply chain — before any number was proposed.</p>
+
+        <h4>Competitive Positioning</h4>
+        <p>We benchmarked the local competitor (Ateliê da Su, Parintins/AM) at a R$ 72.39 median across 45 products, and national references (Ceci, Tucum, Sapopema) ranging from R$ 40 to R$ 800. Our survey found that 37.3% of respondents made their last bio-jewelry purchase in the R$ 61–100 range. The target positioning was the <strong>intermediate tier</strong> — above independent local producers, below premium national brands — with a minimum floor price of R$ 106 based on cost structure.</p>
+
+        <h4>Price Decomposition</h4>
+        <div class="table-scroll table-responsive">
+          <table class="case-table">
+            <thead>
+              <tr><th>Cost component</th><th>Earrings</th><th>Bracelets</th><th>Necklaces</th><th>3-piece kits</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Component">Artisan share (50%)</td>
+                <td data-label="Earrings">50%</td>
+                <td data-label="Bracelets">50%</td>
+                <td data-label="Necklaces">50%</td>
+                <td data-label="3-piece kits">50%</td>
+              </tr>
+              <tr>
+                <td data-label="Component">Packaging (estimated)</td>
+                <td data-label="Earrings">R$ 4.50</td>
+                <td data-label="Bracelets">R$ 4.50</td>
+                <td data-label="Necklaces">R$ 4.50</td>
+                <td data-label="3-piece kits">R$ 4.50</td>
+              </tr>
+              <tr>
+                <td data-label="Component">Freight (bulk lot, per unit)</td>
+                <td data-label="Earrings">R$ 2.10</td>
+                <td data-label="Bracelets">R$ 2.10</td>
+                <td data-label="Necklaces">R$ 2.10</td>
+                <td data-label="3-piece kits">R$ 2.10</td>
+              </tr>
+              <tr>
+                <td data-label="Component">Mercado Livre commission</td>
+                <td data-label="Earrings">~12%</td>
+                <td data-label="Bracelets">~12%</td>
+                <td data-label="Necklaces">~12%</td>
+                <td data-label="3-piece kits">~12%</td>
+              </tr>
+              <tr>
+                <td data-label="Component"><strong>Final price</strong></td>
+                <td data-label="Earrings"><strong>R$ 110</strong></td>
+                <td data-label="Bracelets"><strong>R$ 110</strong></td>
+                <td data-label="Necklaces"><strong>R$ 120</strong></td>
+                <td data-label="3-piece kits"><strong>R$ 240</strong></td>
+              </tr>
+              <tr>
+                <td data-label="Component">ACSSUS margin</td>
+                <td colspan="4" data-label="All categories">Variable — depends on the pricing model chosen (see scenario comparison below)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:var(--text-size-xs);color:var(--text-dark);opacity:0.7;margin-top:calc(var(--space-sm)*-0.5);">Sources: real freight quote, Parintins → São Paulo, June 2026; Mercado Livre commission verified February 2026; packaging estimated; pricing floor calculated from cost structure.</p>
+
+        <h4>Payment Mix Assumption</h4>
+        <p>Based on our consumer survey, we estimated the payment channel mix as 20% PIX / 50% debit card / 30% installments. For the marketplace channel, Mercado Pago's payment processing fee is embedded in Mercado Livre's 12% commission — no additional cost. For a direct e-commerce channel, payment processor fees would range from 2.3–2.9%.</p>
+
         <h3>Financial Model</h3>
-        <p class="case-lede">One of this project's key differentiators was integrating financial feasibility into the UX strategy from day one — not as a separate deliverable, but as an active decision-making criterion for scope and prioritization.</p>
+        <blockquote class="case-quote"><p>ℹ️ Financial Feasibility — One of this project's key differentiators was integrating financial feasibility into the UX strategy from day one — not as a separate deliverable, but as an active decision-making criterion for scope and prioritization.</p></blockquote>
+
+        <h4>Three Pricing Scenarios</h4>
+        <p>We modeled three scenarios to stress-test viability across different product mixes. All scenarios share the same cost structure: 50% artisan revenue share, 12% marketplace commission, and R$ 3,800/month in estimated fixed costs.</p>
+        <div class="bench-carousel-wrap">
+          <div
+            class="bench-carousel"
+            id="acssus-model-carousel"
+            role="region"
+            aria-label="Economic model scenarios — 3 options"
+            aria-live="polite"
+            tabindex="0"
+          >
+            <div class="bench-card" role="group" aria-label="1 of 3: Entry Model">
+              <p class="bench-app">Entry Model <span class="bench-maker">R$ 110–120 avg. ticket · individual items only</span></p>
+              <ul class="bench-findings">
+                <li><strong>Volume required:</strong> 302 orders/month</li>
+                <li><strong>Operating break-even:</strong> Not reached within 36 months</li>
+                <li><strong>Simple payback:</strong> ~48 months · Discounted payback: month 55</li>
+                <li><strong>Net margin:</strong> R$ 1,032/month (4.4%)</li>
+                <li><strong>NPV (36m, 14% p.a.):</strong> Negative — investment does not generate value against market alternatives</li>
+                <li><strong>Artisan transfer/month:</strong> R$ 18,120</li>
+              </ul>
+              <p style="margin-top:var(--space-sm);font-size:var(--text-size-sm);color:var(--text-maroon);font-weight:700;">⚠ Minimum margin · High risk</p>
+            </div>
+            <div class="bench-card" role="group" aria-label="2 of 3: Balanced Model">
+              <p class="bench-app">Balanced Model <span class="bench-maker">R$ 160 avg. ticket · mixed product catalog ★ Recommended</span></p>
+              <ul class="bench-findings">
+                <li><strong>Volume required:</strong> 252 orders/month</li>
+                <li><strong>Operating break-even:</strong> Month 21</li>
+                <li><strong>Simple payback:</strong> ~12 months · Discounted payback: month 35</li>
+                <li><strong>Net margin:</strong> R$ 4,062/month (10.1%)</li>
+                <li><strong>NPV (36m, 14% p.a.):</strong> ~R$ 5,000 positive — covers initial investment, operations, and generates profit</li>
+                <li><strong>Artisan transfer/month:</strong> R$ 20,160</li>
+              </ul>
+              <p style="margin-top:var(--space-sm);font-size:var(--text-size-sm);color:var(--text-maroon);font-weight:700;">★ Best return and social impact</p>
+            </div>
+            <div class="bench-card" role="group" aria-label="3 of 3: Premium Model">
+              <p class="bench-app">Premium Model <span class="bench-maker">R$ 240 avg. ticket · 3-piece kits only</span></p>
+              <ul class="bench-findings">
+                <li><strong>Volume required:</strong> 176 orders/month</li>
+                <li><strong>Operating break-even:</strong> Month 12</li>
+                <li><strong>Simple payback:</strong> ~7 months · Discounted payback: month 19</li>
+                <li><strong>Net margin:</strong> R$ 7,042/month (16.7%)</li>
+                <li><strong>NPV (36m, 14% p.a.):</strong> ~R$ 24,000 positive — strongly attractive once demand is validated</li>
+                <li><strong>Artisan transfer/month:</strong> R$ 21,120</li>
+              </ul>
+              <p style="margin-top:var(--space-sm);font-size:var(--text-size-sm);color:var(--text-maroon);font-weight:700;">Ideal after pilot validation</p>
+            </div>
+          </div>
+          <nav class="bench-carousel-nav" aria-label="Economic model scenarios navigation">
+            <button class="bench-carousel-btn" id="acssus-model-prev" aria-label="Previous model" aria-controls="acssus-model-carousel">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <ol class="bench-carousel-dots" aria-label="Economic model slides" id="acssus-model-dots">
+              <li><button aria-label="Entry Model" aria-current="true" data-index="0"></button></li>
+              <li><button aria-label="Balanced Model" aria-current="false" data-index="1"></button></li>
+              <li><button aria-label="Premium Model" aria-current="false" data-index="2"></button></li>
+            </ol>
+            <button class="bench-carousel-btn" id="acssus-model-next" aria-label="Next model" aria-controls="acssus-model-carousel">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </nav>
+        </div>
+
+        <h4>Recommended Sequencing</h4>
+        <p>The <strong>Balanced Model</strong> is the recommended steady-state target — it combines viable margins with a broad artisan base and the widest product catalog. However, given that the NGO has no cash buffer to absorb early losses, the sequencing matters: <strong>start with Premium items</strong> (3-piece kits at R$ 240) to validate demand and reach break-even quickly, then expand to the full Balanced mix once operational capacity is confirmed.</p>
+
+        <h4>Logistics Strategy</h4>
+        <p>Shipping a single item from Parintins (AM) to São Paulo via PAC costs between R$ 77 and R$ 115 — which would represent up to 70% of the item's price and make the model completely unviable. The solution was to <strong>redesign the logistics flow entirely</strong>: instead of individual shipments, ACSSUS sends consolidated lots every one to two weeks to Mercado Livre's fulfillment center (CD) in the Southeast. The per-unit cost drops to approximately R$ 2.10 in bulk, and from that point, Mercado Livre's Fulfillment (Meli Full) handles last-mile delivery nationally — with same-day or next-day delivery available for the South/Southeast. This structural decision was not an assumption; it was the output of real freight benchmarking and scenario comparison, and it was what made the Balanced Model financially feasible.</p>
 
         <h4>Model Parameters</h4>
-        <div class="table-scroll">
+        <div class="table-scroll table-responsive">
           <table class="case-table">
             <thead>
               <tr><th>Parameter</th><th>Value</th></tr>
             </thead>
             <tbody>
-              <tr><td>Estimated monthly volume</td><td>~420 units</td></tr>
-              <tr><td>Product mix</td><td>Individual items (necklaces R$ 120; earrings and bracelets R$ 110) and 3-piece kits (R$ 240)</td></tr>
-              <tr><td>Operation</td><td>35 artisans × ~12 pieces/month each</td></tr>
-              <tr><td>Artisan revenue share</td><td>50% of sale price</td></tr>
-              <tr><td>Marketplace commission</td><td>12% (Mercado Livre)</td></tr>
-              <tr><td>Contribution margin</td><td>16–18%</td></tr>
-              <tr><td>Break-even</td><td>21st month of operation</td></tr>
-              <tr><td>Required initial investment</td><td>R$ 49,470</td></tr>
-              <tr><td>— operational setup</td><td>R$ 27,650 (platform, photography, packaging, training)</td></tr>
-              <tr><td>— early-stage deficit coverage</td><td>R$ 21,820</td></tr>
+              <tr><td data-label="Parameter">Estimated monthly volume</td><td data-label="Value">~420 units</td></tr>
+              <tr><td data-label="Parameter">Product mix</td><td data-label="Value">Individual items (necklaces R$ 120; earrings and bracelets R$ 110) and 3-piece kits (R$ 240)</td></tr>
+              <tr><td data-label="Parameter">Operation</td><td data-label="Value">35 artisans × ~12 pieces/month each</td></tr>
+              <tr><td data-label="Parameter">Artisan revenue share</td><td data-label="Value">50% of sale price</td></tr>
+              <tr><td data-label="Parameter">Marketplace commission</td><td data-label="Value">12% (Mercado Livre)</td></tr>
+              <tr><td data-label="Parameter">Contribution margin</td><td data-label="Value">16–18%</td></tr>
+              <tr><td data-label="Parameter">Break-even</td><td data-label="Value">21st month of operation</td></tr>
+              <tr><td data-label="Parameter">Required initial investment</td><td data-label="Value">R$ 49,470</td></tr>
+              <tr><td data-label="Parameter">— operational setup</td><td data-label="Value">R$ 27,650 (platform, photography, packaging, training)</td></tr>
+              <tr><td data-label="Parameter">— early-stage deficit coverage</td><td data-label="Value">R$ 21,820</td></tr>
             </tbody>
           </table>
         </div>
-
-        <h4>Logistics Strategy</h4>
-        <p>Average shipping cost for a single item from Parintins to the Southeast region of Brazil ranges from R$ 77 to R$ 115 — approximately 20% of an individual item's price. To protect margin, we designed a model based on monthly or bi-weekly bulk shipments to a marketplace distribution center in São Paulo, from which orders are fulfilled at a reduced cost across the South and Southeast.</p>
 
         <h4>3-Year Projection</h4>
         <ul class="achv-list">
@@ -2431,12 +2599,98 @@
         </ul>
 
         <h4>ESG Case for Fundraising</h4>
-        <p>The R$ 49,470 initial investment was framed as a one-time co-sponsorship. ACSSUS has a proven track record with major partners — including Coca-Cola, Esportes da Sorte, and Sebrae — and the digital channel creates a measurable social impact case, with full product traceability and locally generated income, making it a strong ESG opportunity for an investor partner.</p>
+        <p>The R$ 49,470 initial investment was framed as a one-time co-sponsorship opportunity for ESG-aligned partners. ACSSUS has a proven track record with Coca-Cola, Esportes da Sorte, and Sebrae — and the digital channel adds measurable impact across all three ESG pillars.</p>
+
+        <!-- ESG 3-pillar cards — carousel on desktop, stacked on mobile -->
+        <div class="bench-carousel-wrap" style="margin-top:var(--space-md);">
+          <div
+            class="bench-carousel"
+            id="acssus-esg-carousel"
+            role="region"
+            aria-label="ESG pillars — 3 cards"
+            aria-live="polite"
+            tabindex="0"
+          >
+            <!-- Card E -->
+            <div class="bench-card" role="group" aria-label="1 of 3: Environmental">
+              <p class="bench-app">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--bg-maroon);color:var(--text-cream);font-family:var(--font-tag);font-size:0.85rem;margin-right:0.5rem;flex-shrink:0;" aria-hidden="true">E</span>
+                Environmental
+                <span class="bench-maker" style="display:block;margin-top:0.25rem;">Expanding focus on this pillar</span>
+              </p>
+              <p style="font-family:var(--font-tag);font-size:var(--text-size-xs);letter-spacing:0.07em;color:var(--text-maroon);margin:0 0 var(--space-xs) 0;">From sourcing to shipping</p>
+              <ul class="bench-findings">
+                <li>Traceable-origin materials — every piece linked to its source</li>
+                <li>Optimized shipping batches — lower cost and lower emissions per unit</li>
+                <li>Recyclable and reusable packaging</li>
+              </ul>
+              <p style="font-family:var(--font-tag);font-size:var(--text-size-xs);letter-spacing:0.07em;color:var(--text-maroon);margin:var(--space-sm) 0 var(--space-xs) 0;">How to measure</p>
+              <ul class="bench-findings">
+                <li>Number of pieces produced with traceable-origin materials</li>
+                <li>Natural input consumption (material / kg)</li>
+                <li>Recyclable packaging units used per year</li>
+              </ul>
+            </div>
+
+            <!-- Card S -->
+            <div class="bench-card" role="group" aria-label="2 of 3: Social">
+              <p class="bench-app">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--bg-maroon);color:var(--text-cream);font-family:var(--font-tag);font-size:0.85rem;margin-right:0.5rem;flex-shrink:0;" aria-hidden="true">S</span>
+                Social
+                <span class="bench-maker" style="display:block;margin-top:0.25rem;">Core focus of the NGO</span>
+              </p>
+              <p style="font-family:var(--font-tag);font-size:var(--text-size-xs);letter-spacing:0.07em;color:var(--text-maroon);margin:0 0 var(--space-xs) 0;">Local investment &amp; education</p>
+              <ul class="bench-findings">
+                <li>Income generation for riverside women (revenue share + hiring)</li>
+                <li>Additional training to enable artisans to operate the e-commerce backoffice directly</li>
+              </ul>
+              <p style="font-family:var(--font-tag);font-size:var(--text-size-xs);letter-spacing:0.07em;color:var(--text-maroon);margin:var(--space-sm) 0 var(--space-xs) 0;">How to measure</p>
+              <ul class="bench-findings">
+                <li>Artisans trained → conversion rate into active sellers on the backoffice portal</li>
+                <li>Value returned to the community: CLT contracts, individual service agreements, and sales transfers</li>
+              </ul>
+            </div>
+
+            <!-- Card G -->
+            <div class="bench-card" role="group" aria-label="3 of 3: Governance">
+              <p class="bench-app">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--bg-maroon);color:var(--text-cream);font-family:var(--font-tag);font-size:0.85rem;margin-right:0.5rem;flex-shrink:0;" aria-hidden="true">G</span>
+                Governance
+                <span class="bench-maker" style="display:block;margin-top:0.25rem;">Transparency in operations</span>
+              </p>
+              <p style="font-family:var(--font-tag);font-size:var(--text-size-xs);letter-spacing:0.07em;color:var(--text-maroon);margin:0 0 var(--space-xs) 0;">Structure &amp; accountability</p>
+              <ul class="bench-findings">
+                <li>CNAE adequacy for invoicing in e-commerce</li>
+                <li>Inventory and order control per channel via integration hub</li>
+                <li>Semi-annual report published online with updated data</li>
+              </ul>
+              <p style="font-family:var(--font-tag);font-size:var(--text-size-xs);letter-spacing:0.07em;color:var(--text-maroon);margin:var(--space-sm) 0 var(--space-xs) 0;">How to measure</p>
+              <ul class="bench-findings">
+                <li>Number of invoices issued, taxes collected, and total transaction value</li>
+                <li>Average ticket and profitability</li>
+                <li>Publication of an auditable balance sheet</li>
+              </ul>
+            </div>
+          </div>
+          <nav class="bench-carousel-nav" aria-label="ESG pillars navigation">
+            <button class="bench-carousel-btn" id="acssus-esg-prev" aria-label="Previous ESG pillar" aria-controls="acssus-esg-carousel">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <ol class="bench-carousel-dots" aria-label="ESG pillar slides" id="acssus-esg-dots">
+              <li><button aria-label="Environmental" aria-current="true" data-index="0"></button></li>
+              <li><button aria-label="Social" aria-current="false" data-index="1"></button></li>
+              <li><button aria-label="Governance" aria-current="false" data-index="2"></button></li>
+            </ol>
+            <button class="bench-carousel-btn" id="acssus-esg-next" aria-label="Next ESG pillar" aria-controls="acssus-esg-carousel">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </nav>
+        </div>
 
         <h3>Tensions and Critical Decisions</h3>
 
         <h4>Shipping Costs as the Main Margin Threat</h4>
-        <p>Logistics was the primary risk factor in the model. The decision to use a third-party distribution center in São Paulo was not an assumption — it was the direct result of comparing scenarios numerically. Real shipping benchmarking from Parintins was an essential input to the financial model.</p>
+        <p>26.9% of survey respondents (n = 89) had already abandoned a bio-jewelry purchase due to high shipping costs. In the same survey, respondents indicated that acceptable delivery time should be under 21 business days — and real freight benchmarking showed that Parintins → South/Southeast via PAC takes 24–26 business days. Both constraints — cost and time — were structural inputs that shaped the entire logistics model, not afterthoughts.</p>
 
         <h4>Is a 50% Revenue Share Enough for the Artisans?</h4>
         <p>Without direct access to the artisans for primary research — a population with limited digital access — it was not possible to validate whether the 50% share covers the actual cost of production in labor hours and materials. This limitation was explicitly documented, with a recommendation to validate before implementation, to ensure the initiative does not inadvertently contribute to the precarious working conditions it aims to address.</p>
@@ -2451,6 +2705,80 @@
         <h2>💻 Proposed Solution</h2>
         <p class="case-lede">Two complementary digital products were designed to support both the consumer experience and the NGO's internal operations.</p>
         <p>The screens were designed by Ítalo Utchuk.</p>
+
+        <h3>Solution Architecture</h3>
+        <p>The solution is built around three layers: a central backoffice that serves as the single source of truth, an integration hub that manages inventory, invoicing, and cash flow, and two complementary sales channels — each targeting a distinct audience and operating logic.</p>
+
+        <figure class="case-fig case-fig--borderless" aria-label="Solution architecture diagram">
+          <svg width="100%" viewBox="0 0 680 590" role="img" style="display:block;">
+            <title>ACSSUS solution architecture</title>
+            <desc>Three-layer diagram: backoffice at the top feeds the integration hub, which distributes to Nuvemshop (catalog channel) and Mercado Livre (store channel), both connected at the bottom by a catalog and shipping integration node.</desc>
+            <defs>
+              <marker id="arch-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </marker>
+            </defs>
+
+            <!-- BACKOFFICE — teal -->
+            <rect x="200" y="40" width="280" height="96" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+            <text x="340" y="72" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="15" font-weight="700" fill="#085041">Backoffice</text>
+            <text x="340" y="94" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#0F6E56">Artisans · Products · Categories · Prices</text>
+            <text x="340" y="112" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#0F6E56">Payment management · ESG indicators</text>
+
+            <!-- connector backoffice → hub -->
+            <line x1="340" y1="136" x2="340" y2="184" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#arch-arrow)"/>
+
+            <!-- INTEGRATION HUB — green -->
+            <rect x="180" y="188" width="320" height="86" rx="12" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+            <text x="340" y="218" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="15" font-weight="700" fill="#27500A">Integration hub</text>
+            <text x="340" y="240" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#3B6D11">Inventory · invoicing · cash flow</text>
+            <text x="340" y="258" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#3B6D11">Consolidated entries and exits</text>
+
+            <!-- channel labels -->
+            <text x="90" y="324" text-anchor="middle" font-family="'Karla', sans-serif" font-size="12" fill="#5F5E5A">"catalog"</text>
+            <text x="590" y="324" text-anchor="middle" font-family="'Karla', sans-serif" font-size="12" fill="#5F5E5A">"store"</text>
+
+            <!-- hub → left L-bend -->
+            <path d="M200 234 L90 234 L90 358" fill="none" stroke="#B4B2A9" stroke-width="0.5" marker-end="url(#arch-arrow)"/>
+            <!-- hub → right L-bend -->
+            <path d="M480 234 L590 234 L590 358" fill="none" stroke="#B4B2A9" stroke-width="0.5" marker-end="url(#arch-arrow)"/>
+            <!-- bottom left closing -->
+            <path d="M90 478 L90 526 L272 526" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+            <!-- bottom right closing -->
+            <path d="M590 478 L590 526 L408 526" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+
+            <!-- NUVEMSHOP — amber -->
+            <rect x="22" y="358" width="196" height="120" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+            <text x="120" y="392" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="15" font-weight="700" fill="#633806">Nuvemshop</text>
+            <text x="120" y="414" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#854F0B">NGO landing page</text>
+            <text x="120" y="432" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#854F0B">Own checkout</text>
+
+            <!-- MERCADO LIVRE — coral -->
+            <rect x="462" y="358" width="196" height="120" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+            <text x="560" y="392" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="15" font-weight="700" fill="#4A1B0C">Mercado Livre</text>
+            <text x="560" y="414" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#993C1D">API integration</text>
+            <text x="560" y="432" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#993C1D">Checkouts and shipping</text>
+
+            <!-- logistics dashed arrow -->
+            <line x1="220" y1="418" x2="460" y2="418" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="5 4" marker-end="url(#arch-arrow)"/>
+            <text x="340" y="408" text-anchor="middle" font-family="'Karla', sans-serif" font-size="11" fill="#888780">logistics</text>
+
+            <!-- CATALOG + SHIPPING INTEGRATION — gray -->
+            <rect x="185" y="514" width="310" height="42" rx="10" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+            <text x="340" y="535" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="13" font-weight="600" fill="#2C2C2A">Catalog and shipping integration</text>
+
+            <!-- legend -->
+            <rect x="126" y="572" width="10" height="10" rx="2" fill="#1D9E75"/>
+            <text x="142" y="581" font-family="'Karla', sans-serif" font-size="11" fill="#5F5E5A">Central platform</text>
+            <rect x="256" y="572" width="10" height="10" rx="2" fill="#639922"/>
+            <text x="272" y="581" font-family="'Karla', sans-serif" font-size="11" fill="#5F5E5A">Hub / integration</text>
+            <rect x="390" y="572" width="10" height="10" rx="2" fill="#BA7517"/>
+            <text x="406" y="581" font-family="'Karla', sans-serif" font-size="11" fill="#5F5E5A">Catalog channel</text>
+            <rect x="514" y="572" width="10" height="10" rx="2" fill="#993C1D"/>
+            <text x="530" y="581" font-family="'Karla', sans-serif" font-size="11" fill="#5F5E5A">Store channel</text>
+          </svg>
+          <figcaption>Solution architecture — three-layer model connecting the backoffice, integration hub, and two sales channels.</figcaption>
+        </figure>
 
         <h3>Consumer-Facing E-commerce</h3>
         <figure class="case-fig">
@@ -2719,6 +3047,173 @@
 
   // Init after DOM is ready (script runs before </body> so DOM is complete)
   initCarousel();
+})();
+</script>
+
+
+<script>
+/* ── ACSSUS economic model carousel ──────────────────────────────────────── */
+(function(){
+  var MOBILE_BP = 576;
+
+  function initAcssusCarousel(){
+    var track   = document.getElementById('acssus-model-carousel');
+    var prevBtn = document.getElementById('acssus-model-prev');
+    var nextBtn = document.getElementById('acssus-model-next');
+    if(!track || !prevBtn || !nextBtn) return;
+
+    var cards = Array.from(track.querySelectorAll('.bench-card'));
+    var dots  = Array.from(document.querySelectorAll('#acssus-model-dots button'));
+    var total = cards.length;
+    var current = 0;
+
+    function isMobile(){ return window.innerWidth < MOBILE_BP; }
+
+    function getCardWidth(){
+      if(!cards[0]) return 0;
+      var style = window.getComputedStyle(track);
+      var gap = parseFloat(style.getPropertyValue('gap') || style.getPropertyValue('column-gap')) || 0;
+      return cards[0].offsetWidth + gap;
+    }
+
+    function goTo(index, focus){
+      if(isMobile()) return;
+      current = Math.max(0, Math.min(total - 1, index));
+      track.scrollTo({ left: current * getCardWidth(), behavior: 'smooth' });
+      updateDots();
+      if(focus && cards[current]){
+        var firstFocusable = cards[current].querySelector('a, button, [tabindex]') || cards[current];
+        firstFocusable.focus({ preventScroll: true });
+      }
+    }
+
+    function updateDots(){
+      dots.forEach(function(btn, i){
+        btn.setAttribute('aria-current', i === current ? 'true' : 'false');
+      });
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === total - 1;
+    }
+
+    var scrollTimer;
+    track.addEventListener('scroll', function(){
+      if(isMobile()) return;
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function(){
+        var cw = getCardWidth();
+        if(cw > 0) current = Math.round(track.scrollLeft / cw);
+        updateDots();
+      }, 80);
+    });
+
+    prevBtn.addEventListener('click', function(){ goTo(current - 1, false); });
+    nextBtn.addEventListener('click', function(){ goTo(current + 1, false); });
+
+    dots.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        goTo(parseInt(btn.getAttribute('data-index'), 10), false);
+      });
+    });
+
+    track.addEventListener('keydown', function(e){
+      if(isMobile()) return;
+      if(e.key === 'ArrowRight'){ e.preventDefault(); goTo(current + 1, true); }
+      if(e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1, true); }
+    });
+
+    updateDots();
+  }
+
+  var resizeTimer;
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(initAcssusCarousel, 200);
+  });
+
+  initAcssusCarousel();
+})();
+</script>
+
+<script>
+/* ── ACSSUS ESG carousel ─────────────────────────────────────────────────── */
+(function(){
+  var MOBILE_BP = 576;
+
+  function initAcssusEsgCarousel(){
+    var track   = document.getElementById('acssus-esg-carousel');
+    var prevBtn = document.getElementById('acssus-esg-prev');
+    var nextBtn = document.getElementById('acssus-esg-next');
+    if(!track || !prevBtn || !nextBtn) return;
+
+    var cards = Array.from(track.querySelectorAll('.bench-card'));
+    var dots  = Array.from(document.querySelectorAll('#acssus-esg-dots button'));
+    var total = cards.length;
+    var current = 0;
+
+    function isMobile(){ return window.innerWidth < MOBILE_BP; }
+
+    function getCardWidth(){
+      if(!cards[0]) return 0;
+      var style = window.getComputedStyle(track);
+      var gap = parseFloat(style.getPropertyValue('gap') || style.getPropertyValue('column-gap')) || 0;
+      return cards[0].offsetWidth + gap;
+    }
+
+    function goTo(index, focus){
+      if(isMobile()) return;
+      current = Math.max(0, Math.min(total - 1, index));
+      track.scrollTo({ left: current * getCardWidth(), behavior: 'smooth' });
+      updateDots();
+      if(focus && cards[current]){
+        var firstFocusable = cards[current].querySelector('a, button, [tabindex]') || cards[current];
+        firstFocusable.focus({ preventScroll: true });
+      }
+    }
+
+    function updateDots(){
+      dots.forEach(function(btn, i){
+        btn.setAttribute('aria-current', i === current ? 'true' : 'false');
+      });
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === total - 1;
+    }
+
+    var scrollTimer;
+    track.addEventListener('scroll', function(){
+      if(isMobile()) return;
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function(){
+        var cw = getCardWidth();
+        if(cw > 0) current = Math.round(track.scrollLeft / cw);
+        updateDots();
+      }, 80);
+    });
+
+    prevBtn.addEventListener('click', function(){ goTo(current - 1, false); });
+    nextBtn.addEventListener('click', function(){ goTo(current + 1, false); });
+
+    dots.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        goTo(parseInt(btn.getAttribute('data-index'), 10), false);
+      });
+    });
+
+    track.addEventListener('keydown', function(e){
+      if(isMobile()) return;
+      if(e.key === 'ArrowRight'){ e.preventDefault(); goTo(current + 1, true); }
+      if(e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1, true); }
+    });
+
+    updateDots();
+  }
+
+  var resizeTimer;
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(initAcssusEsgCarousel, 200);
+  });
+
+  initAcssusEsgCarousel();
 })();
 </script>
 
