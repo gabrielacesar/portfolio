@@ -1727,19 +1727,19 @@
         <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-02.png" alt="Confirmation dialog window requiring the farmer to confirm private silo ownership before proceeding" loading="lazy"></figure>
         <p>Although in many cases dialog windows create unnecessary friction in web systems, this component was introduced here precisely to confirm the ticket's basic premise — without which all requests will be canceled: the farmer must mandatorily own a private silo.</p>
         <p class="case-callout"><strong>Point raised while investigating common reasons for canceled tickets:</strong> User opens a ticket for soybean varieties for which they have no active licensing.</p>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-03.png" alt="Warning tooltip flagging missing biotechnology licensing when the farmer declares soybean varieties" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-05.png" alt="Warning tooltip flagging missing biotechnology licensing when the farmer declares soybean varieties" loading="lazy"></figure>
         <p>One of the most common reasons for rejected tickets is the lack of a soybean biotechnology licensing agreement. To make this clearer during the opening process, a warning tooltip was added when the farmer is declaring the soybean varieties present in their silo, flagging any missing licenses.</p>
 
         <h4>Pain Points 3 and 4</h4>
         <p>Allow review of ticket data and clarify the function of the Comments field.</p>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-04.png" alt="Data review step allowing farmers to revisit and edit previously filled ticket information, with placeholder text in the Comments field" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-03.png" alt="Data review step allowing farmers to revisit and edit previously filled ticket information, with placeholder text in the Comments field" loading="lazy"></figure>
         <p>To assist with reviewing ticket data and prevent submissions with incorrect information, a new information review step will help farmers revisit all previously filled data and, if needed, edit anything that is incorrect.</p>
         <p>In the Comments section of this screen, placeholder text was added to the input field with instructions on how to best use this component: <em>"If applicable, report planting conditions that affect technology productivity (artificial irrigation, etc.)."</em></p>
         <p>This way, exceptional cases requiring differentiated audit handling are flagged at the ticket opening stage.</p>
 
         <h4>Pain Point 5</h4>
         <p>Signal the need for contact when a ticket requires an on-site auditor.</p>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-05.png" alt="Alert message on the ticket tracking screen informing the farmer about an upcoming Crop Monitoring visit" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-07.png" alt="Alert message on the ticket tracking screen informing the farmer about an upcoming Crop Monitoring visit" loading="lazy"></figure>
         <p>To inform the farmer that they must be available for audit scheduling attempts, we added the following alert message to the ticket tracking view at the corresponding step:</p>
         <blockquote class="case-quote"><p>ℹ️ Crop Monitoring — The team of independent assessors will reach out using the contact details registered on the portal (WhatsApp, email, and phone). Facilitating the on-site inspection helps speed up your ticket analysis.</p></blockquote>
         <p>A sensitive aspect of this step is avoiding panic in the user upon learning their ticket is undergoing an audit. For this reason, we use the words monitoring and inspection and emphasize that allowing this visit helps resolve the ticket more quickly.</p>
@@ -1748,7 +1748,7 @@
 
         <h4>Pain Point 1</h4>
         <p>It is not possible to approve or reject attached ticket documents in bulk.</p>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-06.png" alt="New attached documents module with a parent-child checkbox allowing bulk approval or rejection" loading="lazy"></figure>
+        <figure class="case-fig case-fig--borderless"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-08.png" alt="New attached documents module with a parent-child checkbox allowing bulk approval or rejection" loading="lazy"></figure>
         <p>The previous version of the Attached Documents module required the analyst to individually select a decision for each document. In the new proposal, by introducing a checkbox with parent-child behavior, the analyst can select all documents in the ticket at once and perform bulk actions based on their selection.</p>
 
         <h4>Pain Point 2</h4>
@@ -1762,8 +1762,8 @@
           <li>For area calculation from kilograms of harvested soybeans, the system must have the correct TSW (thousand-seed weight) for the soybean variety declared in the ticket, along with the relative plantability index (bags per hectare). Both indices can be retrieved by the system from the soybean industry itself, but are subject to variance depending on natural factors or the specifics of each soybean seed lot.</li>
           <li>For area calculation from number of soybean seeds, the system requires the expected population index (plants per hectare) for that seed.</li>
         </ul>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-07.png" alt="Old version of the ticket analysis screen using only kilogram and variety information" loading="lazy"></figure>
-        <p>As seen in the old version of the system, the analyst made their assessment using only kilogram and variety information, with the system automatically populating Plantability and Area fields.</p>
+        <p>As seen in the old version of the system (see image below), the analyst made their assessment using only kilogram and variety information, with the system automatically populating Plantability and Area fields.</p>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-09.png" alt="Old version of the ticket analysis screen using only kilogram and variety information" loading="lazy"></figure>
         <p>Due to the high complexity and interdependency of the new data to be added to the ticket, a collective ideation workshop was held with the business team, auditors, reviewers, and analysts. Cross-functional teams mapped the success requirements for redesigning this stage of the ticket, along with a low-fidelity prototyping exercise ("sketch frame") to address the identified needs.</p>
         <p><strong>Invoice Declaration Requirements:</strong></p>
         <ul class="achv-list">
@@ -1788,25 +1788,29 @@
             <p>Allow entry and editing of the TSW (thousand-seed weight) field</p>
           </li>
         </ul>
-        <p>Below are selected sketches from two participant groups in response to the requirements aligned during the workshop:</p>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-08.png" alt="Sketch from one participant group: dropdown list for selecting packaging type when soybeans are declared in seeds" loading="lazy"></figure>
-        <p>Idea from one group's participants: for soybeans declared in seeds, the user would select the corresponding packaging type from a dropdown list.</p>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-09.png" alt="Sketch from another participant group: final volume data summary separating kilograms and seeds with calculated areas" loading="lazy"></figure>
-        <p>This other group sketched what the final volume data summary would look like, separating data declared in kilograms and seeds with their respective calculated areas.</p>
+        <p style="margin-top: var(--space-lg);">Below are selected sketches from two participant groups in response to the requirements aligned during the workshop:</p>
+        <figure class="case-fig">
+          <img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-10.png" alt="Sketch from one participant group: dropdown list for selecting packaging type when soybeans are declared in seeds" loading="lazy">
+          <figcaption>Idea from one group's participants: for soybeans declared in seeds, the user would select the corresponding packaging type from a dropdown list.</figcaption>
+        </figure>
+        <figure class="case-fig">
+          <img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-11.png" alt="Sketch from another participant group: final volume data summary separating kilograms and seeds with calculated areas" loading="lazy">
+          <figcaption>This other group sketched what the final volume data summary would look like, separating data declared in kilograms and seeds with their respective calculated areas.</figcaption>
+        </figure>
 
         <h4>📝 Kilograms and Seeds</h4>
-        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-10.png" alt="Redesigned table with horizontal scrolling showing kilogram and seed indices per invoice row" loading="lazy"></figure>
+        <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-12.png" alt="Redesigned table with horizontal scrolling showing kilogram and seed indices per invoice row" loading="lazy"></figure>
         <p>Due to the high number of new indices added, the table gained horizontal scrolling. Column information varies depending on the selection — via button — of volume in kilograms or seeds (each row can be declared with a different type). Since a single invoice can include many declared varieties, the header was optimized from three to two lines of basic information entry.</p>
 
         <h4>📋 Invoice Declaration Summary</h4>
         <p>With the changes made to invoice data entry, it was also necessary to update the component that allows auditors to view a summary of entered invoices, with their key data (primarily those used to calculate the crop area to be audited in the field based on the volume declared in the invoice).</p>
         <div class="case-fig-grid case-fig-grid--2">
           <figure class="case-fig">
-            <img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-11.png" alt="Previous version of the Invoice Declaration Summary using simplistic collapsible rows" loading="lazy">
+            <img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-14.png" alt="Previous version of the Invoice Declaration Summary using simplistic collapsible rows" loading="lazy">
             <figcaption>Previous version — collapsible rows that unnecessarily repeat variety data across different invoices, requiring row expansion to access key figures.</figcaption>
           </figure>
           <figure class="case-fig">
-            <img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-12.png" alt="New version of the Invoice Declaration Summary organized by invoice number and declared type" loading="lazy">
+            <img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/soybean_image-cnx-13.png" alt="New version of the Invoice Declaration Summary organized by invoice number and declared type" loading="lazy">
             <figcaption>Redesigned version — varieties grouped by invoice number and declaration type, with a volume summary surfaced upfront for faster auditor review.</figcaption>
           </figure>
         </div>
