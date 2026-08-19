@@ -102,6 +102,12 @@
     --hover-lift: -0.125rem; /* translateY on hover/focus */
     --hover-shadow: 0 0.375rem 0.75rem rgba(54,46,46,0.14);
     --header-h: 5rem; /* fallback; refined precisely by JS on load/resize */
+
+    /* --- scroll-reveal animation (Apple-style: long, fluid, expressive) --- */
+    --reveal-duration: 0.9s;
+    --reveal-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Apple signature deceleration */
+    --reveal-distance: 2.5rem;   /* 40px — clearly felt slide */
+    --stagger-step: 110ms;       /* generous gap so cascade reads clearly */
   }
 
   *{ box-sizing: border-box; }
@@ -111,6 +117,155 @@
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior: auto; }
     *, *::before, *::after{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* ============ ANIMATION SYSTEM ============
+     All animations respect the global prefers-reduced-motion rule (~line 117):
+     animation-duration collapses to 0.01ms — no extra code needed per animation.
+
+     Tokens (defined in :root):
+       --reveal-duration  0.45s
+       --reveal-easing    cubic-bezier(0.22,1,0.36,1)
+       --reveal-distance  0.5rem   (8px fade-slide-up)
+       --stagger-step     70ms     (delay increment per child)
+  */
+
+  /* ── 1. Shared keyframes ──────────────────────────────────────────────── */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(var(--reveal-distance)); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Job timeline line grows top→bottom */
+  @keyframes lineGrow {
+    from { transform: scaleY(0); }
+    to   { transform: scaleY(1); }
+  }
+
+  /* Page-level fade-in on navigation */
+  @keyframes pageFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ── 2. Section scroll-reveal ─────────────────────────────────────────── */
+  .reveal{ opacity: 0; }
+  .reveal.is-visible{
+    animation: fadeSlideUp var(--reveal-duration) var(--reveal-easing) both;
+  }
+
+  /* ── 3. Staggered groups ──────────────────────────────────────────────── */
+  .reveal-group .reveal-child{ opacity: 0; }
+  .reveal-group.is-visible .reveal-child{
+    animation: fadeSlideUp var(--reveal-duration) var(--reveal-easing) both;
+    animation-delay: calc(var(--i, 0) * var(--stagger-step));
+  }
+
+  /* ── 4. Work Experience — animated timeline line ──────────────────────── */
+  /* The existing border-left on .job is replaced by a ::before pseudo that
+     can be scaled. border-left remains as layout fallback (no-JS / no-anim). */
+  .job{
+    position: relative;
+    /* existing border-left stays for layout spacing; we visually cover it */
+    border-left-color: transparent; /* line drawn by ::before instead */
+  }
+  .job::before{
+    content: '';
+    position: absolute;
+    left: -0.25rem;          /* aligns with the 0.25rem border-left offset */
+    top: 0; bottom: 0;
+    width: 0.25rem;
+    background: var(--text-maroon);
+    border-radius: 1px;
+    transform-origin: top center;
+    transform: scaleY(0);    /* hidden until JS triggers */
+  }
+  .job.line-visible::before{
+    animation: lineGrow 0.9s var(--reveal-easing) both;
+  }
+  /* Jobs fade+slide up; line starts first, content follows */
+  .job.job-visible{
+    animation: fadeSlideUp var(--reveal-duration) var(--reveal-easing) both;
+    animation-delay: 0.18s;
+  }
+  /* Initial hidden state for jobs (set by JS) */
+  .job.job-anim-init{ opacity: 0; }
+
+  /* ── 5. Page-level fade-in on navigation ─────────────────────────────── */
+  [data-page].page-entering{
+    animation: pageFadeIn 0.55s var(--reveal-easing) both;
+  }
+
+  /* ── 6. achv-list icon micro-interaction ─────────────────────────────── */
+  .achv-list li svg{
+    transition: transform 0.25s var(--reveal-easing);
+  }
+  .achv-list li:hover svg{
+    transform: rotate(8deg) scale(1.08);
+  }
+
+  /* ── 7. Nav underline refinement ─────────────────────────────────────── */
+  .quicknav a.qn-link{
+    text-underline-offset: 0.12em;
+    transition: text-decoration-color 0.2s ease,
+                text-underline-offset  0.2s ease;
+  }
+  .quicknav a.qn-link:hover{
+    text-decoration-color: currentColor;
+    text-underline-offset: 0.28em;
+  }
+  .quicknav a.qn-link[aria-current="page"]{
+    text-underline-offset: 0.28em;
+  }
+
+  /* ── 8. Hero entrance — hierarchy: eyebrow → h1 → role-tag → lede → contacts
+     Each layer arrives with its own delay so the page "builds" itself
+     in front of the reader, Apple-style. All use the same long easing. */
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(var(--reveal-distance)); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* home hero: icon → h1 → role-tag → lede → contacts */
+  .hero .page-hero-icon{
+    animation: heroFadeUp var(--reveal-duration) var(--reveal-easing) both;
+    animation-delay: 0.05s;
+  }
+  .hero h1{
+    animation: heroFadeUp var(--reveal-duration) var(--reveal-easing) both;
+    animation-delay: 0.18s;
+  }
+  .hero .role-tag{
+    animation: heroFadeUp var(--reveal-duration) var(--reveal-easing) both;
+    animation-delay: 0.34s;
+  }
+  .hero .lede{
+    animation: heroFadeUp var(--reveal-duration) var(--reveal-easing) both;
+    animation-delay: 0.50s;
+  }
+  .hero .contact-row{
+    animation: heroFadeUp var(--reveal-duration) var(--reveal-easing) both;
+    animation-delay: 0.66s;
+  }
+
+  /* inner-page heroes: icon → h1 (eyebrow stays above both, instant) */
+  .page-hero .page-hero-icon{
+    animation: heroFadeUp var(--reveal-duration) var(--reveal-easing) both;
+    animation-delay: 0.05s;
+  }
+  .page-hero h1{
+    animation: heroFadeUp var(--reveal-duration) var(--reveal-easing) both;
+    animation-delay: 0.20s;
+  }
+
+  /* ── 9. Section h2 arrives slightly before the section body ──────────── */
+  /* When a .section or .case-section becomes .is-visible, its direct h2
+     child arrives first (delay 0), paragraph text after (delay 0.15s).
+     Implemented via sibling-aware CSS: h2 keeps the base animation-delay;
+     p and ul inside a visible section get a small extra offset. */
+  .reveal.is-visible > .wrap > h2,
+  .reveal.is-visible > h2 {
+    animation-delay: 0s;
   }
 
   body{
@@ -139,9 +294,27 @@
   p{ margin: 0 0 var(--space-md) 0; max-width: 40em; }
   p.section-intro{ font-size: var(--text-size-md); max-width: 42em; }
 
-  a{ color: var(--text-maroon); text-underline-offset: 0.2em; text-decoration-thickness: 0.09em; }
+  /* ── Global link base ───────────────────────────────────────────────────
+     Underline is transparent at rest and animates in on hover.
+     color alone distinguishes links (WCAG 1.4.1 — satisfied by maroon on
+     cream contrast ≥ 3:1 vs body text; underline still present for focus).
+     Transition covers color, thickness and offset for a smooth reveal.
+  */
+  a{
+    color: var(--text-maroon);
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 0.09em;
+  }
   a:not(.btn):not(.icon-link):not(.card):not(.nav-link):not(.mini-card):not(.traj-card):not(.brand):not(.qn-link){
-    text-decoration: underline; /* links always distinguishable by more than color */
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.25s ease,
+                text-underline-offset  0.25s ease;
+  }
+  a:not(.btn):not(.icon-link):not(.card):not(.nav-link):not(.mini-card):not(.traj-card):not(.brand):not(.qn-link):hover,
+  a:not(.btn):not(.icon-link):not(.card):not(.nav-link):not(.mini-card):not(.traj-card):not(.brand):not(.qn-link):focus-visible{
+    text-decoration-color: currentColor;
+    text-underline-offset: 0.28em;
   }
 
   /* Suppress outline on programmatic focus (e.g. heading.focus() on page render).
@@ -219,9 +392,8 @@
     min-height: var(--touch-min);
     white-space: nowrap;
     border-radius: var(--radius-sm);
-    transition: text-decoration-color var(--transition-hover);
+    /* transition & hover states defined in SCROLL-REVEAL block above */
   }
-  .quicknav a.qn-link:hover{ text-decoration-color: currentColor; }
   .quicknav a.qn-link[aria-current="page"]{
     font-weight: var(--weight-black);
     text-decoration-color: currentColor;
@@ -337,7 +509,19 @@
     box-shadow: var(--hover-shadow);
   }
   .icon-link svg{ width:1.5rem; height:1.5rem; flex-shrink:0; color: var(--text-maroon); }
-  .icon-link span.label{ text-decoration: underline; text-underline-offset: 0.2em; overflow-wrap: anywhere; }
+  .icon-link span.label{
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.18em;
+    overflow-wrap: anywhere;
+    transition: text-decoration-color 0.25s ease,
+                text-underline-offset  0.25s ease;
+  }
+  .icon-link:hover span.label,
+  .icon-link:focus-visible span.label{
+    text-decoration-color: currentColor;
+    text-underline-offset: 0.28em;
+  }
 
   /* ============ ACHIEVEMENTS ============ */
   .achv-list{ list-style:none; margin:0; padding:0; display:grid; gap: var(--space-md); }
@@ -374,9 +558,26 @@
     transform: translateY(var(--hover-lift));
     box-shadow: var(--hover-shadow);
   }
-  .mini-card .mini-card-title{ text-decoration: underline; text-decoration-color: transparent; }
+  .mini-card-title{
+    font-family: var(--font-display); font-weight: var(--weight-bold);
+    font-size: var(--text-size-base); margin:0; color: var(--text-dark);
+    letter-spacing: 0;
+    transition: letter-spacing 0.3s ease;
+  }
+  .mini-card .mini-card-title{
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.18em;
+    transition: text-decoration-color 0.25s ease,
+                text-underline-offset  0.25s ease,
+                letter-spacing        0.3s ease;
+  }
   .mini-card:hover .mini-card-title,
-  .mini-card:focus-visible .mini-card-title{ text-decoration-color: currentColor; }
+  .mini-card:focus-visible .mini-card-title{
+    text-decoration-color: currentColor;
+    text-underline-offset: 0.28em;
+    letter-spacing: 0.02em;
+  }
   .mini-card-cta{
     display:inline-flex; align-items:center; gap: 0.35rem;
     font-family: var(--font-tag); letter-spacing: 0.05em;
@@ -397,10 +598,6 @@
     display:block; margin-bottom: var(--space-xs); line-height: 0;
   }
   .mini-card-icon svg{ width: 1.5rem; height: 1.5rem; display:block; }
-  .mini-card-title{
-    font-family: var(--font-display); font-weight: var(--weight-bold);
-    font-size: var(--text-size-base); margin:0; color: var(--text-dark);
-  }
   /* Portfolio section is dark (maroon) — the cream mini-cards need a
      more defined edge here, since the default soft border and the
      maroon hover border both nearly disappear against the maroon
@@ -462,16 +659,38 @@
     box-shadow: var(--hover-shadow);
   }
   .traj-card svg{ width:1.5rem; height:1.5rem; }
-  .traj-card .traj-name{ font-family: var(--font-display); font-weight:800; font-size:1.05rem; text-decoration:underline; text-underline-offset:0.2em; }
+  .traj-card .traj-name{
+    font-family: var(--font-display); font-weight:800; font-size:1.05rem;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.18em;
+    letter-spacing: 0;
+    transition: text-decoration-color 0.25s ease,
+                text-underline-offset  0.25s ease,
+                letter-spacing        0.3s ease;
+  }
+  .traj-card:hover .traj-name,
+  .traj-card:focus-visible .traj-name{
+    text-decoration-color: currentColor;
+    text-underline-offset: 0.28em;
+    letter-spacing: 0.02em;
+  }
 
   /* ============ PAGE HEADER (internal pages) ============ */
   .page-hero{ padding-top: var(--space-lg); padding-bottom: var(--space-md); } /* top/bottom only — must not override .wrap's side padding */
 
   /* ============ WORK EXPERIENCE ============ */
   .job{
-    border-left: 0.25rem solid var(--text-maroon);
+    /* border-left kept for spacing (padding-left relies on it);
+       color set transparent so the animated ::before pseudo takes over visually.
+       Falls back to visible maroon if JS/animation is unavailable. */
+    border-left: 0.25rem solid transparent;
     padding: 0 0 0 var(--space-md);
     margin-bottom: var(--space-lg);
+  }
+  /* No-JS / no-animation fallback: show solid line */
+  .no-js .job, .job:not(.job-anim-init){
+    border-left-color: var(--text-maroon);
   }
   .job:last-child{ margin-bottom:0; }
   .job .period{
@@ -555,6 +774,7 @@
   .case-body{ padding-bottom: 0; }
 
   /* case-section: full-bleed colored blocks, each containing a div.wrap for content alignment */
+  /* JS adds .reveal + IntersectionObserver → .is-visible (same as .section on home) */
   .case-section{
     margin-top: 0;
     padding: var(--space-xl) 0;
@@ -600,26 +820,76 @@
     padding: var(--space-md); margin: var(--space-md) 0;
   }
 
+  /* ── case-quote: animated border-left (lineGrow) + content fade ──────── */
   .case-quote{
-    border-left: 0.25rem solid var(--text-maroon);
+    border-left: 0.25rem solid transparent; /* ::before draws the line */
     background: var(--bg-peach);
     padding: var(--space-md) var(--space-md);
     margin: var(--space-md) 0;
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    position: relative;
   }
+  /* Animated left border via ::before — same technique as .job */
+  .case-quote::before{
+    content: '';
+    position: absolute;
+    left: -0.25rem; top: 0; bottom: 0;
+    width: 0.25rem;
+    background: var(--text-maroon);
+    border-radius: 1px;
+    transform-origin: top center;
+    transform: scaleY(0);
+  }
+  .case-quote.quote-visible::before{
+    animation: lineGrow 0.75s var(--reveal-easing) both;
+  }
+  .case-quote.quote-visible p,
+  .case-quote.quote-visible cite{
+    animation: fadeSlideUp var(--reveal-duration) var(--reveal-easing) both;
+    animation-delay: 0.2s;
+  }
+  /* Content starts hidden until animated; fallback: visible without JS */
+  .case-quote.quote-anim-init p,
+  .case-quote.quote-anim-init cite{ opacity: 0; }
+  /* Fallback: no JS → solid border always visible */
+  .case-quote:not(.quote-anim-init){ border-left-color: var(--text-maroon); }
+
   .case-quote p{ margin: 0 0 var(--space-xs) 0; font-style: italic; }
   .case-quote cite{ font-style: normal; font-weight: 700; font-family: var(--font-tag); letter-spacing: 0.04em; color: var(--text-maroon); }
 
-  .case-fig{ margin: var(--space-md) 0; }
+  /* ── case-fig: image fade-in on scroll ───────────────────────────────── */
+  @keyframes imgFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
   .case-fig img{
     width: 100%; height: auto; display: block;
     border-radius: var(--radius-md);
     border: var(--border-width) solid var(--border-soft);
   }
+  .case-fig img.img-anim-init{ opacity: 0; }
+  .case-fig img.img-visible{
+    animation: imgFadeIn 0.85s var(--reveal-easing) both;
+  }
   /* Modifier: images that should render without a visible border (wireframes, diagrams with white bg, etc.) */
   .case-fig--borderless img{
     border: none;
     border-radius: 0;
+  }
+
+  /* ── phase-card: stagger left→right ──────────────────────────────────── */
+  /* Uses same reveal-group / reveal-child system, but a different keyframe
+     so horizontal flow matches the grid reading direction. */
+  @keyframes fadeSlideLeft {
+    from { opacity: 0; transform: translateX(-0.75rem); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .phase-grid.reveal-group.is-visible .phase-card.reveal-child{
+    animation-name: fadeSlideLeft;
+    animation-duration: var(--reveal-duration);
+    animation-timing-function: var(--reveal-easing);
+    animation-fill-mode: both;
+    animation-delay: calc(var(--i, 0) * var(--stagger-step));
   }
   .case-fig figcaption{ margin-top: var(--space-xs); font-size: var(--text-size-xs); color: var(--text-neutral-warm, #625454); }
   .fig-credit{ font-style: italic; }
@@ -739,17 +1009,19 @@
     opacity: 0.55;
     border-left: 2px solid transparent;
     margin-left: -2px;
-    transition: opacity 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    transition: opacity 0.2s ease, border-color 0.2s ease, color 0.2s ease, letter-spacing 0.25s ease;
   }
   .case-toc__link:hover{
     opacity: 1;
     color: var(--text-maroon);
+    letter-spacing: 0.02em;
   }
   .case-toc__link[aria-current="true"]{
     opacity: 1;
     color: var(--text-maroon);
     font-weight: var(--weight-bold);
     border-left-color: var(--text-maroon);
+    letter-spacing: 0.02em;
   }
 
   /* ── Dark-bg adaptive states ──────────────────────────────────────────────
@@ -888,15 +1160,20 @@
   /* Bench carousel — Luccas Toon only */
   .bench-carousel-wrap{
     position: relative;
+    overflow: hidden;     /* clips any card that bleeds past the container edge */
     margin: var(--space-md) 0;
   }
   .bench-carousel{
     display: flex;
+    width: 100%;          /* must be explicit so child calc(100% - …) resolves against the visible container */
+    box-sizing: border-box;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     gap: var(--space-md);
     padding-bottom: var(--space-sm); /* room for scrollbar */
+    padding-inline: var(--space-xs); /* lateral breathing room — prevents cards from being flush-cut at edges */
+    scroll-padding-inline-start: var(--space-xs); /* keeps snap aligned with new padding */
     /* hide scrollbar visually but keep accessible */
     scrollbar-width: thin;
     scrollbar-color: var(--border-soft) transparent;
@@ -904,8 +1181,15 @@
   .bench-carousel::-webkit-scrollbar{ height: 4px; }
   .bench-carousel::-webkit-scrollbar-track{ background: transparent; }
   .bench-carousel::-webkit-scrollbar-thumb{ background: var(--border-soft); border-radius: 2px; }
+  /* Grab cursor — signals drag-to-scroll affordance on desktop */
+  @media(min-width: 36rem){
+    .bench-carousel{ cursor: grab; }
+    .bench-carousel:active{ cursor: grabbing; }
+  }
   .bench-carousel .bench-card{
-    flex: 0 0 min(80vw, 22rem);
+    /* width relative to container (not vw) — avoids overflow on any layout width;
+       -3.5rem peek: leaves ~56px of next card visible, signalling there's more to scroll */
+    flex: 0 0 min(calc(100% - 3.5rem), 22rem);
     scroll-snap-align: start;
   }
   /* Carousel nav */
@@ -1048,7 +1332,7 @@
         <div class="mini-card-row" role="list">
           <a class="mini-card" href="javascript:void(0)" data-nav="case-acssus" role="listitem">
             <span class="mini-card-year">2026</span>
-            <span class="mini-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="9.5"/><path d="M12 9.5 C8.5 11 7 14 8.5 17.5 C10 21 14 21 15.5 17.5 C17 14 15.5 11 12 9.5Z"/><line x1="12" y1="10.5" x2="12" y2="19.5" stroke-width="1" opacity="0.45"/></svg></span>
+            <span class="mini-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20C12 20 4 14.5 4 8.5C4 6 6 4 8.5 4C10 4 11.5 4.8 12 6C12.5 4.8 14 4 15.5 4C18 4 20 6 20 8.5C20 14.5 12 20 12 20Z"/></svg></span>
             <h3 class="mini-card-title">ACSSUS (NGO) — Social Impact E-commerce</h3>
             <span class="mini-card-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </a>
@@ -2461,7 +2745,7 @@
   <section id="page-case-acssus" data-page hidden>
     <div class="page-hero wrap case-hero">
       <p class="eyebrow">2026</p>
-      <div class="page-hero-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="9.5"/><path d="M12 9.5 C8.5 11 7 14 8.5 17.5 C10 21 14 21 15.5 17.5 C17 14 15.5 11 12 9.5Z"/><line x1="12" y1="10.5" x2="12" y2="19.5" stroke-width="1" opacity="0.45"/></svg></div>
+      <div class="page-hero-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20C12 20 4 14.5 4 8.5C4 6 6 4 8.5 4C10 4 11.5 4.8 12 6C12.5 4.8 14 4 15.5 4C18 4 20 6 20 8.5C20 14.5 12 20 12 20Z"/></svg></div>
       <h1>ACSSUS (NGO) — Social Impact E-commerce</h1>
       <div class="case-meta-row">
         <span class="tag--role">ux strategy</span>
@@ -3312,15 +3596,43 @@
 (function(){
   var MOBILE_BP = 576; // px — must match CSS max-width: 35.99rem breakpoint
 
-  function initCarousel(){
-    var track  = document.getElementById('bench-carousel-luccastoon');
-    var prevBtn = document.getElementById('bench-prev');
-    var nextBtn = document.getElementById('bench-next');
-    if(!track || !prevBtn || !nextBtn) return;
+  /* ── Generic carousel factory ─────────────────────────────────────────────
+     Supports every .bench-carousel on the page.
+     Each carousel is wired by a data-carousel-id on the track, and matching
+     data-carousel-prev / data-carousel-next on buttons, plus a scoped dots list.
+     Falls back gracefully for the old id-based markup (Luccas Toon).
+  ── */
 
-    var cards = Array.from(track.querySelectorAll('.bench-card'));
-    var dots  = Array.from(document.querySelectorAll('.bench-carousel-dots button'));
-    var total = cards.length;
+  var CAROUSEL_CONFIGS = [
+    {
+      trackId : 'bench-carousel-luccastoon',
+      prevId  : 'bench-prev',
+      nextId  : 'bench-next',
+      dotsSelector: '#bench-carousel-luccastoon ~ .bench-carousel-nav .bench-carousel-dots button'
+    },
+    {
+      trackId : 'acssus-model-carousel',
+      prevId  : 'acssus-model-prev',
+      nextId  : 'acssus-model-next',
+      dotsSelector: '#acssus-model-dots button'
+    },
+    {
+      trackId : 'acssus-esg-carousel',
+      prevId  : 'acssus-esg-prev',
+      nextId  : 'acssus-esg-next',
+      dotsSelector: '#acssus-esg-dots button'
+    }
+  ];
+
+  function mountCarousel(cfg){
+    var track   = document.getElementById(cfg.trackId);
+    var prevBtn = document.getElementById(cfg.prevId);
+    var nextBtn = document.getElementById(cfg.nextId);
+    if(!track) return;
+
+    var cards   = Array.from(track.querySelectorAll('.bench-card'));
+    var dots    = cfg.dotsSelector ? Array.from(document.querySelectorAll(cfg.dotsSelector)) : [];
+    var total   = cards.length;
     var current = 0;
 
     function isMobile(){ return window.innerWidth < MOBILE_BP; }
@@ -3332,27 +3644,26 @@
       return cards[0].offsetWidth + gap;
     }
 
+    function updateDots(){
+      dots.forEach(function(btn, i){
+        btn.setAttribute('aria-current', i === current ? 'true' : 'false');
+      });
+      if(prevBtn) prevBtn.disabled = current === 0;
+      if(nextBtn) nextBtn.disabled = current === total - 1;
+    }
+
     function goTo(index, focus){
       if(isMobile()) return;
       current = Math.max(0, Math.min(total - 1, index));
       track.scrollTo({ left: current * getCardWidth(), behavior: 'smooth' });
       updateDots();
       if(focus && cards[current]){
-        // move focus into the newly visible card for keyboard users
         var firstFocusable = cards[current].querySelector('a, button, [tabindex]') || cards[current];
         firstFocusable.focus({ preventScroll: true });
       }
     }
 
-    function updateDots(){
-      dots.forEach(function(btn, i){
-        btn.setAttribute('aria-current', i === current ? 'true' : 'false');
-      });
-      prevBtn.disabled = current === 0;
-      nextBtn.disabled = current === total - 1;
-    }
-
-    // Sync dot on manual scroll (touch / mouse drag)
+    // Sync dot/state on native scroll (touch swipe)
     var scrollTimer;
     track.addEventListener('scroll', function(){
       if(isMobile()) return;
@@ -3364,8 +3675,8 @@
       }, 80);
     });
 
-    prevBtn.addEventListener('click', function(){ goTo(current - 1, false); });
-    nextBtn.addEventListener('click', function(){ goTo(current + 1, false); });
+    if(prevBtn) prevBtn.addEventListener('click', function(){ goTo(current - 1, false); });
+    if(nextBtn) nextBtn.addEventListener('click', function(){ goTo(current + 1, false); });
 
     dots.forEach(function(btn){
       btn.addEventListener('click', function(){
@@ -3373,25 +3684,80 @@
       });
     });
 
-    // Keyboard: left/right arrows while carousel has focus
+    // Keyboard navigation
     track.addEventListener('keydown', function(e){
       if(isMobile()) return;
       if(e.key === 'ArrowRight'){ e.preventDefault(); goTo(current + 1, true); }
       if(e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1, true); }
     });
 
+    // ── Drag-to-scroll (mouse) ──────────────────────────────────────────────
+    // Uses pointer events so it works on touch-enabled desktops too.
+    // Suppresses click-through after a meaningful drag.
+    var isDragging  = false;
+    var startX      = 0;
+    var scrollStart = 0;
+    var dragDelta   = 0;
+
+    track.addEventListener('pointerdown', function(e){
+      if(isMobile()) return;
+      if(e.button !== 0) return; // left-click / touch only
+      isDragging  = true;
+      startX      = e.clientX;
+      scrollStart = track.scrollLeft;
+      dragDelta   = 0;
+      track.setPointerCapture(e.pointerId);
+      track.style.cursor = 'grabbing';
+      track.style.userSelect = 'none';
+    });
+
+    track.addEventListener('pointermove', function(e){
+      if(!isDragging) return;
+      dragDelta = e.clientX - startX;
+      track.scrollLeft = scrollStart - dragDelta;
+    });
+
+    function endDrag(e){
+      if(!isDragging) return;
+      isDragging = false;
+      track.style.cursor = '';
+      track.style.userSelect = '';
+      // Snap to nearest card after drag
+      if(!isMobile()){
+        var cw = getCardWidth();
+        if(cw > 0){
+          current = Math.round(track.scrollLeft / cw);
+          current = Math.max(0, Math.min(total - 1, current));
+          track.scrollTo({ left: current * cw, behavior: 'smooth' });
+          updateDots();
+        }
+      }
+    }
+
+    track.addEventListener('pointerup',     endDrag);
+    track.addEventListener('pointercancel', endDrag);
+
+    // Prevent click events from firing on cards after a drag
+    track.addEventListener('click', function(e){
+      if(Math.abs(dragDelta) > 5) e.stopPropagation();
+    }, true);
+
     updateDots();
+  }
+
+  function initAllCarousels(){
+    CAROUSEL_CONFIGS.forEach(mountCarousel);
   }
 
   // Re-init on resize (layout switch mobile ↔ desktop)
   var resizeTimer;
   window.addEventListener('resize', function(){
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(initCarousel, 200);
+    resizeTimer = setTimeout(initAllCarousels, 200);
   });
 
   // Init after DOM is ready (script runs before </body> so DOM is complete)
-  initCarousel();
+  initAllCarousels();
 })();
 </script>
 
@@ -3559,6 +3925,230 @@
   });
 
   initAcssusEsgCarousel();
+})();
+</script>
+
+<script>
+/* ── ANIMATION SYSTEM ─────────────────────────────────────────────────────
+   A) .section scroll-reveal (home)
+   B) Home staggered groups: mini-cards, traj-cards, achv-list
+   C) Work Experience: timeline line scaleY + job fadeSlideUp
+   D) Skills: stagger on page show
+   E) Education: stagger on page show
+   F) Page fade-in on navigation
+   G) Case pages: case-section reveal, case-fig fade, phase-card stagger,
+                  case-quote animated border, achv-list stagger (fix for cases)
+
+   prefers-reduced-motion: global rule (line ~117) collapses all durations
+   to 0.01ms — no per-animation handling needed.
+   IntersectionObserver unavailable → hasIO guard → silent no-op throughout.
+────────────────────────────────────────────────────────────────────────── */
+(function(){
+  var hasIO = typeof IntersectionObserver !== 'undefined';
+
+  /* ── Shared utilities ─────────────────────────────────────────────────── */
+  function markVisible(el){ el.classList.add('is-visible'); }
+
+  /* Shared observer factory — threshold + rootMargin tunable per use */
+  function makeObs(threshold, rootMargin, onEnter){
+    if(!hasIO) return null;
+    return new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ onEnter(e.target, e); }
+      });
+    }, { threshold: threshold, rootMargin: rootMargin });
+  }
+
+  /* Stagger setup: adds reveal-group to container, reveal-child + --i to children */
+  function setupStagger(group, childSelector){
+    var children = group.querySelectorAll(childSelector);
+    if(!children.length) return;
+    group.classList.add('reveal-group');
+    children.forEach(function(child, i){
+      child.classList.add('reveal-child');
+      child.style.setProperty('--i', i);
+    });
+  }
+
+  /* Observe a set of elements with a shared observer, auto-unobserve on trigger */
+  function observeAll(obs, elements){
+    if(!obs) return;
+    elements.forEach(function(el){ obs.observe(el); });
+  }
+
+  /* ── A. Home .section scroll-reveal ──────────────────────────────────── */
+  var sectionObs = makeObs(0.07, '0px 0px -40px 0px', function(el){
+    markVisible(el); sectionObs && sectionObs.unobserve(el);
+  });
+  if(sectionObs){
+    document.querySelectorAll('.section').forEach(function(el){
+      el.classList.add('reveal');
+      sectionObs.observe(el);
+    });
+  }
+
+  /* ── B. Home staggered groups ─────────────────────────────────────────── */
+  var groupObs = makeObs(0.08, '0px 0px -30px 0px', function(el){
+    markVisible(el); groupObs && groupObs.unobserve(el);
+  });
+  [
+    ['.section .mini-card-row',  '.mini-card'],
+    ['.section .traj-grid',      '.traj-card'],
+    ['.section .achv-list',      'li']
+  ].forEach(function(pair){
+    document.querySelectorAll(pair[0]).forEach(function(g){ setupStagger(g, pair[1]); });
+  });
+  if(groupObs){
+    document.querySelectorAll('.section .reveal-group').forEach(function(el){ groupObs.observe(el); });
+  }
+
+  /* ── C. Work Experience: timeline line + job fade ────────────────────── */
+  function initJobAnimations(){
+    var jobs = document.querySelectorAll('#page-experience .job');
+    if(!jobs.length) return;
+    jobs.forEach(function(job){ job.classList.add('job-anim-init'); });
+
+    if(!hasIO){
+      jobs.forEach(function(job){
+        job.classList.add('line-visible','job-visible');
+        job.classList.remove('job-anim-init');
+      });
+      return;
+    }
+    var jobObs = makeObs(0.15, '0px 0px -20px 0px', function(el){
+      el.classList.add('line-visible','job-visible');
+      el.classList.remove('job-anim-init');
+      jobObs && jobObs.unobserve(el);
+    });
+    observeAll(jobObs, Array.from(jobs));
+  }
+
+  /* ── D. Skills stagger ────────────────────────────────────────────────── */
+  function initSkillsAnimations(){
+    var list = document.querySelector('#page-skills .skills-list');
+    if(!list) return;
+    setupStagger(list, 'li');
+    requestAnimationFrame(function(){ markVisible(list); });
+  }
+
+  /* ── E. Education stagger ─────────────────────────────────────────────── */
+  function initEducationAnimations(){
+    var wrap = document.querySelector('#page-education .wrap');
+    if(!wrap) return;
+    var items = Array.from(wrap.querySelectorAll('.edu-item, .lang-list'));
+    if(!items.length) return;
+    items.forEach(function(item, i){
+      item.classList.add('reveal-child');
+      item.style.setProperty('--i', i);
+      item.style.opacity = '0';
+    });
+    requestAnimationFrame(function(){
+      items.forEach(function(item){ item.classList.add('is-visible'); });
+    });
+  }
+
+  /* ── G. Case page animations ──────────────────────────────────────────── */
+  /* One shared set of observers, reused across all 5 case pages.
+     Called once per case page the first time it becomes visible.      */
+
+  /* G1. case-section scroll-reveal (same as .section on home) */
+  var caseSectionObs = makeObs(0.06, '0px 0px -40px 0px', function(el){
+    markVisible(el); caseSectionObs && caseSectionObs.unobserve(el);
+  });
+
+  /* G2. case-fig img fade-in */
+  var imgObs = makeObs(0.1, '0px 0px -20px 0px', function(el){
+    el.classList.add('img-visible');
+    imgObs && imgObs.unobserve(el);
+  });
+
+  /* G3. phase-grid stagger groups */
+  var caseGroupObs = makeObs(0.08, '0px 0px -30px 0px', function(el){
+    markVisible(el); caseGroupObs && caseGroupObs.unobserve(el);
+  });
+
+  /* G4. case-quote animated border + content fade */
+  var quoteObs = makeObs(0.2, '0px 0px -20px 0px', function(el){
+    el.classList.add('quote-visible');
+    el.classList.remove('quote-anim-init');
+    quoteObs && quoteObs.unobserve(el);
+  });
+
+  function initCaseAnimations(caseEl){
+    /* G1 — case-section blocks */
+    caseEl.querySelectorAll('.case-section').forEach(function(el){
+      el.classList.add('reveal');
+      if(caseSectionObs) caseSectionObs.observe(el);
+      else markVisible(el); /* no IO fallback */
+    });
+
+    /* G2 — images */
+    caseEl.querySelectorAll('.case-fig img').forEach(function(img){
+      img.classList.add('img-anim-init');
+      if(imgObs) imgObs.observe(img);
+      else img.classList.add('img-visible');
+    });
+
+    /* G3 — phase-grid stagger (left→right via CSS fadeSlideLeft) */
+    caseEl.querySelectorAll('.phase-grid').forEach(function(grid){
+      setupStagger(grid, '.phase-card');
+      if(caseGroupObs) caseGroupObs.observe(grid);
+      else markVisible(grid);
+    });
+
+    /* G3b — achv-list inside cases (fix: was only observed on home) */
+    caseEl.querySelectorAll('.achv-list').forEach(function(list){
+      setupStagger(list, 'li');
+      if(caseGroupObs) caseGroupObs.observe(list);
+      else markVisible(list);
+    });
+
+    /* G4 — case-quotes */
+    caseEl.querySelectorAll('.case-quote').forEach(function(q){
+      q.classList.add('quote-anim-init');
+      if(quoteObs) quoteObs.observe(q);
+      else { q.classList.add('quote-visible'); q.classList.remove('quote-anim-init'); }
+    });
+  }
+
+  /* ── F + G trigger: watch [data-page] hidden attribute changes ─────────── */
+  var PAGE_ANIM_DURATION = 320;
+
+  var pageAnimObs = new MutationObserver(function(mutations){
+    mutations.forEach(function(m){
+      var el = m.target;
+      if(el.hasAttribute('hidden')) return;
+
+      /* Page fade-in */
+      el.classList.add('page-entering');
+      setTimeout(function(){ el.classList.remove('page-entering'); }, PAGE_ANIM_DURATION);
+
+      if(el.dataset.animInit) return; /* already initialised */
+      el.dataset.animInit = '1';
+
+      var id = el.id;
+      if(id === 'page-experience')  initJobAnimations();
+      if(id === 'page-skills')      initSkillsAnimations();
+      if(id === 'page-education')   initEducationAnimations();
+      if(id.indexOf('page-case-') === 0) initCaseAnimations(el);
+    });
+  });
+
+  document.querySelectorAll('[data-page]').forEach(function(sec){
+    pageAnimObs.observe(sec, { attributes: true, attributeFilter: ['hidden'] });
+  });
+
+  /* Handle pages already visible on load */
+  document.querySelectorAll('[data-page]:not([hidden])').forEach(function(el){
+    if(el.dataset.animInit) return;
+    el.dataset.animInit = '1';
+    var id = el.id;
+    if(id === 'page-experience')  initJobAnimations();
+    if(id === 'page-skills')      initSkillsAnimations();
+    if(id === 'page-education')   initEducationAnimations();
+    if(id.indexOf('page-case-') === 0) initCaseAnimations(el);
+  });
+
 })();
 </script>
 
