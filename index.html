@@ -1,3 +1,4 @@
+<!-- Versão: v66 | Gerado por Claude em: 2026-08-26T15:44:06Z | Ref: v66_portfolio_gabriela_cesar_26082026.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -291,7 +292,7 @@
   h2{ font-size: clamp(var(--text-size-lg), 3vw, 2rem); font-weight: var(--weight-bold); }
   h3{ font-size: var(--text-size-md); font-weight: var(--weight-medium); }
 
-  p{ margin: 0 0 var(--space-md) 0; max-width: 40em; }
+  p{ margin: 0 0 var(--space-md) 0; max-width: 42em; }
   p.section-intro{ font-size: var(--text-size-md); max-width: 42em; }
 
   /* ── Global link base ───────────────────────────────────────────────────
@@ -536,7 +537,7 @@
 
   /* ============ MINI PORTFOLIO CARDS (home — summarized preview) ============ */
   .mini-card-row{
-    display:grid; grid-template-columns: repeat(auto-fit, minmax(13rem,1fr));
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(15rem,1fr));
     gap: var(--space-sm); margin: var(--space-md) 0 var(--space-md) 0;
   }
   .mini-card{
@@ -598,6 +599,16 @@
     display:block; margin-bottom: var(--space-xs); line-height: 0;
   }
   .mini-card-icon svg{ width: 1.5rem; height: 1.5rem; display:block; }
+  /* Role tags on home mini-cards — reuses the same data already present as
+     .tag--role in each case's hero (case-meta-row), just a lighter/outlined
+     treatment so it doesn't compete with the icon+title inside a smaller card. */
+  .mini-card-tags{ display:flex; flex-wrap:wrap; gap: 0.4rem; margin: 0.1rem 0 0.1rem; }
+  .tag--mini{
+    font-family: var(--font-tag); letter-spacing: 0.06em; font-size: 0.75rem;
+    color: var(--text-maroon); background: transparent;
+    border: 1px solid var(--text-maroon); border-radius: 999px;
+    padding: 0.2rem 0.6rem; text-transform: uppercase;
+  }
   /* Portfolio section is dark (maroon) — the cream mini-cards need a
      more defined edge here, since the default soft border and the
      maroon hover border both nearly disappear against the maroon
@@ -767,7 +778,7 @@
     color: var(--text-cream); background: var(--bg-maroon);
     border-radius: 999px; padding: 0.25rem var(--space-md);
   }
-  .case-about{ font-size: var(--text-size-md); max-width: 46em; }
+  .case-about{ font-size: var(--text-size-md); max-width: 42em; }
   .case-footnote{ font-size: var(--text-size-xs); color: var(--text-neutral-warm, #625454); font-style: italic; }
 
   /* case-body: remove bottom padding — last section provides its own */
@@ -907,6 +918,14 @@
     vertical-align: top;
   }
   .case-table th{ background: var(--bg-peach); font-family: var(--font-tag); letter-spacing: 0.04em; }
+
+  /* Reusable emphasis classes (replace ad-hoc inline styles from the Pricing Scenarios table) */
+  .case-table-emphasis{ color: var(--text-maroon); font-weight: 700; }
+  .case-table-badge{
+    display: inline-block; font-size: 0.7rem; font-family: var(--font-tag); letter-spacing: 0.04em;
+    background: var(--bg-maroon); color: var(--text-cream); border-radius: 999px;
+    padding: 0.15rem 0.5rem; margin-left: 0.35rem; vertical-align: middle;
+  }
 
   /* ── Responsive table: card-mode on small screens ── */
   @media (max-width: 35.99rem){
@@ -1157,97 +1176,6 @@
     border-top: 6px solid var(--border-soft);
   }
 
-  /* Bench carousel — Luccas Toon only */
-  .bench-carousel-wrap{
-    position: relative;
-    overflow: hidden;     /* clips any card that bleeds past the container edge */
-    margin: var(--space-md) 0;
-  }
-  .bench-carousel{
-    display: flex;
-    width: 100%;          /* must be explicit so child calc(100% - …) resolves against the visible container */
-    box-sizing: border-box;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: var(--space-md);
-    padding-bottom: var(--space-sm); /* room for scrollbar */
-    padding-inline: var(--space-xs); /* lateral breathing room — prevents cards from being flush-cut at edges */
-    scroll-padding-inline-start: var(--space-xs); /* keeps snap aligned with new padding */
-    /* hide scrollbar visually but keep accessible */
-    scrollbar-width: thin;
-    scrollbar-color: var(--border-soft) transparent;
-  }
-  .bench-carousel::-webkit-scrollbar{ height: 4px; }
-  .bench-carousel::-webkit-scrollbar-track{ background: transparent; }
-  .bench-carousel::-webkit-scrollbar-thumb{ background: var(--border-soft); border-radius: 2px; }
-  /* Grab cursor — signals drag-to-scroll affordance on desktop */
-  @media(min-width: 36rem){
-    .bench-carousel{ cursor: grab; }
-    .bench-carousel:active{ cursor: grabbing; }
-  }
-  .bench-carousel .bench-card{
-    /* width relative to container (not vw) — avoids overflow on any layout width;
-       -3.5rem peek: leaves ~56px of next card visible, signalling there's more to scroll */
-    flex: 0 0 min(calc(100% - 3.5rem), 22rem);
-    scroll-snap-align: start;
-  }
-  /* Carousel nav */
-  .bench-carousel-nav{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-sm);
-    margin-top: var(--space-sm);
-    flex-wrap: wrap;
-  }
-  .bench-carousel-btn{
-    background: none;
-    border: var(--border-width) solid var(--border-strong);
-    border-radius: var(--radius-sm);
-    color: var(--text-maroon);
-    width: 2.25rem; height: 2.25rem;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s;
-    flex-shrink: 0;
-  }
-  .bench-carousel-btn:hover, .bench-carousel-btn:focus-visible{
-    background: var(--bg-maroon); color: var(--text-cream);
-    outline: none;
-  }
-  .bench-carousel-btn:focus-visible{ box-shadow: var(--focus-ring); }
-  .bench-carousel-btn svg{ width: 1rem; height: 1rem; pointer-events: none; }
-  .bench-carousel-dots{
-    display: flex; gap: 0.4rem; list-style: none; margin: 0; padding: 0;
-  }
-  .bench-carousel-dots li button{
-    width: 0.5rem; height: 0.5rem;
-    border-radius: 50%;
-    border: none;
-    background: var(--border-soft);
-    cursor: pointer;
-    padding: 0;
-    transition: background 0.15s, transform 0.15s;
-  }
-  .bench-carousel-dots li button[aria-current="true"]{
-    background: var(--text-maroon);
-    transform: scale(1.3);
-  }
-  .bench-carousel-dots li button:focus-visible{
-    outline: none; box-shadow: var(--focus-ring);
-  }
-  /* On small screens: revert to plain grid, hide nav */
-  @media(max-width: 35.99rem){
-    .bench-carousel{
-      flex-direction: column;
-      overflow-x: visible;
-      scroll-snap-type: none;
-      padding-bottom: 0;
-    }
-    .bench-carousel .bench-card{ flex: none; }
-    .bench-carousel-nav{ display: none; }
-  }
 </style>
 </head>
 <body>
@@ -1334,30 +1262,42 @@
             <span class="mini-card-year">2026</span>
             <span class="mini-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20C12 20 4 14.5 4 8.5C4 6 6 4 8.5 4C10 4 11.5 4.8 12 6C12.5 4.8 14 4 15.5 4C18 4 20 6 20 8.5C20 14.5 12 20 12 20Z"/></svg></span>
             <h3 class="mini-card-title">ACSSUS (NGO) — Social Impact E-commerce</h3>
+            <div class="mini-card-tags"><span class="tag--mini">UX Strategy</span><span class="tag--mini">Financial Modeling</span><span class="tag--mini">Academic</span></div>
             <span class="mini-card-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </a>
           <a class="mini-card" href="javascript:void(0)" data-nav="case-transfer" role="listitem">
             <span class="mini-card-year">2026</span>
             <span class="mini-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg></span>
             <h3 class="mini-card-title">Transfer Analysis Portal</h3>
+            <div class="mini-card-tags"><span class="tag--mini">Discovery Leadership</span><span class="tag--mini">Design Mentor</span><span class="tag--mini">UX Designer</span></div>
             <span class="mini-card-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </a>
           <a class="mini-card" href="javascript:void(0)" data-nav="case-signon" role="listitem">
             <span class="mini-card-year">2025</span>
             <span class="mini-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="11" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="16" r="1.5" fill="#751600" stroke="none"/></svg></span>
             <h3 class="mini-card-title">Sign-on: discovering pain points and exploring opportunities</h3>
+            <div class="mini-card-tags"><span class="tag--mini">Product Designer</span><span class="tag--mini">UI Designer</span><span class="tag--mini">UX Designer</span></div>
+            <span class="mini-card-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
+          <a class="mini-card" href="javascript:void(0)" data-nav="case-healthcare" role="listitem">
+            <span class="mini-card-year">2024</span>
+            <span class="mini-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+            <h3 class="mini-card-title">Healthcare Network — Patient &amp; Doctor Experience Research</h3>
+            <div class="mini-card-tags"><span class="tag--mini">UX Researcher</span></div>
             <span class="mini-card-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </a>
           <a class="mini-card" href="javascript:void(0)" data-nav="case-soybean" role="listitem">
             <span class="mini-card-year">2024</span>
             <span class="mini-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></span>
             <h3 class="mini-card-title">Soybean storage silo declaration ticket</h3>
+            <div class="mini-card-tags"><span class="tag--mini">Product Designer</span></div>
             <span class="mini-card-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </a>
           <a class="mini-card" href="javascript:void(0)" data-nav="case-luccastoon" role="listitem">
             <span class="mini-card-year">2020</span>
             <span class="mini-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="#751600" stroke="none"/></svg></span>
             <h3 class="mini-card-title">App Discovery: Luccas Toon</h3>
+            <div class="mini-card-tags"><span class="tag--mini">Game Designer</span><span class="tag--mini">UX Designer</span><span class="tag--mini">UX Researcher</span></div>
             <span class="mini-card-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </a>
         </div>
@@ -1749,75 +1689,63 @@
         <p>In addition to the ideation phase, before moving on to the final solution, it was important to research the market for children's games and apps that address similar problems, even if they target different audiences.</p>
 
         <h4>Benchmarking Results</h4>
-        <div class="bench-carousel-wrap">
-          <div
-            class="bench-carousel"
-            id="bench-carousel-luccastoon"
-            role="region"
-            aria-label="Benchmarking results — 6 apps"
-            aria-live="polite"
-            tabindex="0"
-          >
-            <div class="bench-card" role="group" aria-label="1 of 6: DC Super Hero Girls Blitz">
-              <p class="bench-app">DC Super Hero Girls Blitz <span class="bench-maker">Budge</span></p>
-              <ul class="bench-findings">
-                <li><strong>Adventure World Immersion</strong> — A game-like visual experience applied even to routine tasks — navigating app sections and completing control activities feels like gameplay.</li>
-                <li><strong>Infinite Explorable Environment</strong> — An open-ended world design that leaves room for future updates, seasonal content, and special decorations unlocked through achievements or easter eggs.</li>
-              </ul>
-            </div>
-            <div class="bench-card" role="group" aria-label="2 of 6: PK XD">
-              <p class="bench-app">PK XD <span class="bench-maker">Playkids</span></p>
-              <ul class="bench-findings">
-                <li><strong>Multi-purpose Avatar</strong> — The avatar serves multiple functions within the interface: representing the player during activities, enabling communication with other users, and powering an in-app coin economy.</li>
-                <li><strong>Character Empathy as Motivation</strong> — Emotional connection to the characters sparks children's desire to become adventurers themselves. Previous research showed kids already identify their character's color, power, and custom outfit preferences.</li>
-              </ul>
-            </div>
-            <div class="bench-card" role="group" aria-label="3 of 6: Brawl Stars">
-              <p class="bench-app">Brawl Stars <span class="bench-maker">Supercell</span></p>
-              <ul class="bench-findings">
-                <li><strong>In-app Purchases via Earned Currency</strong> — Certain app content (videos, avatar items, in-game resources such as hints) can be purchased using coins earned through gameplay — keeping spending tied to effort.</li>
-                <li><strong>Achievement System</strong> — Achievements are merit-based rewards granted when players reach a milestone within the app. Upon completion, new items are unlocked or players receive coin rewards.</li>
-              </ul>
-            </div>
-            <div class="bench-card" role="group" aria-label="4 of 6: Cube Escape">
-              <p class="bench-app">Cube Escape <span class="bench-maker">Rusty Lake</span></p>
-              <ul class="bench-findings">
-                <li><strong>Mystery-driven Exploration</strong> — Players are encouraged to explore an enigmatic environment, discovering items that help them progress — driving curiosity and continued engagement.</li>
-                <li><strong>Luccas Neto Universe Integration</strong> — Opportunity to incorporate characters and villains from the Luccas Neto franchise, deepening brand connection.</li>
-                <li><strong>Escape Room Adventure Format</strong> — The escape room mechanic is a natural fit — Luccas Neto has already explored this format in his YouTube content (e.g., the "Trapped in the Toy Room" video), giving it built-in recognition with the audience.</li>
-              </ul>
-            </div>
-            <div class="bench-card" role="group" aria-label="5 of 6: LinkedIn Reactions">
-              <p class="bench-app">LinkedIn Reactions <span class="bench-maker">LinkedIn</span></p>
-              <ul class="bench-findings">
-                <li><strong>Emotional Reactions to Videos</strong> — Beyond watching, children can express how a video made them feel and view other users' reactions — adding a social and emotional layer to content consumption.</li>
-                <li><strong>Mood-based Video Discovery</strong> — Video ratings feed into personalized search filters (e.g., videos to laugh to, music videos), helping kids find content that matches their current mood.</li>
-              </ul>
-            </div>
-            <div class="bench-card" role="group" aria-label="6 of 6: BTS World">
-              <p class="bench-app">BTS World <span class="bench-maker">Netmarble</span></p>
-              <ul class="bench-findings">
-                <li><strong>Simulated Call Interface</strong> — The app mimics a phone call UI, creating the feeling that Luccas is speaking directly to the child — a parasocial interaction made interactive.</li>
-                <li><strong>Native Creator Voice</strong> — Luccas Neto already uses a direct, child-facing communication style in his YouTube videos, making the transition to in-app interaction feel authentic and familiar.</li>
-              </ul>
-            </div>
-          </div>
-          <nav class="bench-carousel-nav" aria-label="Benchmarking carousel navigation">
-            <button class="bench-carousel-btn" id="bench-prev" aria-label="Previous benchmark" aria-controls="bench-carousel-luccastoon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-            </button>
-            <ol class="bench-carousel-dots" aria-label="Benchmarking slides">
-              <li><button aria-label="DC Super Hero Girls Blitz" aria-current="true" data-index="0"></button></li>
-              <li><button aria-label="PK XD" aria-current="false" data-index="1"></button></li>
-              <li><button aria-label="Brawl Stars" aria-current="false" data-index="2"></button></li>
-              <li><button aria-label="Cube Escape" aria-current="false" data-index="3"></button></li>
-              <li><button aria-label="LinkedIn Reactions" aria-current="false" data-index="4"></button></li>
-              <li><button aria-label="BTS World" aria-current="false" data-index="5"></button></li>
-            </ol>
-            <button class="bench-carousel-btn" id="bench-next" aria-label="Next benchmark" aria-controls="bench-carousel-luccastoon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-            </button>
-          </nav>
+        <div class="table-scroll table-responsive">
+          <table class="case-table">
+            <thead>
+              <tr><th>App</th><th>Maker</th><th>Key findings</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="App">DC Super Hero Girls Blitz</td>
+                <td data-label="Maker">Budge</td>
+                <td data-label="Key findings"><ul>
+                  <li><strong>Adventure World Immersion</strong> — a game-like visual experience applied even to routine tasks — navigating app sections and completing control activities feels like gameplay.</li>
+                  <li><strong>Infinite Explorable Environment</strong> — an open-ended world design that leaves room for future updates, seasonal content, and special decorations unlocked through achievements or easter eggs.</li>
+                </ul></td>
+              </tr>
+              <tr>
+                <td data-label="App">PK XD</td>
+                <td data-label="Maker">Playkids</td>
+                <td data-label="Key findings"><ul>
+                  <li><strong>Multi-purpose Avatar</strong> — the avatar serves multiple functions within the interface: representing the player during activities, enabling communication with other users, and powering an in-app coin economy.</li>
+                  <li><strong>Character Empathy as Motivation</strong> — emotional connection to the characters sparks children's desire to become adventurers themselves. Previous research showed kids already identify their character's color, power, and custom outfit preferences.</li>
+                </ul></td>
+              </tr>
+              <tr>
+                <td data-label="App">Brawl Stars</td>
+                <td data-label="Maker">Supercell</td>
+                <td data-label="Key findings"><ul>
+                  <li><strong>In-app Purchases via Earned Currency</strong> — certain app content (videos, avatar items, in-game resources such as hints) can be purchased using coins earned through gameplay — keeping spending tied to effort.</li>
+                  <li><strong>Achievement System</strong> — achievements are merit-based rewards granted when players reach a milestone within the app. Upon completion, new items are unlocked or players receive coin rewards.</li>
+                </ul></td>
+              </tr>
+              <tr>
+                <td data-label="App">Cube Escape</td>
+                <td data-label="Maker">Rusty Lake</td>
+                <td data-label="Key findings"><ul>
+                  <li><strong>Mystery-driven Exploration</strong> — players are encouraged to explore an enigmatic environment, discovering items that help them progress — driving curiosity and continued engagement.</li>
+                  <li><strong>Luccas Neto Universe Integration</strong> — opportunity to incorporate characters and villains from the Luccas Neto franchise, deepening brand connection.</li>
+                  <li><strong>Escape Room Adventure Format</strong> — the escape room mechanic is a natural fit — Luccas Neto has already explored this format in his YouTube content (e.g., the "Trapped in the Toy Room" video), giving it built-in recognition with the audience.</li>
+                </ul></td>
+              </tr>
+              <tr>
+                <td data-label="App">LinkedIn Reactions</td>
+                <td data-label="Maker">LinkedIn</td>
+                <td data-label="Key findings"><ul>
+                  <li><strong>Emotional Reactions to Videos</strong> — beyond watching, children can express how a video made them feel and view other users' reactions — adding a social and emotional layer to content consumption.</li>
+                  <li><strong>Mood-based Video Discovery</strong> — video ratings feed into personalized search filters (e.g., videos to laugh to, music videos), helping kids find content that matches their current mood.</li>
+                </ul></td>
+              </tr>
+              <tr>
+                <td data-label="App">BTS World</td>
+                <td data-label="Maker">Netmarble</td>
+                <td data-label="Key findings"><ul>
+                  <li><strong>Simulated Call Interface</strong> — the app mimics a phone call UI, creating the feeling that Luccas is speaking directly to the child — a parasocial interaction made interactive.</li>
+                  <li><strong>Native Creator Voice</strong> — Luccas Neto already uses a direct, child-facing communication style in his YouTube videos, making the transition to in-app interaction feel authentic and familiar.</li>
+                </ul></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       </section>
@@ -1965,7 +1893,7 @@
 
         <h3>Pre-launch</h3>
         <p class="case-lede">Beta testing of the app during the pre-launch phase</p>
-        
+
         <p><strong>Goals and requirement:</strong> detect usability issues; remote and moderate testing (pandemic); children between 5 to 11 years old; exclusive for Luccas Neto fans.</p>
         <p><strong>Goals of the beta test:</strong> analyze the overall user experience of the app (the first time we present the complete app to children); verify fixes made during internal quality testing; identify usability issues to be fixed before launch; insights and improvements for the future.</p>
         <p>Due to the COVID-19 pandemic, testing for this phase was conducted 100% remotely using the Lookback tool.</p>
@@ -2033,7 +1961,7 @@
 
       <section class="case-section case-section--maroon">
       <div class="wrap">
-        <h2>📈 Results & Learnings</h2>
+        <h2>📈 Results & Key Insights</h2>
         <ul class="achv-list">
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
@@ -2275,7 +2203,7 @@
 
       <section class="case-section case-section--maroon">
       <div class="wrap">
-        <h2>📈 Results & Learnings</h2>
+        <h2>📈 Results & Key Insights</h2>
         <p>Many of the pain points we found would have been caught much earlier — had anyone run even a basic heuristic analysis on the original screens. That's not a criticism of the original team; it's a reminder that skipping UX review has real downstream costs.</p>
         <p>As a point for improvement — beyond the items prototyped above — it is worth emphasizing that future initiative timelines must consider user testing as an integral and mandatory part of portal flow redesign projects.</p>
       </div>
@@ -2418,7 +2346,7 @@
           <li><span class="typ-tag typ-enabler">Enabler</span> Refinement of existing group permissions.</li>
           <li><span class="typ-tag typ-structural">Structural</span> Creation of roles/groups for mass application, user-managed permissioning, and group-wide batch editing.</li>
         </ul>
-        
+
         <p><strong>Prototyped Solution (Wireframe):</strong> Collaborative center allowing Distributors and Multipliers to directly register and manage their employees, backed by clearly defined business roles in the backend to prevent risks.</p>
 
         <h3>Account Management</h3>
@@ -2433,6 +2361,450 @@
         </ul>
         <figure class="case-fig case-fig--borderless"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/register_image%206.png" alt="Wireframe of the prototyped account switching component for Theme 4: Account Management" loading="lazy"></figure>
         <p><strong>Prototyped Solution (Wireframe):</strong> Streamlined account switching component within the top navigation, allowing users to view balances, access registration data, and instantly toggle between associated accounts (e.g., Distributors, Subsidiary CNPJs) without requiring separate login credentials.</p>
+      </div>
+      </section>
+
+      <div class="wrap">
+      <div class="case-end-nav">
+        <a class="btn" href="javascript:void(0)" data-nav="home">← Home</a>
+        <a class="btn btn--secondary" href="javascript:void(0)" data-nav="home" data-anchor="portfolio-h">See other projects</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= CASE: HEALTHCARE NETWORK RESEARCH ================= -->
+  <section id="page-case-healthcare" data-page hidden>
+    <div class="page-hero wrap case-hero">
+      <p class="eyebrow">2024</p>
+      <div class="page-hero-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#751600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+      <h1>Understanding Both Sides of Care: Patient and Doctor Experience in a Low-Cost Clinic Network</h1>
+      <div class="case-meta-row">
+        <span class="tag--role">ux researcher</span>
+      </div>
+      <p class="case-about">Qualitative research mapping the motivations, pain points, and journeys of two audiences on opposite sides of the same counter — patients and physicians — for a Brazilian low-cost clinic network, translated into personas and actionable opportunities for the product and business teams.</p>
+    </div>
+
+
+      <section class="case-section case-section--cream">
+      <div class="wrap">
+        <h2>📋 Executive Summary</h2>
+        <p>A low-cost clinic network — serving both out-of-pocket patients and patients using a discount benefit card (B2B and B2C) — needed to better understand the experience of the two audiences that sustain the business from opposite sides of the counter: the people who seek care, and the people who provide it. Until then, product and operational decisions were made without a structured view of who these patients are, what drives — or prevents — their loyalty, and what motivates or discourages the physicians who make up the clinical staff. There was no consistent qualitative foundation to inform decisions on retention, communication, and journey design.</p>
+        <p>Research objective: map the motivations, pain points, perceived value, and journey of both patients and physicians, translating findings into personas and actionable opportunities for the product and business teams.</p>
+      </div>
+      </section>
+
+      <section class="case-section case-section--peach">
+      <div class="wrap">
+        <h2>🗺️ Process</h2>
+        <p>Research ran across two parallel tracks, each with its own method and sample, tailored to that audience.</p>
+        <div class="table-scroll table-responsive">
+          <table class="case-table">
+            <thead>
+              <tr><th></th><th>Patients</th><th>Doctors</th></tr>
+            </thead>
+            <tbody>
+              <tr><td data-label="Metric">Interviewees</td><td data-label="Patients">15 (out-of-pocket and benefit-card, individual and corporate accounts)</td><td data-label="Doctors">6 (different specialties and career stages)</td></tr>
+              <tr><td data-label="Metric">Format</td><td data-label="Patients">Semi-structured interviews</td><td data-label="Doctors">Semi-structured interviews</td></tr>
+              <tr><td data-label="Metric">Recording volume</td><td data-label="Patients">500+ minutes</td><td data-label="Doctors">237+ minutes</td></tr>
+              <tr><td data-label="Metric">Macro-themes identified</td><td data-label="Patients">10</td><td data-label="Doctors">6</td></tr>
+              <tr><td data-label="Metric">Findings mapped</td><td data-label="Patients">—</td><td data-label="Doctors">55+</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Process Steps</h3>
+        <div class="phase-grid">
+          <div class="phase-card">
+            <h3>Script &amp; Sample Design</h3>
+            <p>Working with the team and the client, we designed the sample segmentation (payment profile, tenure, specialty) to ensure a diversity of experiences within each audience.</p>
+          </div>
+          <div class="phase-card">
+            <h3>Interview Facilitation</h3>
+            <p>I personally conducted all semi-structured interviews, with both audiences.</p>
+          </div>
+          <div class="phase-card">
+            <h3>Qualitative Analysis</h3>
+            <p>Coded the interviews and identified macro-themes and patterns with the support of AI tools to speed up the initial analysis stage — then fully reviewed the results myself to catch and correct hallucinations or drift before consolidating the findings.</p>
+          </div>
+          <div class="phase-card">
+            <h3>Persona Construction</h3>
+            <p>From the validated findings, built detailed personas, their schematic versions, and a value-and-usage overview for each audience.</p>
+          </div>
+          <div class="phase-card">
+            <h3>Collaborative Workshops</h3>
+            <p>Facilitated empathy-mapping and integrated journey-building sessions with the teams involved, turning findings into actionable improvement opportunities.</p>
+          </div>
+        </div>
+      </div>
+      </section>
+
+      <section class="case-section case-section--cream">
+      <div class="wrap">
+        <h2>📖 Context</h2>
+        <p>The network serves patients who pay for individual consultations out of pocket, alongside patients who access care through a discount benefit card sold both to companies (B2B) and directly to individuals (B2C). Until this research, decisions about retention, communication, and journey design were made without a structured qualitative view of either side of the business — the patients who choose the network, and the physicians who staff it.</p>
+        <p>This case documents both tracks: what drives patients toward — or away from — loyalty, and what motivates or discourages the physicians who make up the clinical staff.</p>
+      </div>
+      </section>
+
+      <section class="case-section case-section--cream">
+      <div class="wrap">
+        <h2>🔍 Discovery &amp; Problem Framing</h2>
+
+        <h3>Patient Findings</h3>
+        <p>Patients' relationship with the network varies widely along two axes: how much access they have (financial, digital, geographic) and how much value they perceive in the service. These two axes organize the five patient profiles identified below.</p>
+
+        <p><strong>Access and cost remain the biggest barrier</strong>, even among patients who already use the discount card:</p>
+        <blockquote class="case-quote"><p>"For someone earning R$1,420, with kids and rent to pay, R$50 for a consultation is still a lot of money."</p></blockquote>
+
+        <p><strong>Speed of resolution is the main trigger for satisfaction.</strong> Patients who rely on Brazil's public health system (SUS) for routine care, but turn to the network for specific needs, value not having to wait most of all:</p>
+        <blockquote class="case-quote"><p>"When I need a specialty that has to be treated right away, it has to be through the network."</p></blockquote>
+
+        <p><strong>The first experience is decisive for loyalty.</strong> Reports from highly engaged patients show that a good first impression — even in situations of vulnerability — creates a lasting bond with the network:</p>
+        <blockquote class="case-quote"><p>"In the public system, I always had trouble getting blood drawn, and I nearly 'cried with joy' — at the network, the nurse had no trouble at all, getting it right on the first try."</p></blockquote>
+
+        <p><strong>Once the bond is established, it extends to the family.</strong> Loyal patients report bringing multiple family members to the network, and recognize measurable savings by tracking their usage history:</p>
+        <blockquote class="case-quote"><p>"I believe I've been through every specialty by now. I've been coming to the network since 2011, when it first opened."</p></blockquote>
+
+        <p><strong>Trust can be broken by transparency failures.</strong> A recurring friction point among high-usage patients was card renewal without prior notice, discovered only at the moment of payment — generating frustration even among loyal users.</p>
+
+        <p><strong>Telemedicine divides opinion.</strong> Some patients see it as a convenience (it avoids travel); others perceive it as a sign that entry-level care is "lesser" than in-person visits.</p>
+
+                <figure class="case-fig case-fig--borderless" aria-label="Patient profile spectrum diagram">
+          <style>
+            .hcn-spec-desktop{display:block;}
+            .hcn-spec-mobile{display:none;}
+            @media(max-width:600px){.hcn-spec-desktop{display:none;}.hcn-spec-mobile{display:block;}}
+          </style>
+          <!-- DESKTOP -->
+          <svg class="hcn-spec-desktop" width="100%" viewBox="0 0 700 210" role="img" xmlns="http://www.w3.org/2000/svg">
+            <title>Patient profile spectrum</title>
+            <desc>Five patient profiles arranged left to right by increasing usage and loyalty: Low Access, SUS-Dependent, Specialty One-Off, Extra Safety Net, and Loyal/Frequent User.</desc>
+            <rect x="20" y="40" width="124" height="88" rx="10" fill="#E9D7C3" stroke="#751600" stroke-width="1.2"/>
+            <text x="82" y="69" text-anchor="middle" font-family="'Karla',sans-serif" font-size="13" font-weight="700" fill="#362E2E">Low Access</text>
+            <text x="82" y="98" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10" fill="#362E2E">Emergency-only</text>
+            <text x="82" y="111" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10" fill="#362E2E">visits</text>
+            <rect x="156" y="40" width="124" height="88" rx="10" fill="#E9D7C3" stroke="#751600" stroke-width="1.2"/>
+            <text x="218" y="60" text-anchor="middle" font-family="'Karla',sans-serif" font-size="13" font-weight="700" fill="#362E2E">SUS-</text>
+            <text x="218" y="74" text-anchor="middle" font-family="'Karla',sans-serif" font-size="13" font-weight="700" fill="#362E2E">Dependent</text>
+            <text x="218" y="98" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10" fill="#362E2E">Uses network when</text>
+            <text x="218" y="111" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10" fill="#362E2E">SUS is too slow</text>
+            <rect x="292" y="40" width="124" height="88" rx="10" fill="#E9D7C3" stroke="#751600" stroke-width="1.2"/>
+            <text x="354" y="60" text-anchor="middle" font-family="'Karla',sans-serif" font-size="13" font-weight="700" fill="#362E2E">Specialty</text>
+            <text x="354" y="74" text-anchor="middle" font-family="'Karla',sans-serif" font-size="13" font-weight="700" fill="#362E2E">One-Off</text>
+            <text x="354" y="98" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10" fill="#362E2E">Solves one</text>
+            <text x="354" y="111" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10" fill="#362E2E">specific issue</text>
+            <rect x="428" y="40" width="124" height="88" rx="10" fill="#E9D7C3" stroke="#751600" stroke-width="1.2"/>
+            <text x="490" y="60" text-anchor="middle" font-family="'Karla',sans-serif" font-size="13" font-weight="700" fill="#362E2E">Extra Safety</text>
+            <text x="490" y="74" text-anchor="middle" font-family="'Karla',sans-serif" font-size="13" font-weight="700" fill="#362E2E">Net</text>
+            <text x="490" y="98" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10" fill="#362E2E">Already insured,</text>
+            <text x="490" y="111" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10" fill="#362E2E">uses as backup</text>
+            <rect x="564" y="40" width="124" height="88" rx="10" fill="#751600"/>
+            <text x="626" y="60" text-anchor="middle" font-family="'Karla',sans-serif" font-size="13" font-weight="700" fill="#FFFCF6">Loyal /</text>
+            <text x="626" y="74" text-anchor="middle" font-family="'Karla',sans-serif" font-size="13" font-weight="700" fill="#FFFCF6">Frequent User</text>
+            <text x="626" y="98" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10" fill="#FFFCF6">Recurring use,</text>
+            <text x="626" y="111" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10" fill="#FFFCF6">refers family</text>
+            <line x1="20" y1="158" x2="680" y2="158" stroke="#751600" stroke-width="1.5"/>
+            <path d="M672 152 L682 158 L672 164" fill="none" stroke="#751600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="350" y="186" text-anchor="middle" font-family="'Karla',sans-serif" font-size="12" font-weight="600" fill="#751600" letter-spacing="0.02em">Increasing usage &amp; loyalty</text>
+          </svg>
+          <!-- MOBILE -->
+          <svg class="hcn-spec-mobile" width="100%" viewBox="0 0 340 420" role="img" xmlns="http://www.w3.org/2000/svg">
+            <title>Patient profile spectrum (mobile)</title>
+            <desc>Same five patient profiles stacked vertically from lowest to highest usage and loyalty: Low Access, SUS-Dependent, Specialty One-Off, Extra Safety Net, and Loyal/Frequent User.</desc>
+            <defs>
+              <marker id="hcn-spec-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="#751600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </marker>
+            </defs>
+            <line x1="10" y1="22" x2="10" y2="378" stroke="#751600" stroke-width="1.5" marker-end="url(#hcn-spec-arr)"/>
+            <rect x="26" y="20" width="300" height="64" rx="10" fill="#E9D7C3" stroke="#751600" stroke-width="1.2"/>
+            <text x="46" y="46" font-family="'Karla',sans-serif" font-size="13" font-weight="700" fill="#362E2E">Low Access</text>
+            <text x="46" y="66" font-family="'Karla',sans-serif" font-size="11" fill="#362E2E">Emergency-only visits</text>
+            <rect x="26" y="96" width="300" height="64" rx="10" fill="#E9D7C3" stroke="#751600" stroke-width="1.2"/>
+            <text x="46" y="122" font-family="'Karla',sans-serif" font-size="13" font-weight="700" fill="#362E2E">SUS-Dependent</text>
+            <text x="46" y="142" font-family="'Karla',sans-serif" font-size="11" fill="#362E2E">Uses network when SUS is too slow</text>
+            <rect x="26" y="172" width="300" height="64" rx="10" fill="#E9D7C3" stroke="#751600" stroke-width="1.2"/>
+            <text x="46" y="198" font-family="'Karla',sans-serif" font-size="13" font-weight="700" fill="#362E2E">Specialty One-Off</text>
+            <text x="46" y="218" font-family="'Karla',sans-serif" font-size="11" fill="#362E2E">Solves one specific issue</text>
+            <rect x="26" y="248" width="300" height="64" rx="10" fill="#E9D7C3" stroke="#751600" stroke-width="1.2"/>
+            <text x="46" y="274" font-family="'Karla',sans-serif" font-size="13" font-weight="700" fill="#362E2E">Extra Safety Net</text>
+            <text x="46" y="294" font-family="'Karla',sans-serif" font-size="11" fill="#362E2E">Already insured, uses as backup</text>
+            <rect x="26" y="324" width="300" height="64" rx="10" fill="#751600"/>
+            <text x="46" y="350" font-family="'Karla',sans-serif" font-size="13" font-weight="700" fill="#FFFCF6">Loyal / Frequent User</text>
+            <text x="46" y="370" font-family="'Karla',sans-serif" font-size="11" fill="#FFFCF6">Recurring use, refers family</text>
+            <text x="170" y="406" text-anchor="middle" font-family="'Karla',sans-serif" font-size="12" font-weight="600" fill="#751600" letter-spacing="0.02em">Increasing usage &amp; loyalty ↓</text>
+          </svg>
+          <figcaption>Patient profiles ordered by increasing service usage and loyalty, as described in interview analysis.</figcaption>
+        </figure>
+
+        <h3>Doctor Findings</h3>
+        <p>On the clinical staff side, research mapped six themes: motivations and expectations, relationship and culture, benefits and perceived value, operational challenges, improvement opportunities, and vision for the future.</p>
+
+        <p><strong>Social purpose is what attracts doctors — and what shows up most in the most engaged doctors:</strong></p>
+        <blockquote class="case-quote"><p>"To me, that's one of the real benefits: giving access to a population that started out with low-cost care."</p></blockquote>
+
+        <p><strong>Schedule autonomy is a real differentiator</strong> compared to on-call shifts or running a private practice. Doctors report being able to build their own routine without giving up predictable income:</p>
+        <blockquote class="case-quote"><p>"Having access to a wider range of people, my schedule stays fuller. At the end of the day, I want to save lives, but I also need to make a living."</p></blockquote>
+
+        <p><strong>Reduced red tape is a strong point</strong>, especially for doctors who have worked in a private practice or other networks before:</p>
+        <blockquote class="case-quote"><p>"Payments have never been late. At many places I've worked, I got stiffed, so that matters a lot to me."</p></blockquote>
+
+        <p><strong>The 20% overbooking policy is the main operational friction point</strong>, cited as a decision imposed rather than negotiated, with a cascading effect on appointment time, delays, and patient satisfaction:</p>
+        <blockquote class="case-quote"><p>"Overbooking isn't decided by the doctor. [...] It's something imposed on us."</p></blockquote>
+        <blockquote class="case-quote"><p>"Ten minutes per consultation isn't enough — it's frustrating. I have to diagnose, prescribe, and still fill in the patient's registration, which is often incomplete."</p></blockquote>
+
+        <p><strong>Doctors feel a growing distance from management</strong> as the company grows. Doctors who have been with the network since its early days report losing closeness with leadership and feeling less involved in decisions:</p>
+        <blockquote class="case-quote"><p>"That spark I used to see from the company's early days — I don't see it anymore. Teams are under a lot of pressure now, and I see them being heard less."</p></blockquote>
+
+        <p><strong>The lack of a career path is a recurring complaint</strong>, even among the most engaged profiles:</p>
+        <blockquote class="case-quote"><p>"There's no career path. There's no difference between someone who puts in 2 hours a week and someone who's there full time."</p></blockquote>
+
+        <p><strong>Even so, the outlook for the future is largely positive</strong>, with a shared desire to see the network become a reference not only for accessible care, but for quality and technology:</p>
+        <blockquote class="case-quote"><p>"The big challenge: growing as a company while keeping the quality of care it had at the start."</p></blockquote>
+      </div>
+      </section>
+
+      <section class="case-section case-section--peach">
+      <div class="wrap">
+        <h2>👥 Personas</h2>
+
+        <h3>Patients — 5 profiles, organized by access and perceived value</h3>
+        <div class="table-scroll table-responsive">
+          <table class="case-table">
+            <thead>
+              <tr><th>Profile</th><th>Summary</th><th>Representative quote</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Profile"><strong>Low Access</strong></td>
+                <td data-label="Summary">Turns to the network only in emergencies; financial and digital barriers persist even with the benefit card available</td>
+                <td data-label="Representative quote">"For someone earning R$1,420 [...] R$50 for a consultation is still a lot of money."</td>
+              </tr>
+              <tr>
+                <td data-label="Profile"><strong>SUS-Dependent</strong></td>
+                <td data-label="Summary">Uses the network occasionally when SUS can't provide the needed speed</td>
+                <td data-label="Representative quote">"When I need a specialty that has to be treated right away, it has to be through the network."</td>
+              </tr>
+              <tr>
+                <td data-label="Profile"><strong>Specialty One-Off</strong></td>
+                <td data-label="Summary">Looking to resolve one specific complaint; loyalty tends to be to the doctor, not the brand</td>
+                <td data-label="Representative quote">"I searched for 'online psychiatrists' and the network showed up in the results."</td>
+              </tr>
+              <tr>
+                <td data-label="Profile"><strong>Extra Safety Net</strong></td>
+                <td data-label="Summary">Already has a health plan; uses the network as a backup for speed and variety</td>
+                <td data-label="Representative quote">"My rule of thumb is: if I'm not happy with my health plan's doctor, I go to the network."</td>
+              </tr>
+              <tr>
+                <td data-label="Profile"><strong>Loyal / Cost-Benefit / Frequent User</strong></td>
+                <td data-label="Summary">Recurring use, refers family members, strongly values the discount</td>
+                <td data-label="Representative quote">"I already have 'my doctor' [...] and I travel to see her."</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Doctors — 5 profiles, with possible trajectories between them</h3>
+        <div class="table-scroll table-responsive">
+          <table class="case-table">
+            <thead>
+              <tr><th>Profile</th><th>Summary</th><th>Representative quote</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Profile"><strong>Seeker</strong></td>
+                <td data-label="Summary">Recently graduated or finishing residency; looking for a quick way into the job market</td>
+                <td data-label="Representative quote">"I need to start practicing in my field [...] it's going to make a difference in my training."</td>
+              </tr>
+              <tr>
+                <td data-label="Profile"><strong>Ambassador</strong></td>
+                <td data-label="Summary">Highly engaged with the social purpose; acts as an informal leader</td>
+                <td data-label="Representative quote">"Here I can still practice medicine. I'm not just an 'exam-orderer.'"</td>
+              </tr>
+              <tr>
+                <td data-label="Profile"><strong>Settled</strong></td>
+                <td data-label="Summary">Experienced professional seeking balance and less red tape</td>
+                <td data-label="Representative quote">"I've been through many jobs and institutions. The network surprised me, in a good way."</td>
+              </tr>
+              <tr>
+                <td data-label="Profile"><strong>Springboard</strong></td>
+                <td data-label="Summary">Focused on career advancement and competitive pay; works across multiple locations</td>
+                <td data-label="Representative quote">"It's worth working at the network if you put in the hours. If it's fewer appointments, it's not worth it."</td>
+              </tr>
+              <tr>
+                <td data-label="Profile"><strong>Critic</strong></td>
+                <td data-label="Summary">Historically engaged, worn down by unresolved recurring complaints</td>
+                <td data-label="Representative quote">"Patients really care about their doctors. If they lose doctors, they'll lose their patient base."</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>The research also mapped <strong>possible trajectories between doctor profiles</strong> — for example, a Seeker can become an Ambassador after positive early experiences, or a Springboard if financial motivation prevails; an Ambassador can become a Critic and, without resolution, a Leaver. This dynamic reinforces that the first few months are a critical retention window for the clinical staff.</p>
+
+                <figure class="case-fig case-fig--borderless" aria-label="Doctor profile transition flow diagram">
+          <style>
+            .hcn-flow-desktop{display:block;}
+            .hcn-flow-mobile{display:none;}
+            @media(max-width:600px){.hcn-flow-desktop{display:none;}.hcn-flow-mobile{display:block;}}
+          </style>
+          <!-- DESKTOP -->
+          <svg class="hcn-flow-desktop" width="100%" viewBox="0 0 740 410" role="img" xmlns="http://www.w3.org/2000/svg">
+            <title>Doctor profile transition flow</title>
+            <desc>Seeker leads to Ambassador on positive early experience, or to Springboard when financial motivation prevails. Ambassador leads to Critic without resolution, and Critic leads to Leaver as an attrition risk. Settled is shown separately as an independent, stable profile not tied to a specific documented transition.</desc>
+            <defs>
+              <marker id="doc-flow-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </marker>
+            </defs>
+            <rect x="30" y="150" width="170" height="60" rx="10" fill="#751600"/>
+            <text x="115" y="175" text-anchor="middle" font-family="'Nunito',sans-serif" font-size="14" font-weight="800" fill="#FFFCF6">Seeker</text>
+            <text x="115" y="194" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10.5" fill="#FFFCF6">Entry point</text>
+            <path d="M200 163 L290 68" fill="none" stroke="#751600" stroke-width="1.4" marker-end="url(#doc-flow-arr)"/>
+            <text x="243" y="105" text-anchor="middle" font-family="'Karla',sans-serif" font-size="9.5" fill="#751600" transform="rotate(-47 243 105)">positive experience</text>
+            <path d="M200 197 L290 240" fill="none" stroke="#751600" stroke-width="1.4" marker-end="url(#doc-flow-arr)"/>
+            <text x="243" y="235" text-anchor="middle" font-family="'Karla',sans-serif" font-size="9.5" fill="#751600" transform="rotate(25 243 235)">financial motivation</text>
+            <rect x="290" y="20" width="170" height="60" rx="10" fill="#E9D7C3" stroke="#751600" stroke-width="1.2"/>
+            <text x="375" y="45" text-anchor="middle" font-family="'Nunito',sans-serif" font-size="14" font-weight="800" fill="#362E2E">Ambassador</text>
+            <text x="375" y="64" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10.5" fill="#362E2E">Purpose-driven leader</text>
+            <rect x="290" y="230" width="170" height="60" rx="10" fill="#E9D7C3" stroke="#751600" stroke-width="1.2"/>
+            <text x="375" y="255" text-anchor="middle" font-family="'Nunito',sans-serif" font-size="14" font-weight="800" fill="#362E2E">Springboard</text>
+            <text x="375" y="274" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10.5" fill="#362E2E">Career and pay focused</text>
+            <line x1="460" y1="50" x2="558" y2="50" stroke="#751600" stroke-width="1.4" marker-end="url(#doc-flow-arr)"/>
+            <text x="509" y="38" text-anchor="middle" font-family="'Karla',sans-serif" font-size="9" fill="#751600">without resolution</text>
+            <rect x="560" y="20" width="170" height="60" rx="10" fill="#E9D7C3" stroke="#993C1D" stroke-width="1.2" stroke-dasharray="4 3"/>
+            <text x="645" y="45" text-anchor="middle" font-family="'Nunito',sans-serif" font-size="14" font-weight="800" fill="#362E2E">Critic</text>
+            <text x="645" y="64" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10.5" fill="#362E2E">Unresolved complaints</text>
+            <line x1="645" y1="80" x2="645" y2="148" stroke="#993C1D" stroke-width="1.4" marker-end="url(#doc-flow-arr)"/>
+            <text x="690" y="118" text-anchor="middle" font-family="'Karla',sans-serif" font-size="9.5" fill="#993C1D">attrition risk</text>
+            <rect x="560" y="150" width="170" height="60" rx="10" fill="#751600" stroke="#993C1D" stroke-width="1.2" stroke-dasharray="4 3"/>
+            <text x="645" y="175" text-anchor="middle" font-family="'Nunito',sans-serif" font-size="14" font-weight="800" fill="#FFFCF6">Leaver</text>
+            <text x="645" y="194" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10.5" fill="#FFFCF6">Exit point</text>
+            <rect x="290" y="330" width="170" height="60" rx="10" fill="#FFFCF6" stroke="#751600" stroke-width="1.2" stroke-dasharray="3 3"/>
+            <text x="375" y="355" text-anchor="middle" font-family="'Nunito',sans-serif" font-size="14" font-weight="800" fill="#362E2E">Settled</text>
+            <text x="375" y="374" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10.5" fill="#362E2E">Independent, stable profile</text>
+          </svg>
+          <!-- MOBILE -->
+          <svg class="hcn-flow-mobile" width="100%" viewBox="0 0 340 560" role="img" xmlns="http://www.w3.org/2000/svg">
+            <title>Doctor profile transition flow (mobile)</title>
+            <desc>Same transitions as the desktop diagram, stacked vertically: Seeker leads to Ambassador on positive early experience, or to Springboard when financial motivation prevails. Ambassador leads to Critic without resolution, and Critic leads to Leaver as an attrition risk. Settled is shown separately below, not tied to a documented transition.</desc>
+            <defs>
+              <marker id="doc-flow-arr-m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </marker>
+            </defs>
+            <rect x="20" y="20" width="300" height="56" rx="10" fill="#751600"/>
+            <text x="170" y="44" text-anchor="middle" font-family="'Nunito',sans-serif" font-size="14" font-weight="800" fill="#FFFCF6">Seeker</text>
+            <text x="170" y="62" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10.5" fill="#FFFCF6">Entry point</text>
+            <path d="M110 76 L60 108" fill="none" stroke="#751600" stroke-width="1.4" marker-end="url(#doc-flow-arr-m)"/>
+            <text x="46" y="96" text-anchor="middle" font-family="'Karla',sans-serif" font-size="8.5" fill="#751600">positive</text>
+            <text x="46" y="106" text-anchor="middle" font-family="'Karla',sans-serif" font-size="8.5" fill="#751600">experience</text>
+            <path d="M230 76 L280 108" fill="none" stroke="#751600" stroke-width="1.4" marker-end="url(#doc-flow-arr-m)"/>
+            <text x="296" y="96" text-anchor="middle" font-family="'Karla',sans-serif" font-size="8.5" fill="#751600">financial</text>
+            <text x="296" y="106" text-anchor="middle" font-family="'Karla',sans-serif" font-size="8.5" fill="#751600">motivation</text>
+            <rect x="20" y="112" width="145" height="66" rx="10" fill="#E9D7C3" stroke="#751600" stroke-width="1.2"/>
+            <text x="92" y="138" text-anchor="middle" font-family="'Nunito',sans-serif" font-size="13" font-weight="800" fill="#362E2E">Ambassador</text>
+            <text x="92" y="156" text-anchor="middle" font-family="'Karla',sans-serif" font-size="9.5" fill="#362E2E">Purpose-driven</text>
+            <text x="92" y="168" text-anchor="middle" font-family="'Karla',sans-serif" font-size="9.5" fill="#362E2E">leader</text>
+            <rect x="175" y="112" width="145" height="66" rx="10" fill="#E9D7C3" stroke="#751600" stroke-width="1.2"/>
+            <text x="247" y="138" text-anchor="middle" font-family="'Nunito',sans-serif" font-size="13" font-weight="800" fill="#362E2E">Springboard</text>
+            <text x="247" y="156" text-anchor="middle" font-family="'Karla',sans-serif" font-size="9.5" fill="#362E2E">Career and pay</text>
+            <text x="247" y="168" text-anchor="middle" font-family="'Karla',sans-serif" font-size="9.5" fill="#362E2E">focused</text>
+            <line x1="92" y1="178" x2="92" y2="222" stroke="#751600" stroke-width="1.4" marker-end="url(#doc-flow-arr-m)"/>
+            <text x="150" y="204" text-anchor="middle" font-family="'Karla',sans-serif" font-size="9" fill="#751600">without resolution</text>
+            <rect x="20" y="226" width="300" height="60" rx="10" fill="#E9D7C3" stroke="#993C1D" stroke-width="1.2" stroke-dasharray="4 3"/>
+            <text x="170" y="250" text-anchor="middle" font-family="'Nunito',sans-serif" font-size="14" font-weight="800" fill="#362E2E">Critic</text>
+            <text x="170" y="269" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10.5" fill="#362E2E">Worn down, unresolved complaints</text>
+            <line x1="170" y1="286" x2="170" y2="330" stroke="#993C1D" stroke-width="1.4" marker-end="url(#doc-flow-arr-m)"/>
+            <text x="230" y="311" text-anchor="middle" font-family="'Karla',sans-serif" font-size="9.5" fill="#993C1D">attrition risk</text>
+            <rect x="20" y="334" width="300" height="60" rx="10" fill="#751600" stroke="#993C1D" stroke-width="1.2" stroke-dasharray="4 3"/>
+            <text x="170" y="358" text-anchor="middle" font-family="'Nunito',sans-serif" font-size="14" font-weight="800" fill="#FFFCF6">Leaver</text>
+            <text x="170" y="377" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10.5" fill="#FFFCF6">Exit point</text>
+            <line x1="20" y1="440" x2="320" y2="440" stroke="#751600" stroke-width="0.75" stroke-dasharray="2 3" opacity="0.4"/>
+            <text x="170" y="466" text-anchor="middle" font-family="'Karla',sans-serif" font-size="9.5" fill="#625454">Not tied to a documented transition:</text>
+            <rect x="20" y="478" width="300" height="60" rx="10" fill="#FFFCF6" stroke="#751600" stroke-width="1.2" stroke-dasharray="3 3"/>
+            <text x="170" y="502" text-anchor="middle" font-family="'Nunito',sans-serif" font-size="14" font-weight="800" fill="#362E2E">Settled</text>
+            <text x="170" y="521" text-anchor="middle" font-family="'Karla',sans-serif" font-size="10.5" fill="#362E2E">Independent, stable profile</text>
+          </svg>
+          <figcaption>Documented transitions between doctor profiles. "Settled" is shown separately: an independent, stable profile — typically experienced professionals seeking balance — not reached via a specific transition documented in this research.</figcaption>
+        </figure>
+      </div>
+      </section>
+
+      <section class="case-section case-section--cream">
+      <div class="wrap">
+        <h2>🧭 Journey &amp; Opportunities</h2>
+        <p>Empathy-mapping and integrated journey workshops turned the interview findings into concrete intervention points, organized by stage of each audience's journey.</p>
+
+        <h3>Doctor Journey — from finding patients to referral</h3>
+        <div class="table-scroll table-responsive">
+          <table class="case-table">
+            <thead>
+              <tr><th>Stage</th><th>Core pain point</th><th>Opportunity raised in workshop</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Stage">Finding patients</td>
+                <td data-label="Core pain point">Lack of a stable patient base outside the network</td>
+                <td data-label="Opportunity raised in workshop">How can we help doctors build a solid, predictable patient base?</td>
+              </tr>
+              <tr>
+                <td data-label="Stage">Exploring options</td>
+                <td data-label="Core pain point">Lack of clarity on compensation and infrastructure before joining</td>
+                <td data-label="Opportunity raised in workshop">How can we make the hiring process more transparent and associate the brand with successful doctors?</td>
+              </tr>
+              <tr>
+                <td data-label="Stage">Medical center (operational routine)</td>
+                <td data-label="Core pain point">Overbooking and slow Concierge response for urgent cases</td>
+                <td data-label="Opportunity raised in workshop">How can we speed up urgent care and bring local management closer to the clinical reality?</td>
+              </tr>
+              <tr>
+                <td data-label="Stage">Consultations and exams</td>
+                <td data-label="Core pain point">Reduced consultation time due to overbooking</td>
+                <td data-label="Opportunity raised in workshop">How can we balance appointment volume with the quality patients perceive?</td>
+              </tr>
+              <tr>
+                <td data-label="Stage">Follow-up (post-consultation)</td>
+                <td data-label="Core pain point">Difficulty scheduling a return visit with the same doctor</td>
+                <td data-label="Opportunity raised in workshop">How can we make it easier for patients to stay loyal to a specific doctor?</td>
+              </tr>
+              <tr>
+                <td data-label="Stage">Referral</td>
+                <td data-label="Core pain point">Frustration when referring uninsured patients to the public system (SUS)</td>
+                <td data-label="Opportunity raised in workshop">How can we make it easier to refer patients to treatments outside the network's scope?</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Patient Journey — from considering the network to loyalty (or churn)</h3>
+        <p>The patient journey showed that the highest risk of loss sits at the <strong>first access experience</strong> — whether that's perceived cost, difficulty adding dependents, or the experience of an initial exam or consultation. Patients whose first experience was positive (even coming from vulnerable contexts, such as poor previous experiences with SUS) tend to become the most loyal, and to bring family members into the network — reinforcing that <strong>investing in the quality of the first contact has a multiplier effect</strong> on the patient base.</p>
+      </div>
+      </section>
+
+      <section class="case-section case-section--maroon">
+      <div class="wrap">
+        <h2>📈 Results & Key Insights</h2>
+        <ul class="achv-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+            <p><strong>Access and speed are the two main axes of perceived value for patients</strong> — more than price in isolation, what matters most is cost relative to the urgency of the need.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <p><strong>The first experience defines the trajectory of the relationship</strong>, for both patients and doctors — reinforcing the importance of mapping and specifically nurturing each audience's first contact.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <p><strong>Overbooking is the main systemic offender</strong> — cited spontaneously by doctors as the root cause of declining perceived quality, for themselves and, indirectly, for patients.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            <p><strong>Personas are not static</strong>: both patients and doctors move between profiles over time, which suggests that product and culture interventions should target transition moments, not just fixed profiles.</p>
+          </li>
+        </ul>
       </div>
       </section>
 
@@ -2698,7 +3070,7 @@
 
       <section class="case-section case-section--maroon">
       <div class="wrap">
-        <h2>📈 Results & Learnings</h2>
+        <h2>📈 Results & Key Insights</h2>
         <h3>Next Steps</h3>
         <h4>Production Rollout</h4>
         <ul class="case-list">
@@ -2800,7 +3172,7 @@
 
       <section class="case-section case-section--peach">
       <div class="wrap">
-        <h2>🗺️ Process — Double Diamond</h2>
+        <h2>🗺️ Project Phases</h2>
         <div class="phase-grid">
           <div class="phase-card">
             <h3>Discover</h3>
@@ -2869,42 +3241,42 @@
             </thead>
             <tbody>
               <tr>
-                <td data-label="Component">Artisan share (50%)</td>
+                <td data-label="Cost component">Artisan share (50%)</td>
                 <td data-label="Earrings">50%</td>
                 <td data-label="Bracelets">50%</td>
                 <td data-label="Necklaces">50%</td>
                 <td data-label="3-piece kits">50%</td>
               </tr>
               <tr>
-                <td data-label="Component">Packaging (estimated)</td>
+                <td data-label="Cost component">Packaging (estimated)</td>
                 <td data-label="Earrings">R$ 4.50</td>
                 <td data-label="Bracelets">R$ 4.50</td>
                 <td data-label="Necklaces">R$ 4.50</td>
                 <td data-label="3-piece kits">R$ 4.50</td>
               </tr>
               <tr>
-                <td data-label="Component">Freight (bulk lot, per unit)</td>
+                <td data-label="Cost component">Freight (bulk lot, per unit)</td>
                 <td data-label="Earrings">R$ 2.10</td>
                 <td data-label="Bracelets">R$ 2.10</td>
                 <td data-label="Necklaces">R$ 2.10</td>
                 <td data-label="3-piece kits">R$ 2.10</td>
               </tr>
               <tr>
-                <td data-label="Component">Mercado Livre commission</td>
+                <td data-label="Cost component">Mercado Livre commission</td>
                 <td data-label="Earrings">~12%</td>
                 <td data-label="Bracelets">~12%</td>
                 <td data-label="Necklaces">~12%</td>
                 <td data-label="3-piece kits">~12%</td>
               </tr>
               <tr>
-                <td data-label="Component"><strong>Final price</strong></td>
+                <td data-label="Cost component"><strong>Final price</strong></td>
                 <td data-label="Earrings"><strong>R$ 110</strong></td>
                 <td data-label="Bracelets"><strong>R$ 110</strong></td>
                 <td data-label="Necklaces"><strong>R$ 120</strong></td>
                 <td data-label="3-piece kits"><strong>R$ 240</strong></td>
               </tr>
               <tr>
-                <td data-label="Component">ACSSUS margin</td>
+                <td data-label="Cost component">ACSSUS margin</td>
                 <td colspan="4" data-label="All categories">Variable — depends on the pricing model chosen (see scenario comparison below)</td>
               </tr>
             </tbody>
@@ -2920,65 +3292,74 @@
 
         <h4>Three Pricing Scenarios</h4>
         <p>We modeled three scenarios to stress-test viability across different product mixes. All scenarios share the same cost structure: 50% artisan revenue share, 12% marketplace commission, and R$ 3,800/month in estimated fixed costs.</p>
-        <div class="bench-carousel-wrap">
-          <div
-            class="bench-carousel"
-            id="acssus-model-carousel"
-            role="region"
-            aria-label="Economic model scenarios — 3 options"
-            aria-live="polite"
-            tabindex="0"
-          >
-            <div class="bench-card" role="group" aria-label="1 of 3: Entry Model">
-              <p class="bench-app">Entry Model <span class="bench-maker">R$ 110–120 avg. ticket · individual items only</span></p>
-              <ul class="bench-findings">
-                <li><strong>Volume required:</strong> 302 orders/month</li>
-                <li><strong>Operating break-even:</strong> Not reached within 36 months</li>
-                <li><strong>Simple payback:</strong> ~48 months · Discounted payback: month 55</li>
-                <li><strong>Net margin:</strong> R$ 1,032/month (4.4%)</li>
-                <li><strong>NPV (36m, 14% p.a.):</strong> Negative — investment does not generate value against market alternatives</li>
-                <li><strong>Artisan transfer/month:</strong> R$ 18,120</li>
-              </ul>
-              <p style="margin-top:var(--space-sm);font-size:var(--text-size-sm);color:var(--text-maroon);font-weight:700;">⚠ Minimum margin · High risk</p>
-            </div>
-            <div class="bench-card" role="group" aria-label="2 of 3: Balanced Model">
-              <p class="bench-app">Balanced Model <span class="bench-maker">R$ 160 avg. ticket · mixed product catalog ★ Recommended</span></p>
-              <ul class="bench-findings">
-                <li><strong>Volume required:</strong> 252 orders/month</li>
-                <li><strong>Operating break-even:</strong> Month 21</li>
-                <li><strong>Simple payback:</strong> ~12 months · Discounted payback: month 35</li>
-                <li><strong>Net margin:</strong> R$ 4,062/month (10.1%)</li>
-                <li><strong>NPV (36m, 14% p.a.):</strong> ~R$ 5,000 positive — covers initial investment, operations, and generates profit</li>
-                <li><strong>Artisan transfer/month:</strong> R$ 20,160</li>
-              </ul>
-              <p style="margin-top:var(--space-sm);font-size:var(--text-size-sm);color:var(--text-maroon);font-weight:700;">★ Best return and social impact</p>
-            </div>
-            <div class="bench-card" role="group" aria-label="3 of 3: Premium Model">
-              <p class="bench-app">Premium Model <span class="bench-maker">R$ 240 avg. ticket · 3-piece kits only</span></p>
-              <ul class="bench-findings">
-                <li><strong>Volume required:</strong> 176 orders/month</li>
-                <li><strong>Operating break-even:</strong> Month 12</li>
-                <li><strong>Simple payback:</strong> ~7 months · Discounted payback: month 19</li>
-                <li><strong>Net margin:</strong> R$ 7,042/month (16.7%)</li>
-                <li><strong>NPV (36m, 14% p.a.):</strong> ~R$ 24,000 positive — strongly attractive once demand is validated</li>
-                <li><strong>Artisan transfer/month:</strong> R$ 21,120</li>
-              </ul>
-              <p style="margin-top:var(--space-sm);font-size:var(--text-size-sm);color:var(--text-maroon);font-weight:700;">Ideal after pilot validation</p>
-            </div>
-          </div>
-          <nav class="bench-carousel-nav" aria-label="Economic model scenarios navigation">
-            <button class="bench-carousel-btn" id="acssus-model-prev" aria-label="Previous model" aria-controls="acssus-model-carousel">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-            </button>
-            <ol class="bench-carousel-dots" aria-label="Economic model slides" id="acssus-model-dots">
-              <li><button aria-label="Entry Model" aria-current="true" data-index="0"></button></li>
-              <li><button aria-label="Balanced Model" aria-current="false" data-index="1"></button></li>
-              <li><button aria-label="Premium Model" aria-current="false" data-index="2"></button></li>
-            </ol>
-            <button class="bench-carousel-btn" id="acssus-model-next" aria-label="Next model" aria-controls="acssus-model-carousel">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-            </button>
-          </nav>
+        <div class="table-scroll table-responsive">
+          <table class="case-table">
+            <thead>
+              <tr><th>Metric</th><th>Entry model</th><th>Balanced model <span class="case-table-badge">★ Recommended</span></th><th>Premium model</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Metric">Avg. ticket</td>
+                <td data-label="Entry model">R$ 110–120</td>
+                <td data-label="Balanced model">R$ 160</td>
+                <td data-label="Premium model">R$ 240</td>
+              </tr>
+              <tr>
+                <td data-label="Metric">Product mix</td>
+                <td data-label="Entry model">Individual items only</td>
+                <td data-label="Balanced model">Mixed product catalog</td>
+                <td data-label="Premium model">3-piece kits only</td>
+              </tr>
+              <tr>
+                <td data-label="Metric">Volume required</td>
+                <td data-label="Entry model">302 orders/month</td>
+                <td data-label="Balanced model">252 orders/month</td>
+                <td data-label="Premium model">176 orders/month</td>
+              </tr>
+              <tr>
+                <td data-label="Metric">Operating break-even</td>
+                <td data-label="Entry model" class="case-table-emphasis">Not reached within 36 months</td>
+                <td data-label="Balanced model">Month 21</td>
+                <td data-label="Premium model">Month 12</td>
+              </tr>
+              <tr>
+                <td data-label="Metric">Simple payback</td>
+                <td data-label="Entry model">~48 months</td>
+                <td data-label="Balanced model">~12 months</td>
+                <td data-label="Premium model">~7 months</td>
+              </tr>
+              <tr>
+                <td data-label="Metric">Discounted payback</td>
+                <td data-label="Entry model">Month 55</td>
+                <td data-label="Balanced model">Month 35</td>
+                <td data-label="Premium model">Month 19</td>
+              </tr>
+              <tr>
+                <td data-label="Metric">Net margin</td>
+                <td data-label="Entry model">R$ 1,032/month (4.4%)</td>
+                <td data-label="Balanced model">R$ 4,062/month (10.1%)</td>
+                <td data-label="Premium model">R$ 7,042/month (16.7%)</td>
+              </tr>
+              <tr>
+                <td data-label="Metric">NPV (36m, 14% p.a.)</td>
+                <td data-label="Entry model" class="case-table-emphasis">Negative — does not generate value against market alternatives</td>
+                <td data-label="Balanced model">~R$ 5,000 positive — covers initial investment, operations, and generates profit</td>
+                <td data-label="Premium model">~R$ 24,000 positive — strongly attractive once demand is validated</td>
+              </tr>
+              <tr>
+                <td data-label="Metric">Artisan transfer/month</td>
+                <td data-label="Entry model">R$ 18,120</td>
+                <td data-label="Balanced model">R$ 20,160</td>
+                <td data-label="Premium model">R$ 21,120</td>
+              </tr>
+              <tr>
+                <td data-label="Metric">Assessment</td>
+                <td data-label="Entry model" class="case-table-emphasis">⚠ Minimum margin · High risk</td>
+                <td data-label="Balanced model" class="case-table-emphasis">★ Best return and social impact</td>
+                <td data-label="Premium model" class="case-table-emphasis">Ideal after pilot validation</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <h4>Recommended Sequencing</h4>
@@ -3023,18 +3404,10 @@
         <h4>ESG Case for Fundraising</h4>
         <p>The R$ 49,470 initial investment was framed as a one-time co-sponsorship opportunity for ESG-aligned partners. ACSSUS has a proven track record with Coca-Cola, Esportes da Sorte, and Sebrae — and the digital channel adds measurable impact across all three ESG pillars.</p>
 
-        <!-- ESG 3-pillar cards — carousel on desktop, stacked on mobile -->
-        <div class="bench-carousel-wrap" style="margin-top:var(--space-md);">
-          <div
-            class="bench-carousel"
-            id="acssus-esg-carousel"
-            role="region"
-            aria-label="ESG pillars — 3 cards"
-            aria-live="polite"
-            tabindex="0"
-          >
+        <!-- ESG 3-pillar cards — wrap grid, always fully visible -->
+        <div class="bench-grid" style="margin-top:var(--space-md);">
             <!-- Card E -->
-            <div class="bench-card" role="group" aria-label="1 of 3: Environmental">
+            <div class="bench-card">
               <p class="bench-app">
                 <span style="display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--bg-maroon);color:var(--text-cream);font-family:var(--font-tag);font-size:0.85rem;margin-right:0.5rem;flex-shrink:0;" aria-hidden="true">E</span>
                 Environmental
@@ -3055,7 +3428,7 @@
             </div>
 
             <!-- Card S -->
-            <div class="bench-card" role="group" aria-label="2 of 3: Social">
+            <div class="bench-card">
               <p class="bench-app">
                 <span style="display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--bg-maroon);color:var(--text-cream);font-family:var(--font-tag);font-size:0.85rem;margin-right:0.5rem;flex-shrink:0;" aria-hidden="true">S</span>
                 Social
@@ -3074,7 +3447,7 @@
             </div>
 
             <!-- Card G -->
-            <div class="bench-card" role="group" aria-label="3 of 3: Governance">
+            <div class="bench-card">
               <p class="bench-app">
                 <span style="display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--bg-maroon);color:var(--text-cream);font-family:var(--font-tag);font-size:0.85rem;margin-right:0.5rem;flex-shrink:0;" aria-hidden="true">G</span>
                 Governance
@@ -3093,20 +3466,6 @@
                 <li>Publication of an auditable balance sheet</li>
               </ul>
             </div>
-          </div>
-          <nav class="bench-carousel-nav" aria-label="ESG pillars navigation">
-            <button class="bench-carousel-btn" id="acssus-esg-prev" aria-label="Previous ESG pillar" aria-controls="acssus-esg-carousel">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-            </button>
-            <ol class="bench-carousel-dots" aria-label="ESG pillar slides" id="acssus-esg-dots">
-              <li><button aria-label="Environmental" aria-current="true" data-index="0"></button></li>
-              <li><button aria-label="Social" aria-current="false" data-index="1"></button></li>
-              <li><button aria-label="Governance" aria-current="false" data-index="2"></button></li>
-            </ol>
-            <button class="bench-carousel-btn" id="acssus-esg-next" aria-label="Next ESG pillar" aria-controls="acssus-esg-carousel">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-            </button>
-          </nav>
         </div>
 
         <h3>Tensions and Critical Decisions</h3>
@@ -3119,12 +3478,8 @@
 
         <h4>Recommended Market Test Before Full Launch</h4>
         <p>Based on the model, we recommended the NGO start with higher-value items — 3-piece kits at R$ 240 — to map real demand and price flexibility before scaling to the full product mix.</p>
-      </div>
-      </section>
 
-      <section class="case-section case-section--cream">
-      <div class="wrap">
-        <h2>💻 Proposed Solution</h2>
+        <h3>Proposed Solution</h3>
         <p class="case-lede">Two complementary digital products were designed to support both the consumer experience and the NGO's internal operations.</p>
         <p>The screens were designed by Ítalo Utchuk.</p>
 
@@ -3138,7 +3493,7 @@
             @media(max-width:600px){.arch-desktop{display:none;}.arch-mobile{display:block;}}
           </style>
           <!-- DESKTOP -->
-          <svg class="arch-desktop" width="100%" viewBox="0 0 680 600" role="img" style="display:block;">
+          <svg class="arch-desktop" width="100%" viewBox="0 0 680 600" role="img">
             <title>ACSSUS solution architecture</title>
             <desc>Three-layer diagram: back office at the top feeds the integration hub, which distributes to Nuvemshop (catalog channel) and Mercado Livre (store channel), both connected at the bottom by a catalog and shipping integration node.</desc>
             <defs>
@@ -3185,7 +3540,7 @@
             <text x="530" y="581" font-family="'Karla', sans-serif" font-size="11" fill="#5F5E5A">Store channel</text>
           </svg>
           <!-- MOBILE: canais lado a lado, compactos -->
-          <svg class="arch-mobile" width="100%" viewBox="0 0 340 490" role="img" style="display:block;">
+          <svg class="arch-mobile" width="100%" viewBox="0 0 340 490" role="img">
             <title>ACSSUS solution architecture — mobile</title>
             <desc>Compact vertical layout: back office and integration hub on top; Nuvemshop and Mercado Livre side by side; catalog and shipping integration at the base.</desc>
             <defs>
@@ -3254,7 +3609,7 @@
 
       <section class="case-section case-section--maroon">
       <div class="wrap">
-        <h2>📈 Results & Learnings</h2>
+        <h2>📈 Results & Key Insights</h2>
         <p>The project delivered a grounded, viable proposal for the NGO — not just wireframes, but an integrated strategy with a business model, risk analysis, and a fundraising plan.</p>
 
         <h3>What Worked</h3>
@@ -3295,7 +3650,7 @@
 
 <script>
 (function(){
-  var validPages = ['home','about','experience','skills','education','case-luccastoon','case-soybean','case-signon','case-transfer','case-acssus'];
+  var validPages = ['home','about','experience','skills','education','case-luccastoon','case-soybean','case-signon','case-healthcare','case-transfer','case-acssus'];
 
   // Hash-based routing: each page gets a dedicated URL fragment so cases
   // can be sent as direct links (e.g. index.html#case-luccastoon).
@@ -3363,9 +3718,15 @@
 
   function navigateTo(page, anchorId){
     if(validPages.indexOf(page) === -1) page = 'home';
-    // Write hash for shareable URL; suppress the browser's own scroll-to-anchor
+    var newHash = page === 'home' ? '#home' : '#' + page;
+    // Push a new history entry so the browser's back/forward buttons step
+    // through in-site navigation, instead of leaving the site on first back.
+    // Skip the push when the hash isn't actually changing (e.g. clicking the
+    // current nav item again) to avoid piling up no-op history entries.
     try {
-      history.replaceState(null, '', page === 'home' ? '#home' : '#' + page);
+      if((window.location.hash || '') !== newHash){
+        history.pushState(null, '', newHash);
+      }
     } catch(e){ /* sandboxed iframe — silent fail */ }
     render(page, anchorId || null);
   }
@@ -3425,7 +3786,7 @@
 <script>
 /* ── Case ToC sidebar ───────────────────────────────────────────────────── */
 (function(){
-  var CASE_PAGES = ['case-luccastoon','case-soybean','case-signon','case-transfer','case-acssus'];
+  var CASE_PAGES = ['case-luccastoon','case-soybean','case-signon','case-healthcare','case-transfer','case-acssus'];
   var toc    = document.getElementById('case-toc');
   var tocList = document.getElementById('case-toc-list');
   var observer = null;
@@ -3592,343 +3953,6 @@
 </script>
 
 <script>
-/* ── Bench carousel — Luccas Toon ──────────────────────────────────────── */
-(function(){
-  var MOBILE_BP = 576; // px — must match CSS max-width: 35.99rem breakpoint
-
-  /* ── Generic carousel factory ─────────────────────────────────────────────
-     Supports every .bench-carousel on the page.
-     Each carousel is wired by a data-carousel-id on the track, and matching
-     data-carousel-prev / data-carousel-next on buttons, plus a scoped dots list.
-     Falls back gracefully for the old id-based markup (Luccas Toon).
-  ── */
-
-  var CAROUSEL_CONFIGS = [
-    {
-      trackId : 'bench-carousel-luccastoon',
-      prevId  : 'bench-prev',
-      nextId  : 'bench-next',
-      dotsSelector: '#bench-carousel-luccastoon ~ .bench-carousel-nav .bench-carousel-dots button'
-    },
-    {
-      trackId : 'acssus-model-carousel',
-      prevId  : 'acssus-model-prev',
-      nextId  : 'acssus-model-next',
-      dotsSelector: '#acssus-model-dots button'
-    },
-    {
-      trackId : 'acssus-esg-carousel',
-      prevId  : 'acssus-esg-prev',
-      nextId  : 'acssus-esg-next',
-      dotsSelector: '#acssus-esg-dots button'
-    }
-  ];
-
-  function mountCarousel(cfg){
-    var track   = document.getElementById(cfg.trackId);
-    var prevBtn = document.getElementById(cfg.prevId);
-    var nextBtn = document.getElementById(cfg.nextId);
-    if(!track) return;
-
-    var cards   = Array.from(track.querySelectorAll('.bench-card'));
-    var dots    = cfg.dotsSelector ? Array.from(document.querySelectorAll(cfg.dotsSelector)) : [];
-    var total   = cards.length;
-    var current = 0;
-
-    function isMobile(){ return window.innerWidth < MOBILE_BP; }
-
-    function getCardWidth(){
-      if(!cards[0]) return 0;
-      var style = window.getComputedStyle(track);
-      var gap = parseFloat(style.getPropertyValue('gap') || style.getPropertyValue('column-gap')) || 0;
-      return cards[0].offsetWidth + gap;
-    }
-
-    function updateDots(){
-      dots.forEach(function(btn, i){
-        btn.setAttribute('aria-current', i === current ? 'true' : 'false');
-      });
-      if(prevBtn) prevBtn.disabled = current === 0;
-      if(nextBtn) nextBtn.disabled = current === total - 1;
-    }
-
-    function goTo(index, focus){
-      if(isMobile()) return;
-      current = Math.max(0, Math.min(total - 1, index));
-      track.scrollTo({ left: current * getCardWidth(), behavior: 'smooth' });
-      updateDots();
-      if(focus && cards[current]){
-        var firstFocusable = cards[current].querySelector('a, button, [tabindex]') || cards[current];
-        firstFocusable.focus({ preventScroll: true });
-      }
-    }
-
-    // Sync dot/state on native scroll (touch swipe)
-    var scrollTimer;
-    track.addEventListener('scroll', function(){
-      if(isMobile()) return;
-      clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(function(){
-        var cw = getCardWidth();
-        if(cw > 0) current = Math.round(track.scrollLeft / cw);
-        updateDots();
-      }, 80);
-    });
-
-    if(prevBtn) prevBtn.addEventListener('click', function(){ goTo(current - 1, false); });
-    if(nextBtn) nextBtn.addEventListener('click', function(){ goTo(current + 1, false); });
-
-    dots.forEach(function(btn){
-      btn.addEventListener('click', function(){
-        goTo(parseInt(btn.getAttribute('data-index'), 10), false);
-      });
-    });
-
-    // Keyboard navigation
-    track.addEventListener('keydown', function(e){
-      if(isMobile()) return;
-      if(e.key === 'ArrowRight'){ e.preventDefault(); goTo(current + 1, true); }
-      if(e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1, true); }
-    });
-
-    // ── Drag-to-scroll (mouse) ──────────────────────────────────────────────
-    // Uses pointer events so it works on touch-enabled desktops too.
-    // Suppresses click-through after a meaningful drag.
-    var isDragging  = false;
-    var startX      = 0;
-    var scrollStart = 0;
-    var dragDelta   = 0;
-
-    track.addEventListener('pointerdown', function(e){
-      if(isMobile()) return;
-      if(e.button !== 0) return; // left-click / touch only
-      isDragging  = true;
-      startX      = e.clientX;
-      scrollStart = track.scrollLeft;
-      dragDelta   = 0;
-      track.setPointerCapture(e.pointerId);
-      track.style.cursor = 'grabbing';
-      track.style.userSelect = 'none';
-    });
-
-    track.addEventListener('pointermove', function(e){
-      if(!isDragging) return;
-      dragDelta = e.clientX - startX;
-      track.scrollLeft = scrollStart - dragDelta;
-    });
-
-    function endDrag(e){
-      if(!isDragging) return;
-      isDragging = false;
-      track.style.cursor = '';
-      track.style.userSelect = '';
-      // Snap to nearest card after drag
-      if(!isMobile()){
-        var cw = getCardWidth();
-        if(cw > 0){
-          current = Math.round(track.scrollLeft / cw);
-          current = Math.max(0, Math.min(total - 1, current));
-          track.scrollTo({ left: current * cw, behavior: 'smooth' });
-          updateDots();
-        }
-      }
-    }
-
-    track.addEventListener('pointerup',     endDrag);
-    track.addEventListener('pointercancel', endDrag);
-
-    // Prevent click events from firing on cards after a drag
-    track.addEventListener('click', function(e){
-      if(Math.abs(dragDelta) > 5) e.stopPropagation();
-    }, true);
-
-    updateDots();
-  }
-
-  function initAllCarousels(){
-    CAROUSEL_CONFIGS.forEach(mountCarousel);
-  }
-
-  // Re-init on resize (layout switch mobile ↔ desktop)
-  var resizeTimer;
-  window.addEventListener('resize', function(){
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(initAllCarousels, 200);
-  });
-
-  // Init after DOM is ready (script runs before </body> so DOM is complete)
-  initAllCarousels();
-})();
-</script>
-
-
-<script>
-/* ── ACSSUS economic model carousel ──────────────────────────────────────── */
-(function(){
-  var MOBILE_BP = 576;
-
-  function initAcssusCarousel(){
-    var track   = document.getElementById('acssus-model-carousel');
-    var prevBtn = document.getElementById('acssus-model-prev');
-    var nextBtn = document.getElementById('acssus-model-next');
-    if(!track || !prevBtn || !nextBtn) return;
-
-    var cards = Array.from(track.querySelectorAll('.bench-card'));
-    var dots  = Array.from(document.querySelectorAll('#acssus-model-dots button'));
-    var total = cards.length;
-    var current = 0;
-
-    function isMobile(){ return window.innerWidth < MOBILE_BP; }
-
-    function getCardWidth(){
-      if(!cards[0]) return 0;
-      var style = window.getComputedStyle(track);
-      var gap = parseFloat(style.getPropertyValue('gap') || style.getPropertyValue('column-gap')) || 0;
-      return cards[0].offsetWidth + gap;
-    }
-
-    function goTo(index, focus){
-      if(isMobile()) return;
-      current = Math.max(0, Math.min(total - 1, index));
-      track.scrollTo({ left: current * getCardWidth(), behavior: 'smooth' });
-      updateDots();
-      if(focus && cards[current]){
-        var firstFocusable = cards[current].querySelector('a, button, [tabindex]') || cards[current];
-        firstFocusable.focus({ preventScroll: true });
-      }
-    }
-
-    function updateDots(){
-      dots.forEach(function(btn, i){
-        btn.setAttribute('aria-current', i === current ? 'true' : 'false');
-      });
-      prevBtn.disabled = current === 0;
-      nextBtn.disabled = current === total - 1;
-    }
-
-    var scrollTimer;
-    track.addEventListener('scroll', function(){
-      if(isMobile()) return;
-      clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(function(){
-        var cw = getCardWidth();
-        if(cw > 0) current = Math.round(track.scrollLeft / cw);
-        updateDots();
-      }, 80);
-    });
-
-    prevBtn.addEventListener('click', function(){ goTo(current - 1, false); });
-    nextBtn.addEventListener('click', function(){ goTo(current + 1, false); });
-
-    dots.forEach(function(btn){
-      btn.addEventListener('click', function(){
-        goTo(parseInt(btn.getAttribute('data-index'), 10), false);
-      });
-    });
-
-    track.addEventListener('keydown', function(e){
-      if(isMobile()) return;
-      if(e.key === 'ArrowRight'){ e.preventDefault(); goTo(current + 1, true); }
-      if(e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1, true); }
-    });
-
-    updateDots();
-  }
-
-  var resizeTimer;
-  window.addEventListener('resize', function(){
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(initAcssusCarousel, 200);
-  });
-
-  initAcssusCarousel();
-})();
-</script>
-
-<script>
-/* ── ACSSUS ESG carousel ─────────────────────────────────────────────────── */
-(function(){
-  var MOBILE_BP = 576;
-
-  function initAcssusEsgCarousel(){
-    var track   = document.getElementById('acssus-esg-carousel');
-    var prevBtn = document.getElementById('acssus-esg-prev');
-    var nextBtn = document.getElementById('acssus-esg-next');
-    if(!track || !prevBtn || !nextBtn) return;
-
-    var cards = Array.from(track.querySelectorAll('.bench-card'));
-    var dots  = Array.from(document.querySelectorAll('#acssus-esg-dots button'));
-    var total = cards.length;
-    var current = 0;
-
-    function isMobile(){ return window.innerWidth < MOBILE_BP; }
-
-    function getCardWidth(){
-      if(!cards[0]) return 0;
-      var style = window.getComputedStyle(track);
-      var gap = parseFloat(style.getPropertyValue('gap') || style.getPropertyValue('column-gap')) || 0;
-      return cards[0].offsetWidth + gap;
-    }
-
-    function goTo(index, focus){
-      if(isMobile()) return;
-      current = Math.max(0, Math.min(total - 1, index));
-      track.scrollTo({ left: current * getCardWidth(), behavior: 'smooth' });
-      updateDots();
-      if(focus && cards[current]){
-        var firstFocusable = cards[current].querySelector('a, button, [tabindex]') || cards[current];
-        firstFocusable.focus({ preventScroll: true });
-      }
-    }
-
-    function updateDots(){
-      dots.forEach(function(btn, i){
-        btn.setAttribute('aria-current', i === current ? 'true' : 'false');
-      });
-      prevBtn.disabled = current === 0;
-      nextBtn.disabled = current === total - 1;
-    }
-
-    var scrollTimer;
-    track.addEventListener('scroll', function(){
-      if(isMobile()) return;
-      clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(function(){
-        var cw = getCardWidth();
-        if(cw > 0) current = Math.round(track.scrollLeft / cw);
-        updateDots();
-      }, 80);
-    });
-
-    prevBtn.addEventListener('click', function(){ goTo(current - 1, false); });
-    nextBtn.addEventListener('click', function(){ goTo(current + 1, false); });
-
-    dots.forEach(function(btn){
-      btn.addEventListener('click', function(){
-        goTo(parseInt(btn.getAttribute('data-index'), 10), false);
-      });
-    });
-
-    track.addEventListener('keydown', function(e){
-      if(isMobile()) return;
-      if(e.key === 'ArrowRight'){ e.preventDefault(); goTo(current + 1, true); }
-      if(e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1, true); }
-    });
-
-    updateDots();
-  }
-
-  var resizeTimer;
-  window.addEventListener('resize', function(){
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(initAcssusEsgCarousel, 200);
-  });
-
-  initAcssusEsgCarousel();
-})();
-</script>
-
-<script>
 /* ── ANIMATION SYSTEM ─────────────────────────────────────────────────────
    A) .section scroll-reveal (home)
    B) Home staggered groups: mini-cards, traj-cards, achv-list
@@ -4048,7 +4072,7 @@
   }
 
   /* ── G. Case page animations ──────────────────────────────────────────── */
-  /* One shared set of observers, reused across all 5 case pages.
+  /* One shared set of observers, reused across all case pages.
      Called once per case page the first time it becomes visible.      */
 
   /* G1. case-section scroll-reveal (same as .section on home) */
