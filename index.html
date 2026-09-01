@@ -1,4 +1,4 @@
-<!-- Versão: v75 | Gerado por Claude em: 2026-09-01T01:44:22Z | Ref: v75_portfolio_gabriela_cesar_01092026.html -->
+<!-- Versão: v82 | Gerado por Claude em: 2026-09-01T12:43:04Z | Ref: v82_portfolio_gabriela_cesar_01092026.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -525,7 +525,8 @@
   }
 
   /* ============ ACHIEVEMENTS ============ */
-  .achv-list{ list-style:none; margin:0; padding:0; display:grid; gap: var(--space-md); }
+  .achv-list{ list-style:none; margin: var(--space-md) 0; padding:0; display:grid; gap: var(--space-md); }
+  .achv-list--grid{ grid-template-columns: repeat(auto-fit, minmax(15rem,1fr)); }
   .achv-list li{
     display:flex; gap: var(--space-md); align-items:flex-start;
     background: var(--bg-cream); border-radius: var(--radius-md);
@@ -795,7 +796,7 @@
   .case-section--maroon a{ color: var(--text-cream); }
   .case-section--maroon .case-lede{ color: var(--text-cream); }
   .case-section--maroon .footnote-ref{ color: var(--text-cream); }
-  .case-section--maroon .achv-list li{ background: rgba(255,252,246,0.12); border-color: rgba(255,252,246,0.2); }
+  .case-section--maroon .achv-list li{ background: var(--bg-maroon); border-color: rgba(255,252,246,0.28); }
   .case-section--maroon .achv-list li svg{ color: var(--text-cream); }
 
   /* Cards inside peach sections → cream bg for contrast (achv-list lógica da home) */
@@ -803,7 +804,7 @@
   .case-section--peach .case-quote{ background: var(--bg-cream); }
   .case-section--peach .phase-card{ background: var(--bg-cream); }
   .case-section--peach .bench-card{ background: var(--bg-cream); }
-  .case-section--peach .achv-list li{ background: var(--bg-cream); }
+  .case-section--peach .achv-list li{ background: var(--bg-peach); border-color: rgba(54,46,46,0.28); }
 
   /* Table: th and td get cream bg inside colored sections for legibility */
   .case-section--peach .case-table th,
@@ -957,7 +958,7 @@
 
   .phase-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(13rem,1fr)); gap: var(--space-md); margin-top: var(--space-md); }
   .phase-card{ background: var(--bg-peach); border-radius: var(--radius-md); padding: var(--space-md); }
-  .phase-card h3{ margin-top:0; }
+  .phase-card h3, .phase-card h4{ margin-top:0; }
 
   .typology-list li{ margin-bottom: var(--space-sm); }
   .typ-tag{
@@ -1602,9 +1603,15 @@
         <h3>Needs Assessment</h3>
         <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-01.png" alt="Screenshot of YouTube comments from children expressing affection for Luccas Neto, used as research input" loading="lazy"></figure>
         <p>We analyzed hundreds of comments posted on Luccas Neto's YouTube channel, and after careful analysis, we identified some key needs:</p>
-        <ul class="case-list">
-          <li>a more personal connection with Luccas</li>
-          <li>learning more about Luccas, to be part of the Aventureiros</li>
+        <ul class="achv-list">
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21.2l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+            <p>a more personal connection with Luccas</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <p>learning more about Luccas, to be part of the Aventureiros</p>
+          </li>
         </ul>
         <p>Understanding the children's needs was the starting point for deciding what the new product should address and what its main objective would be, from the end-user's perspective.</p>
         <p>However, no business can sustain itself by merely addressing the customer's needs alone. Therefore, we moved on to a phase of understanding the needs not only of the customer but also of secondary users (guardians, for example) and the available technology.</p>
@@ -1650,10 +1657,19 @@
         <h3>Ideation</h3>
         <figure class="case-fig case-fig--borderless"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-03.png" alt="Photo of the team's ideation workshop with sticky notes on a wall, captioned: Yes, UX Designers are the driving force of the post-it industry" loading="lazy"></figure>
         <p>The 01 Digital design team brought together representatives from various business and technology areas to brainstorm which product features could be created to meet the needs of its users. The ideation process took place in three stages:</p>
-        <ul class="case-list">
-          <li><strong>Crazy Eights</strong> – an ideation exercise designed to generate as many ideas as possible within a limited timeframe.</li>
-          <li><strong>Clustering</strong> – grouping proposals into categories based on similarity</li>
-          <li><strong>Value vs. Complexity Matrix</strong> – categorizing features based on ease of implementation and value delivered to the end user</li>
+        <ul class="achv-list">
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <p><strong>Crazy Eights</strong> – an ideation exercise designed to generate as many ideas as possible within a limited timeframe.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            <p><strong>Clustering</strong> – grouping proposals into categories based on similarity</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+            <p><strong>Value vs. Complexity Matrix</strong> – categorizing features based on ease of implementation and value delivered to the end user</p>
+          </li>
         </ul>
         <figure class="case-fig case-fig--borderless" aria-label="Diagram mapping ideation goals to product features">
           <div class="ideation-flow" role="img" aria-label="Three ideation pillars: safe interaction leads to onboarding video call; becoming an Adventurer leads to avatar and game world; engagement and community leads to achievements, coins and reactions">
@@ -1912,17 +1928,38 @@
 
         <h3>Some lessons we learned from this research</h3>
         <figure class="case-fig case-fig--borderless"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-20.png" alt="Summary graphic of lessons learned from the remote beta testing process" loading="lazy"></figure>
-        <ul class="case-list">
-          <li>According to Lookback, at the time of the test (2020), iOS devices did not allow screen sharing and front-facing camera use simultaneously, leaving us unable to see users' reactions in real time</li>
-          <li>We asked children to wear headphones during the test and to position themselves close to the Wi-Fi signal</li>
-          <li>The "video game controller" icon in the main menu proved very effective at communicating that this section contains games</li>
-          <li>Explore the Home button tap gesture for navigating between islands—we had been using the drag gesture, which proved to be unintuitive during the test</li>
+        <ul class="achv-list achv-list--grid">
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            <p>According to Lookback, at the time of the test (2020), iOS devices did not allow screen sharing and front-facing camera use simultaneously, leaving us unable to see users' reactions in real time</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+            <p>We asked children to wear headphones during the test and to position themselves close to the Wi-Fi signal</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <p>The "video game controller" icon in the main menu proved very effective at communicating that this section contains games</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+            <p>Explore the Home button tap gesture for navigating between islands—we had been using the drag gesture, which proved to be unintuitive during the test</p>
+          </li>
         </ul>
         <p>Although it wasn't the primary objective, the test also raised some questions about the monetization model, possibilities for evolving existing features, and suggestions for new features from the children:</p>
-        <ul class="case-list">
-          <li>The children have already watched all of Luccas Neto's videos on other streaming platforms. What will be our value proposition for Luccas's video content on his own app?</li>
-          <li>While browsing, the children look for free alternatives or stop using a feature when they realize it's a paid one</li>
-          <li>Suggestions for more features "using" the Avatar character they created; online/collaborative games and activities with slime and dinosaurs</li>
+        <ul class="achv-list achv-list--grid">
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+            <p>The children have already watched all of Luccas Neto's videos on other streaming platforms. What will be our value proposition for Luccas's video content on his own app?</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <p>While browsing, the children look for free alternatives or stop using a feature when they realize it's a paid one</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            <p>Suggestions for more features "using" the Avatar character they created; online/collaborative games and activities with slime and dinosaurs</p>
+          </li>
         </ul>
 
         <h3>Insights for our team and process improvements</h3>
@@ -1942,11 +1979,23 @@
         <p class="case-lede">Next Steps After Launch</p>
         <div class="case-fig-grid "><figure class="case-fig case-fig--borderless"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/luccastoon_image-luccas-24.png" alt="Chart showing monetization performance from avatar outfit and accessory packs" loading="lazy"></figure></div>
         <p>Immediately following the launch of the Luccas Toon app, several issues and opportunities were identified:</p>
-        <ul class="case-list">
-          <li><strong>Monetization</strong> – "packs" of outfits and accessories for the avatar were one of the app's major sources of revenue (see chart on the right). How can we maintain this model's long-term sustainability?</li>
-          <li><strong>Pre-developed games</strong> – Create games set in the Luccas Neto universe, leveraging ready-made Unity engines (e.g., Candy Crush). However, how can we determine whether the app's users are the target audience for such games?</li>
-          <li><strong>Creative collaboration</strong> – Client Luccas Neto hired 01 Digital to develop a second app, this time focused on preteens. How can we keep the client satisfied and create another app that follows the successful model?</li>
-          <li><strong>Subscription Benefits</strong> – Reviewing, together with the client, the best benefits for subscribers to the app's content, given that much of the content is available for free on YouTube.</li>
+        <ul class="achv-list">
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            <p><strong>Monetization</strong> – "packs" of outfits and accessories for the avatar were one of the app's major sources of revenue (see chart on the right). How can we maintain this model's long-term sustainability?</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            <p><strong>Pre-developed games</strong> – Create games set in the Luccas Neto universe, leveraging ready-made Unity engines (e.g., Candy Crush). However, how can we determine whether the app's users are the target audience for such games?</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <p><strong>Creative collaboration</strong> – Client Luccas Neto hired 01 Digital to develop a second app, this time focused on preteens. How can we keep the client satisfied and create another app that follows the successful model?</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+            <p><strong>Subscription Benefits</strong> – Reviewing, together with the client, the best benefits for subscribers to the app's content, given that much of the content is available for free on YouTube.</p>
+          </li>
         </ul>
         <p>To this day, 01 Digital remains the official publisher of the Luccas Toon app and uses the research and design thinking process employed in this project as a model for other consulting firms and clients — a proven approach to applying research and creating user-centered experiences.</p>
       </div>
@@ -2890,16 +2939,34 @@
         <h2>🔍 Discovery & Problem Framing</h2>
         <h3>Current State</h3>
         <h4>Manual Operations</h4>
-        <ul class="case-list">
-          <li>Analysts must download attachments locally to review supporting documentation.</li>
-          <li>Analysts need to access separate screens and pop-ups to investigate duplicate requests.</li>
-          <li>Rejection justifications must be manually written for each analyzed document.</li>
+        <ul class="achv-list">
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+            <p>Analysts must download attachments locally to review supporting documentation.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            <p>Analysts need to access separate screens and pop-ups to investigate duplicate requests.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>
+            <p>Rejection justifications must be manually written for each analyzed document.</p>
+          </li>
         </ul>
         <h4>Limited Data Collection</h4>
-        <ul class="case-list">
-          <li>Received documents are not classified during the analysis process.</li>
-          <li>Verification activities performed by analysts are not recorded, even when documentation is successfully approved.</li>
-          <li>Quality and audit activities rely heavily on manual review.</li>
+        <ul class="achv-list">
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <p>Received documents are not classified during the analysis process.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            <p>Verification activities performed by analysts are not recorded, even when documentation is successfully approved.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <p>Quality and audit activities rely heavily on manual review.</p>
+          </li>
         </ul>
 
         <h3>Project Objectives</h3>
@@ -3033,43 +3100,42 @@
         </ul>
 
         <h3>Validation Activities</h3>
-        <div class="phase-grid">
-          <div class="phase-card">
-            <h3>End-to-End Analysis Scenario</h3>
-            <p>A complete transfer request analysis was executed to evaluate the full workflow experience, from initial verification to final outcome.</p>
-          </div>
-          <div class="phase-card">
-            <h3>Simplified Analysis Scenario</h3>
-            <p>Duplicate-request scenarios were tested to validate the effectiveness of the duplicate-verification experience and supporting decision-making mechanisms.</p>
-          </div>
-        </div>
+        <ul class="case-list">
+          <li><strong>End-to-End Analysis Scenario:</strong> a complete transfer request analysis was executed to evaluate the full workflow experience, from initial verification to final outcome.</li>
+          <li><strong>Simplified Analysis Scenario:</strong> duplicate-request scenarios were tested to validate the effectiveness of the duplicate-verification experience and supporting decision-making mechanisms.</li>
+        </ul>
 
         <h3>User Testing Learnings</h3>
-        <h4>What Worked Well</h4>
-        <p><strong>Duplicate Verification, Volume Analysis, and Triage</strong></p>
-        <ul class="case-list">
-          <li>Error scenarios were clearly highlighted.</li>
-          <li>Analysts were naturally guided toward the most critical review points.</li>
-          <li>Cognitive load was reduced through workflow segmentation.</li>
-          <li>Embedded business rules and checklists improved focus and confidence during analysis.</li>
-        </ul>
-        <p><strong>Guided Analysis Experience</strong></p>
-        <ul class="case-list">
-          <li>Analysts appreciated having review instructions available directly within the workflow.</li>
-          <li>Structured checkpoints freed analysts from relying on memorized procedures.</li>
-        </ul>
-
-        <h4>Areas Requiring Attention</h4>
-        <p><strong>Microinteractions</strong></p>
-        <ul class="case-list">
-          <li>Feedback mechanisms should clearly communicate when an action has been successfully executed.</li>
-          <li>Excessive free-text inputs should be avoided to minimize handling time.</li>
-        </ul>
-        <p><strong>Information Visibility</strong></p>
-        <ul class="case-list">
-          <li>Analysts expect access to participant and farmer information throughout the entire analysis process.</li>
-          <li>Critical contextual information should remain accessible regardless of the current workflow stage.</li>
-        </ul>
+        <div class="phase-grid">
+          <div class="phase-card">
+            <h4>What Worked Well</h4>
+            <p><strong>Duplicate Verification, Volume Analysis, and Triage</strong></p>
+            <ul class="case-list">
+              <li>Error scenarios were clearly highlighted.</li>
+              <li>Analysts were naturally guided toward the most critical review points.</li>
+              <li>Cognitive load was reduced through workflow segmentation.</li>
+              <li>Embedded business rules and checklists improved focus and confidence during analysis.</li>
+            </ul>
+            <p><strong>Guided Analysis Experience</strong></p>
+            <ul class="case-list">
+              <li>Analysts appreciated having review instructions available directly within the workflow.</li>
+              <li>Structured checkpoints freed analysts from relying on memorized procedures.</li>
+            </ul>
+          </div>
+          <div class="phase-card">
+            <h4>Areas Requiring Attention</h4>
+            <p><strong>Microinteractions</strong></p>
+            <ul class="case-list">
+              <li>Feedback mechanisms should clearly communicate when an action has been successfully executed.</li>
+              <li>Excessive free-text inputs should be avoided to minimize handling time.</li>
+            </ul>
+            <p><strong>Information Visibility</strong></p>
+            <ul class="case-list">
+              <li>Analysts expect access to participant and farmer information throughout the entire analysis process.</li>
+              <li>Critical contextual information should remain accessible regardless of the current workflow stage.</li>
+            </ul>
+          </div>
+        </div>
       </div>
       </section>
 
@@ -3078,19 +3144,43 @@
         <h2>📈 Results & Key Insights</h2>
         <h3>Next Steps</h3>
         <h4>Production Rollout</h4>
-        <ul class="case-list">
-          <li>Select a pilot group together with Operations.</li>
-          <li>Deploy the portal to the production environment.</li>
-          <li>Train participating analysts.</li>
-          <li>Collect operational feedback and measure adoption.</li>
+        <ul class="achv-list">
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <p>Select a pilot group together with Operations.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <p>Deploy the portal to the production environment.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <p>Train participating analysts.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            <p>Collect operational feedback and measure adoption.</p>
+          </li>
         </ul>
         <h4>Future Enhancements</h4>
         <p>Post-launch improvements should focus on:</p>
-        <ul class="case-list">
-          <li>ITS duplicate-request integration.</li>
-          <li>Additional automation opportunities identified during production usage.</li>
-          <li>Expansion of audit and quality-monitoring capabilities.</li>
-          <li>Evolution of AI-assisted analysis features.</li>
+        <ul class="achv-list">
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+            <p>ITS duplicate-request integration.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <p>Additional automation opportunities identified during production usage.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <p>Expansion of audit and quality-monitoring capabilities.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+            <p>Evolution of AI-assisted analysis features.</p>
+          </li>
         </ul>
 
         <h4>Impact</h4>
@@ -3209,12 +3299,27 @@
         <p>I contributed across two complementary tracks: <strong>UX Strategy</strong> and <strong>Financial Modeling</strong>.</p>
 
         <h3>UX Strategy</h3>
-        <ul class="case-list">
-          <li>Mapped the AS-IS sales journey and defined the TO-BE experience for ACSSUS bio-jewelry, identifying revenue opportunities and ESG pillars grounded in the 2025 financial report</li>
-          <li>Participated in the design and analysis of a consumer survey (n = 89 valid respondents, 78 complete; data collection: May 6–23, 2026)</li>
-          <li>Creation of synthesis artifacts: personas, MoSCoW prioritization, MVP definition, and "How Might We" problem framing</li>
-          <li>Logistics and e-commerce benchmarking to design a high-level solution architecture and integration plan</li>
-          <li>Structuring of the Business Model Canvas connecting the TO-BE journey to the proposed digital channel</li>
+        <ul class="achv-list">
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+            <p>Mapped the AS-IS sales journey and defined the TO-BE experience for ACSSUS bio-jewelry, identifying revenue opportunities and ESG pillars grounded in the 2025 financial report</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <p>Participated in the design and analysis of a consumer survey (n = 89 valid respondents, 78 complete; data collection: May 6–23, 2026)</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            <p>Creation of synthesis artifacts: personas, MoSCoW prioritization, MVP definition, and "How Might We" problem framing</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+            <p>Logistics and e-commerce benchmarking to design a high-level solution architecture and integration plan</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+            <p>Structuring of the Business Model Canvas connecting the TO-BE journey to the proposed digital channel</p>
+          </li>
         </ul>
 
         <figure class="case-fig" style="margin-top:var(--space-lg);">
@@ -3223,11 +3328,23 @@
         </figure>
 
         <h3>Financial Modeling</h3>
-        <ul class="case-list">
-          <li>Built the financial model from scratch, covering ticket elasticity, margin structure, and key indicators — NPV and IRR — to assess long-term viability</li>
-          <li>Defined all model parameters: product mix, pricing, cost structure (artisan revenue share, marketplace commission, logistics)</li>
-          <li>Analyzed ACSSUS's financial report to map revenue vulnerabilities, opportunities, and alignment with the organization's operational reserve goals</li>
-          <li>Translated the numbers into a strategic narrative to support co-sponsorship pitching with an ESG argument</li>
+        <ul class="achv-list">
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            <p>Built the financial model from scratch, covering ticket elasticity, margin structure, and key indicators — NPV and IRR — to assess long-term viability</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+            <p>Defined all model parameters: product mix, pricing, cost structure (artisan revenue share, marketplace commission, logistics)</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <p>Analyzed ACSSUS's financial report to map revenue vulnerabilities, opportunities, and alignment with the organization's operational reserve goals</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            <p>Translated the numbers into a strategic narrative to support co-sponsorship pitching with an ESG argument</p>
+          </li>
         </ul>
       </div>
       </section>
@@ -3411,7 +3528,7 @@
         </ul>
 
         <h4>Social Return (SROI)</h4>
-        <p>Beyond the NGO's own financial viability, we modeled how much of the e-commerce revenue physically stays in Parintins — artisan transfers, a local CLT hire to run day-to-day operations, and shipping consumables — and how that reinvestment holds up across all three pricing scenarios, not just the recommended one.</p>
+        <p>Beyond the NGO's own financial viability, we modeled how much of the e-commerce revenue physically stays in Parintins — artisan transfers, a local CLT hire to run day-to-day operations, and shipping consumables — using the recommended Balanced Model as the reference scenario.</p>
 
         <ul class="achv-list">
           <li>
@@ -3424,49 +3541,37 @@
         <div class="table-scroll table-responsive">
           <table class="case-table">
             <thead>
-              <tr><th>Destination of flow</th><th>Economic model</th><th>Balanced model <span class="case-table-badge">★ Recommended</span></th><th>Premium model</th></tr>
+              <tr><th>Destination of flow</th><th>Balanced model <span class="case-table-badge">★ Recommended</span></th></tr>
             </thead>
             <tbody>
               <tr>
                 <td data-label="Destination of flow">Artisan transfers / year</td>
-                <td data-label="Economic model">R$ 217,440</td>
                 <td data-label="Balanced model">R$ 241,920</td>
-                <td data-label="Premium model">R$ 253,440</td>
               </tr>
               <tr>
                 <td data-label="Destination of flow">E-commerce operator (CLT, part-time)</td>
-                <td data-label="Economic model">R$ 24,000/yr</td>
                 <td data-label="Balanced model">R$ 24,000/yr</td>
-                <td data-label="Premium model">R$ 24,000/yr</td>
               </tr>
               <tr>
                 <td data-label="Destination of flow">Shipping consumables (packaging, tape, labels)</td>
-                <td data-label="Economic model">R$ 16,308/yr</td>
                 <td data-label="Balanced model">R$ 13,608/yr</td>
-                <td data-label="Premium model">R$ 9,504/yr</td>
               </tr>
               <tr>
                 <td data-label="Destination of flow">E-commerce setup & launch (one-time)</td>
-                <td data-label="Economic model">R$ 27,650</td>
                 <td data-label="Balanced model">R$ 27,650</td>
-                <td data-label="Premium model">R$ 27,650</td>
               </tr>
               <tr>
                 <td data-label="Destination of flow" class="case-table-emphasis">Total reinvested in Parintins — Year 1</td>
-                <td data-label="Economic model" class="case-table-emphasis">R$ 220,961</td>
                 <td data-label="Balanced model" class="case-table-emphasis">R$ 237,296</td>
-                <td data-label="Premium model" class="case-table-emphasis">R$ 242,858</td>
               </tr>
               <tr>
                 <td data-label="Destination of flow">Year 2 onward</td>
-                <td data-label="Economic model">R$ 257,748 (+16.7%)</td>
                 <td data-label="Balanced model">R$ 279,528 (+17.8%)</td>
-                <td data-label="Premium model">R$ 286,944 (+18.2%)</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p style="font-size:var(--text-size-xs);color:var(--text-dark);opacity:0.7;margin-top:calc(var(--space-sm)*-0.5);">Year 1 combines 3 months of setup with 9 months of operation; Year 2 onward reflects 12 full months of operation.</p>
+        <p style="font-size:var(--text-size-xs);color:var(--text-dark);opacity:0.7;margin-top:calc(var(--space-sm)*-0.5);">Year 1 combines 3 months of setup with 9 months of operation; Year 2 onward reflects 12 full months of operation. Figures reflect the Balanced Model scenario (see Three Pricing Scenarios above for the full Economic / Balanced / Premium comparison).</p>
 
         <h4>ESG Case for Fundraising</h4>
         <p>The R$ 49,470 initial investment was framed as a one-time co-sponsorship opportunity for ESG-aligned partners. ACSSUS has a proven track record with Coca-Cola, Esportes da Sorte, and Sebrae — and the digital channel adds measurable impact across all three ESG pillars.</p>
@@ -3570,41 +3675,41 @@
             </defs>
             <rect x="200" y="40" width="280" height="96" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
             <text x="340" y="72" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="15" font-weight="700" fill="#085041">Backoffice</text>
-            <text x="340" y="94" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#0F6E56">Artisans · Products · Categories · Prices</text>
-            <text x="340" y="112" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#0F6E56">Payment management · ESG indicators</text>
+            <text x="340" y="94" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#085041">Artisans · Products · Categories · Prices</text>
+            <text x="340" y="112" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#085041">Payment management · ESG indicators</text>
             <line x1="340" y1="136" x2="340" y2="184" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#arch-arrow-d)"/>
             <rect x="180" y="188" width="320" height="86" rx="12" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
             <text x="340" y="218" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="15" font-weight="700" fill="#27500A">Integration hub</text>
-            <text x="340" y="240" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#3B6D11">Inventory · invoicing · cash flow</text>
-            <text x="340" y="258" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#3B6D11">Consolidated entries and exits</text>
-            <path d="M270 274 L270 310 L90 310 L90 358" fill="none" stroke="#B4B2A9" stroke-width="0.5" marker-end="url(#arch-arrow-d)"/>
-            <path d="M410 274 L410 310 L590 310 L590 358" fill="none" stroke="#B4B2A9" stroke-width="0.5" marker-end="url(#arch-arrow-d)"/>
+            <text x="340" y="240" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#27500A">Inventory · invoicing · cash flow</text>
+            <text x="340" y="258" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#27500A">Consolidated entries and exits</text>
+            <path d="M270 274 L270 310 L90 310 L90 358" fill="none" stroke="#7A776E" stroke-width="0.5" marker-end="url(#arch-arrow-d)"/>
+            <path d="M410 274 L410 310 L590 310 L590 358" fill="none" stroke="#7A776E" stroke-width="0.5" marker-end="url(#arch-arrow-d)"/>
             <rect x="52" y="300" width="76" height="18" rx="2" fill="#FFFCF6"/>
-            <text x="90" y="310" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#5F5E5A">"catalog"</text>
+            <text x="90" y="310" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#2C2C2A">"catalog"</text>
             <rect x="552" y="300" width="76" height="18" rx="2" fill="#FFFCF6"/>
-            <text x="590" y="310" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#5F5E5A">"store"</text>
-            <path d="M90 478 L90 526 L272 526" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
-            <path d="M590 478 L590 526 L408 526" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+            <text x="590" y="310" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#2C2C2A">"store"</text>
+            <path d="M90 478 L90 526 L272 526" fill="none" stroke="#7A776E" stroke-width="0.5"/>
+            <path d="M590 478 L590 526 L408 526" fill="none" stroke="#7A776E" stroke-width="0.5"/>
             <rect x="22" y="358" width="196" height="120" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
             <text x="120" y="392" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="15" font-weight="700" fill="#633806">Nuvemshop</text>
-            <text x="120" y="414" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#854F0B">NGO landing page</text>
-            <text x="120" y="432" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#854F0B">Built-in checkout</text>
+            <text x="120" y="414" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#633806">NGO landing page</text>
+            <text x="120" y="432" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#633806">Built-in checkout</text>
             <rect x="462" y="358" width="196" height="120" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
             <text x="560" y="392" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="15" font-weight="700" fill="#4A1B0C">Mercado Livre</text>
-            <text x="560" y="414" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#993C1D">API integration</text>
-            <text x="560" y="432" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#993C1D">Checkouts and shipping</text>
-            <line x1="220" y1="418" x2="460" y2="418" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="5 4" marker-end="url(#arch-arrow-d)"/>
-            <text x="340" y="408" text-anchor="middle" font-family="'Karla', sans-serif" font-size="11" fill="#888780">logistics</text>
-            <rect x="185" y="514" width="310" height="42" rx="10" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+            <text x="560" y="414" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#4A1B0C">API integration</text>
+            <text x="560" y="432" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" fill="#4A1B0C">Checkouts and shipping</text>
+            <line x1="220" y1="418" x2="460" y2="418" stroke="#7A776E" stroke-width="1" stroke-dasharray="5 4" marker-end="url(#arch-arrow-d)"/>
+            <text x="340" y="408" text-anchor="middle" font-family="'Karla', sans-serif" font-size="11" fill="#2C2C2A">logistics</text>
+            <rect x="185" y="514" width="310" height="42" rx="10" fill="#F1EFE8" stroke="#7A776E" stroke-width="0.5"/>
             <text x="340" y="535" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="13" font-weight="600" fill="#2C2C2A">Catalog and shipping integration</text>
-            <rect x="126" y="572" width="10" height="10" rx="2" fill="#1D9E75"/>
-            <text x="142" y="581" font-family="'Karla', sans-serif" font-size="11" fill="#5F5E5A">Central platform</text>
-            <rect x="256" y="572" width="10" height="10" rx="2" fill="#639922"/>
-            <text x="272" y="581" font-family="'Karla', sans-serif" font-size="11" fill="#5F5E5A">Hub / integration</text>
-            <rect x="390" y="572" width="10" height="10" rx="2" fill="#BA7517"/>
-            <text x="406" y="581" font-family="'Karla', sans-serif" font-size="11" fill="#5F5E5A">Catalog channel</text>
+            <rect x="126" y="572" width="10" height="10" rx="2" fill="#0F6E56"/>
+            <text x="142" y="581" font-family="'Karla', sans-serif" font-size="11" fill="#2C2C2A">Central platform</text>
+            <rect x="256" y="572" width="10" height="10" rx="2" fill="#3B6D11"/>
+            <text x="272" y="581" font-family="'Karla', sans-serif" font-size="11" fill="#2C2C2A">Hub / integration</text>
+            <rect x="390" y="572" width="10" height="10" rx="2" fill="#854F0B"/>
+            <text x="406" y="581" font-family="'Karla', sans-serif" font-size="11" fill="#2C2C2A">Catalog channel</text>
             <rect x="514" y="572" width="10" height="10" rx="2" fill="#993C1D"/>
-            <text x="530" y="581" font-family="'Karla', sans-serif" font-size="11" fill="#5F5E5A">Store channel</text>
+            <text x="530" y="581" font-family="'Karla', sans-serif" font-size="11" fill="#2C2C2A">Store channel</text>
           </svg>
           <!-- MOBILE: canais lado a lado, compactos -->
           <svg class="arch-mobile" width="100%" viewBox="0 0 340 490" role="img">
@@ -3617,41 +3722,41 @@
             </defs>
             <rect x="10" y="20" width="320" height="80" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
             <text x="170" y="47" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="13" font-weight="700" fill="#085041">Backoffice</text>
-            <text x="170" y="66" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#0F6E56">Artisans · Products · Categories · Prices</text>
-            <text x="170" y="82" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#0F6E56">Payment management · ESG indicators</text>
+            <text x="170" y="66" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#085041">Artisans · Products · Categories · Prices</text>
+            <text x="170" y="82" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#085041">Payment management · ESG indicators</text>
             <line x1="170" y1="100" x2="170" y2="128" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#arch-arrow-m)"/>
             <rect x="10" y="132" width="320" height="72" rx="10" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
             <text x="170" y="157" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="13" font-weight="700" fill="#27500A">Integration hub</text>
-            <text x="170" y="176" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#3B6D11">Inventory · invoicing · cash flow</text>
-            <text x="170" y="192" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#3B6D11">Consolidated entries and exits</text>
-            <path d="M120 204 L120 224 L87 224 L87 252" fill="none" stroke="#B4B2A9" stroke-width="0.5" marker-end="url(#arch-arrow-m)"/>
+            <text x="170" y="176" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#27500A">Inventory · invoicing · cash flow</text>
+            <text x="170" y="192" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#27500A">Consolidated entries and exits</text>
+            <path d="M120 204 L120 224 L87 224 L87 252" fill="none" stroke="#7A776E" stroke-width="0.5" marker-end="url(#arch-arrow-m)"/>
             <rect x="50" y="215" width="58" height="14" rx="2" fill="#FFFCF6"/>
-            <text x="79" y="222" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#5F5E5A">"catalog"</text>
-            <path d="M220 204 L220 224 L253 224 L253 252" fill="none" stroke="#B4B2A9" stroke-width="0.5" marker-end="url(#arch-arrow-m)"/>
+            <text x="79" y="222" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#2C2C2A">"catalog"</text>
+            <path d="M220 204 L220 224 L253 224 L253 252" fill="none" stroke="#7A776E" stroke-width="0.5" marker-end="url(#arch-arrow-m)"/>
             <rect x="232" y="215" width="44" height="14" rx="2" fill="#FFFCF6"/>
-            <text x="254" y="222" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#5F5E5A">"store"</text>
+            <text x="254" y="222" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#2C2C2A">"store"</text>
             <rect x="10" y="256" width="155" height="90" rx="10" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
             <text x="87" y="284" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" font-weight="700" fill="#633806">Nuvemshop</text>
-            <text x="87" y="304" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#854F0B">NGO landing page</text>
-            <text x="87" y="320" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#854F0B">Built-in checkout</text>
+            <text x="87" y="304" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#633806">NGO landing page</text>
+            <text x="87" y="320" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#633806">Built-in checkout</text>
             <rect x="175" y="256" width="155" height="90" rx="10" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
             <text x="253" y="284" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="12" font-weight="700" fill="#4A1B0C">Mercado Livre</text>
-            <text x="253" y="304" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#993C1D">API integration</text>
-            <text x="253" y="320" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#993C1D">Checkouts and shipping</text>
-            <line x1="166" y1="301" x2="174" y2="301" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arch-arrow-m)"/>
-            <path d="M87 346 L87 368 L170 368" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
-            <path d="M253 346 L253 368 L170 368" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
-            <line x1="170" y1="368" x2="170" y2="382" stroke="#B4B2A9" stroke-width="0.5" marker-end="url(#arch-arrow-m)"/>
-            <rect x="10" y="386" width="320" height="36" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+            <text x="253" y="304" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#4A1B0C">API integration</text>
+            <text x="253" y="320" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="10" fill="#4A1B0C">Checkouts and shipping</text>
+            <line x1="166" y1="301" x2="174" y2="301" stroke="#7A776E" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arch-arrow-m)"/>
+            <path d="M87 346 L87 368 L170 368" fill="none" stroke="#7A776E" stroke-width="0.5"/>
+            <path d="M253 346 L253 368 L170 368" fill="none" stroke="#7A776E" stroke-width="0.5"/>
+            <line x1="170" y1="368" x2="170" y2="382" stroke="#7A776E" stroke-width="0.5" marker-end="url(#arch-arrow-m)"/>
+            <rect x="10" y="386" width="320" height="36" rx="8" fill="#F1EFE8" stroke="#7A776E" stroke-width="0.5"/>
             <text x="170" y="404" text-anchor="middle" dominant-baseline="central" font-family="'Karla', sans-serif" font-size="11" font-weight="600" fill="#2C2C2A">Catalog and shipping integration</text>
-            <rect x="10" y="436" width="8" height="8" rx="1" fill="#1D9E75"/>
-            <text x="22" y="444" font-family="'Karla', sans-serif" font-size="9" fill="#5F5E5A">Central platform</text>
-            <rect x="115" y="436" width="8" height="8" rx="1" fill="#639922"/>
-            <text x="127" y="444" font-family="'Karla', sans-serif" font-size="9" fill="#5F5E5A">Hub / integration</text>
-            <rect x="230" y="436" width="8" height="8" rx="1" fill="#BA7517"/>
-            <text x="242" y="444" font-family="'Karla', sans-serif" font-size="9" fill="#5F5E5A">Catalog channel</text>
+            <rect x="10" y="436" width="8" height="8" rx="1" fill="#0F6E56"/>
+            <text x="22" y="444" font-family="'Karla', sans-serif" font-size="9" fill="#2C2C2A">Central platform</text>
+            <rect x="115" y="436" width="8" height="8" rx="1" fill="#3B6D11"/>
+            <text x="127" y="444" font-family="'Karla', sans-serif" font-size="9" fill="#2C2C2A">Hub / integration</text>
+            <rect x="230" y="436" width="8" height="8" rx="1" fill="#854F0B"/>
+            <text x="242" y="444" font-family="'Karla', sans-serif" font-size="9" fill="#2C2C2A">Catalog channel</text>
             <rect x="10" y="456" width="8" height="8" rx="1" fill="#993C1D"/>
-            <text x="22" y="464" font-family="'Karla', sans-serif" font-size="9" fill="#5F5E5A">Store channel</text>
+            <text x="22" y="464" font-family="'Karla', sans-serif" font-size="9" fill="#2C2C2A">Store channel</text>
           </svg>
           <figcaption>Solution architecture — three-layer model connecting the back office, integration hub, and two sales channels.</figcaption>
         </figure>
@@ -3680,16 +3785,31 @@
         <p>The project delivered a grounded, viable proposal for the NGO — not just wireframes, but an integrated strategy with a business model, risk analysis, and a fundraising plan.</p>
 
         <h3>What Worked</h3>
-        <ul class="case-list">
-          <li>Embedding financial modeling into the UX process prevented the team from prioritizing features that would be operationally unviable.</li>
-          <li>The quantitative survey (n = 89) grounded pricing and shipping parameters in real data, before the business plan was drafted.</li>
-          <li>The ESG argument emerged from the data — it was not added as a cosmetic layer, but built as a structural part of the business model.</li>
+        <ul class="achv-list">
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+            <p>Embedding financial modeling into the UX process prevented the team from prioritizing features that would be operationally unviable.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <p>The quantitative survey (n = 89) grounded pricing and shipping parameters in real data, before the business plan was drafted.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <p>The ESG argument emerged from the data — it was not added as a cosmetic layer, but built as a structural part of the business model.</p>
+          </li>
         </ul>
 
         <h3>Project Limitations</h3>
-        <ul class="case-list">
-          <li>No direct access to artisans: decisions on revenue share and production load were made using secondary data and conservative assumptions.</li>
-          <li>The NGO has no available cash to absorb the early deficit months — external funding is a prerequisite for operations, not optional.</li>
+        <ul class="achv-list">
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <p>No direct access to artisans: decisions on revenue share and production load were made using secondary data and conservative assumptions.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <p>The NGO has no available cash to absorb the early deficit months — external funding is a prerequisite for operations, not optional.</p>
+          </li>
         </ul>
       </div>
       </section>
