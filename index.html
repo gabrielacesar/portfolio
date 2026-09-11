@@ -1,4 +1,4 @@
-<!-- Versão: v82 | Gerado por Claude em: 2026-09-01T12:43:04Z | Ref: v82_portfolio_gabriela_cesar_01092026.html -->
+<!-- Versão: v85 | Gerado por Claude em: 2026-09-08T13:52:23Z | Ref: v85_portfolio_gabriela_cesar_08092026.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1170,6 +1170,118 @@
     border-top: 6px solid var(--border-soft);
   }
 
+  /* hero overrides */
+  /* Scoped to the home hero only. Does not touch the global h1 rule (line ~291) —
+     .hero-title is a new, independent class. Reuses existing tokens only:
+     no new colors/fonts/spacing introduced. */
+
+  .hero-eyebrow{
+    font-family: var(--font-body);
+    font-weight: var(--weight-regular);
+    font-size: var(--text-size-sm);
+    color: var(--text-dark);
+    opacity: 0.7;
+    margin: 0 0 var(--space-sm);
+  }
+
+  .hero-title{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--text-dark);
+    margin: 0 0 var(--space-md);
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+  @media (max-width: 40rem){
+    .hero-title{ font-size: clamp(2.25rem, 9vw, 3rem); }
+  }
+  @media (max-width: 22rem){
+    .hero-title{ font-size: 1.9rem; }
+  }
+
+  .hero-sub{ margin: 0 0 var(--space-lg); }
+  .hero-sub .line2{
+    display: block;
+    font-family: var(--font-body);
+    font-weight: var(--weight-regular);
+    font-size: clamp(var(--text-size-md), 1.6vw, 1.4rem);
+    color: var(--text-dark);
+    opacity: 0.7;
+    line-height: 1.4;
+  }
+  @media (max-width: 22rem){
+    .hero-sub .line2{ font-size: var(--text-size-base); }
+  }
+
+  .hero-ctas{
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin: 0 0 var(--space-lg);
+  }
+  .hero-cta{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: var(--text-size-base);
+    text-decoration: none;
+    padding: 0.85rem 1.5rem;
+    border-radius: var(--radius-sm);
+    min-height: var(--touch-min);
+  }
+  .hero-cta--primary{
+    color: var(--text-maroon);
+    border: var(--border-width) solid var(--text-maroon);
+    background: transparent;
+  }
+  .hero-cta--primary:hover,
+  .hero-cta--primary:focus-visible{
+    background: var(--text-maroon);
+    color: var(--text-cream);
+  }
+  .hero-cta--secondary{
+    color: var(--text-maroon);
+    border: var(--border-width) solid transparent;
+    background: transparent;
+  }
+  .hero-cta--secondary:hover,
+  .hero-cta--secondary:focus-visible{
+    text-decoration: underline;
+  }
+
+  .hero-proof{
+    display: flex;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+    padding-top: var(--space-lg);
+    border-top: var(--border-width) solid var(--border-soft);
+  }
+  .hero-proof-item{
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .hero-proof-number{
+    font-family: var(--font-display);
+    font-weight: var(--weight-black);
+    font-size: var(--text-size-lg);
+    color: var(--text-maroon);
+    line-height: 1;
+  }
+  .hero-proof-label{
+    font-family: var(--font-body);
+    font-size: var(--text-size-xs);
+    color: var(--text-dark);
+    opacity: 0.7;
+    max-width: 16ch;
+    line-height: 1.35;
+  }
+
 </style>
 </head>
 <body>
@@ -1203,48 +1315,34 @@
     <div class="hero-grid wrap">
       <div class="hero">
         <div class="page-hero-icon" aria-hidden="true"><svg viewBox="0 0 22 22" fill="none"><rect x="0" y="0" width="9" height="9" rx="1.5" fill="#751600" opacity="0.22"/><rect x="13" y="0" width="9" height="9" rx="1.5" fill="#751600"/><rect x="0" y="13" width="9" height="9" rx="1.5" fill="#751600" opacity="0.22"/><rect x="13" y="13" width="9" height="9" rx="1.5" fill="#751600" opacity="0.22"/></svg></div>
-        <h1>Gabriela César</h1>
-        <p class="role-tag">Design Lead &amp; UX Strategist</p>
-        <p class="lede">I'm a product designer with <strong>5+ years helping teams solve complex problems</strong> through <strong>UX strategy, product discovery, and DesignOps</strong>. I work closely with product, engineering, and business stakeholders to ask the right questions, run fast experiments (including AI-backed prototypes), and build design systems that scale. I focus on <strong>practical, user-centered solutions that improve outcomes</strong> and make people's lives easier.</p>
+        <p class="hero-eyebrow">Gabriela César · Design Lead &amp; UX Strategist</p>
+        <p class="hero-title" role="heading" aria-level="1">Turning ambiguity into scalable design</p>
+        <p class="hero-sub">
+          <span class="line2">Research-driven, people-first, built to grow with the business.</span>
+        </p>
 
-        <ul class="contact-row" aria-label="Contact me">
-          <li>
-            <a class="icon-link" href="https://www.linkedin.com/in/gabrielacesar/?locale=en-US" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-              <span class="label">/gabrielacesar</span>
-            </a>
-          </li>
-          <li>
-            <a class="icon-link" href="mailto:cestgabiloja@gmail.com">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
-              <span class="label">cestgabiloja@gmail.com</span>
-            </a>
-          </li>
-        </ul>
+        <div class="hero-ctas">
+          <a class="hero-cta hero-cta--primary" href="javascript:void(0)" data-nav="home" data-anchor="portfolio-h">View my work</a>
+          <a class="hero-cta hero-cta--secondary" href="mailto:cestgabiloja@gmail.com">Let's talk</a>
+        </div>
+
+        <div class="hero-proof">
+          <div class="hero-proof-item">
+            <span class="hero-proof-number">600k+</span>
+            <span class="hero-proof-label">Downloads in first month · Luccas Toon app</span>
+          </div>
+          <div class="hero-proof-item">
+            <span class="hero-proof-number">USD 160k</span>
+            <span class="hero-proof-label">Revenue driven · Medcel's Black Friday campaign</span>
+          </div>
+          <div class="hero-proof-item">
+            <span class="hero-proof-number">100k+</span>
+            <span class="hero-proof-label">Tickets/season impacted · Conexão Biotec portal</span>
+          </div>
+        </div>
       </div>
     </div>
     </div>
-
-    <section class="section section--peach" aria-labelledby="work-h">
-      <div class="wrap">
-        <h2 id="work-h">Key Achievements &amp; Milestones</h2>
-        <p>Some achievements and important milestones:</p>
-        <ul class="achv-list">
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-            <p>Luccas Toon app built from user research to app launch, with a 4.3-star rating in stores</p>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-            <p>Design leadership for 2023 Black Friday campaign, generating over USD 160,000 in website sales</p>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-            <p>Critical-flow solution proposal for the Bayer ticketing portal, impacting 100,000+ tickets per harvest season and supporting the project team's expansion</p>
-          </li>
-        </ul>
-      </div>
-    </section>
 
     <section class="section section--maroon inverted" aria-labelledby="portfolio-h">
       <div class="wrap">
@@ -1557,14 +1655,20 @@
       <section class="case-section case-section--cream">
       <div class="wrap">
         <h2>🧑‍🤝‍🧑 Team & Roles</h2>
-        <ul class="case-list">
-          <li>Design Lead • André Roberti</li>
-          <li>UX Designer and Researcher • Gabriela Cesar</li>
-          <li>Game Designer • Gabriela Cesar</li>
-          <li>UI Designer and Illustrations • Hector Paoletti</li>
-          <li>UI Designer and Illustrations • Juliana Iasi</li>
-          <li>Design Assistant • Renata Caldas</li>
-        </ul>
+        <div class="table-scroll table-responsive">
+          <table class="case-table">
+            <thead>
+              <tr><th>Person</th><th>Contribution</th></tr>
+            </thead>
+            <tbody>
+              <tr><td data-label="Person">Gabriela César</td><td data-label="Contribution">Planning and execution of research with children, analysis of YouTube comments, facilitation of ideation workshops, prototype creation, and data analysis</td></tr>
+              <tr><td data-label="Person">André Roberti</td><td data-label="Contribution">Design Lead</td></tr>
+              <tr><td data-label="Person">Hector Paoletti</td><td data-label="Contribution">UI Design and illustrations</td></tr>
+              <tr><td data-label="Person">Juliana Iasi</td><td data-label="Contribution">UI Design and illustrations</td></tr>
+              <tr><td data-label="Person">Renata Caldas</td><td data-label="Contribution">Design assistance</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       </section>
 
@@ -2055,6 +2159,13 @@
       </div>
       </section>
 
+      <section class="case-section case-section--cream">
+      <div class="wrap">
+        <h2>👤 My Role</h2>
+        <p>Led the semi-structured interviews with analysts, reviewers, and auditors (April–May 2024, conducted online via Microsoft Teams), facilitated the cross-functional ideation workshop with business and operations teams, and prototyped the solutions for ticket opening and analysis.</p>
+      </div>
+      </section>
+
       <section class="case-section case-section--peach">
       <div class="wrap">
         <h2>🗺️ Project Phases</h2>
@@ -2291,6 +2402,25 @@
       </div>
       </section>
 
+      <section class="case-section case-section--cream">
+      <div class="wrap">
+        <h2>🧑‍🤝‍🧑 Team & Roles</h2>
+        <div class="table-scroll table-responsive">
+          <table class="case-table">
+            <thead>
+              <tr><th>Person</th><th>Contribution</th></tr>
+            </thead>
+            <tbody>
+              <tr><td data-label="Person">Gabriela César</td><td data-label="Contribution">Call Analysis (ingestion and thematic classification of calls via LLMs), Solution Benchmarking, Technical Refinement &amp; Prototyping</td></tr>
+              <tr><td data-label="Person">Durval Amorim</td><td data-label="Contribution">Solution Benchmarking, Technical Refinement &amp; Prototyping</td></tr>
+              <tr><td data-label="Person">Braulio Araujo and Sofia Antonio</td><td data-label="Contribution">Design Leadership</td></tr>
+              <tr><td data-label="Person">Yuri Moskovitz</td><td data-label="Contribution">Product Owner</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </section>
+
       <section class="case-section case-section--peach">
       <div class="wrap">
         <h2>🗺️ Project Phases</h2>
@@ -2442,6 +2572,23 @@
         <h2>📋 Executive Summary</h2>
         <p>A low-cost clinic network — serving both out-of-pocket patients and patients using a discount benefit card (B2B and B2C) — needed to better understand the experience of the two audiences that sustain the business from opposite sides of the counter: the people who seek care, and the people who provide it. Until then, product and operational decisions were made without a structured view of who these patients are, what drives — or prevents — their loyalty, and what motivates or discourages the physicians who make up the clinical staff. There was no consistent qualitative foundation to inform decisions on retention, communication, and journey design.</p>
         <p>Research objective: map the motivations, pain points, perceived value, and journey of both patients and physicians, translating findings into personas and actionable opportunities for the product and business teams.</p>
+      </div>
+      </section>
+
+      <section class="case-section case-section--cream">
+      <div class="wrap">
+        <h2>🧑‍🤝‍🧑 Team & Roles</h2>
+        <div class="table-scroll table-responsive">
+          <table class="case-table">
+            <thead>
+              <tr><th>Person</th><th>Contribution</th></tr>
+            </thead>
+            <tbody>
+              <tr><td data-label="Person">Gabriela César</td><td data-label="Contribution">Script and sample design, facilitation of all interviews (patients and physicians), qualitative analysis, persona construction</td></tr>
+              <tr><td data-label="Person">Diego Ortega</td><td data-label="Contribution">Service Designer: integrated journey and empathy workshops</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       </section>
 
@@ -2897,16 +3044,20 @@
       <section class="case-section case-section--cream">
       <div class="wrap">
         <h2>🧑‍🤝‍🧑 Team & Roles</h2>
-        <p><strong>Continuous Improvement Team</strong></p>
-        <ul class="case-list">
-          <li>Braulio Araujo</li>
-          <li>Sofia Antonio</li>
-          <li>Kellen Ramos</li>
-          <li>Yuri Moskovitz</li>
-          <li>Durval Amorim</li>
-          <li>Victor dos Santos</li>
-          <li>Gabriela Ribeiro</li>
-        </ul>
+        <div class="table-scroll table-responsive">
+          <table class="case-table">
+            <thead>
+              <tr><th>Person</th><th>Contribution</th></tr>
+            </thead>
+            <tbody>
+              <tr><td data-label="Person">Gabriela César</td><td data-label="Contribution">Solution Design (5-stage workflow), Validation (testing with analysts)</td></tr>
+              <tr><td data-label="Person">Kellen Ramos</td><td data-label="Contribution">Current State Assessment</td></tr>
+              <tr><td data-label="Person">Victor dos Santos</td><td data-label="Contribution">Product Designer Jr.</td></tr>
+              <tr><td data-label="Person">Braulio Araujo and Sofia Antonio</td><td data-label="Contribution">Design Leadership</td></tr>
+              <tr><td data-label="Person">Yuri Moskovitz</td><td data-label="Contribution">Product Owner</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       </section>
 
@@ -3233,13 +3384,20 @@
       <section class="case-section case-section--cream">
       <div class="wrap">
         <h2>🧑‍🤝‍🧑 Team & Roles</h2>
-        <ul class="case-list">
-          <li>Ana Nascimento</li>
-          <li>César Assis</li>
-          <li>Eliza Carvalho</li>
-          <li>Gabriela César — UX Strategy + Financial Modeling</li>
-          <li>Italo Utchuk</li>
-        </ul>
+        <div class="table-scroll table-responsive">
+          <table class="case-table">
+            <thead>
+              <tr><th>Person</th><th>Contribution</th></tr>
+            </thead>
+            <tbody>
+              <tr><td data-label="Person">Gabriela César</td><td data-label="Contribution">Full Financial Modeling, analysis of the NGO's financial report, logistics strategy, solution architecture, quantitative survey (jointly with the team)</td></tr>
+              <tr><td data-label="Person">Ana Nascimento</td><td data-label="Contribution">Competitive benchmarking</td></tr>
+              <tr><td data-label="Person">César Assis</td><td data-label="Contribution">Business Model Canvas</td></tr>
+              <tr><td data-label="Person">Eliza Carvalho</td><td data-label="Contribution">Personas and interviews</td></tr>
+              <tr><td data-label="Person">Ítalo Utchuk</td><td data-label="Contribution">MoSCoW prioritization, UI Design</td></tr>
+            </tbody>
+          </table>
+        </div>
         <p><em>Academic project — Postgraduate specialization in UX Strategic Leadership, ESPM, São Paulo. Advisor: Profa. Ma. Thais Campas Passos.</em></p>
       </div>
       </section>
