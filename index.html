@@ -1,4 +1,4 @@
-<!-- Versão: v85 | Gerado por Claude em: 2026-09-08T13:52:23Z | Ref: v85_portfolio_gabriela_cesar_08092026.html -->
+<!-- Versão: v89 | Gerado por Claude em: 2026-09-14T00:00:00Z | Ref: v89_portfolio_gabriela_cesar_14092026.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -3050,8 +3050,8 @@
               <tr><th>Person</th><th>Contribution</th></tr>
             </thead>
             <tbody>
-              <tr><td data-label="Person">Gabriela César</td><td data-label="Contribution">Solution Design (5-stage workflow), Validation (testing with analysts)</td></tr>
-              <tr><td data-label="Person">Kellen Ramos</td><td data-label="Contribution">Current State Assessment</td></tr>
+              <tr><td data-label="Person">Gabriela César</td><td data-label="Contribution">Analyst interviews (jointly with Kellen Ramos), as-is journey mapping (analyst decision flowcharts), Solution Design (5-stage workflow), internal buy-in prototyping (Figma Make), Validation (testing with analysts)</td></tr>
+              <tr><td data-label="Person">Kellen Ramos</td><td data-label="Contribution">Analyst interviews (jointly with Gabriela César), mapping of current analysis business rules with the business team and under analyst supervision</td></tr>
               <tr><td data-label="Person">Victor dos Santos</td><td data-label="Contribution">Product Designer Jr.</td></tr>
               <tr><td data-label="Person">Braulio Araujo and Sofia Antonio</td><td data-label="Contribution">Design Leadership</td></tr>
               <tr><td data-label="Person">Yuri Moskovitz</td><td data-label="Contribution">Product Owner</td></tr>
@@ -3088,6 +3088,7 @@
       <section class="case-section case-section--cream">
       <div class="wrap">
         <h2>🔍 Discovery & Problem Framing</h2>
+        <p>Current-state understanding was built through semi-structured interviews with transfer analysts, jointly conducted by Gabriela César and Kellen Ramos and held remotely via Microsoft Teams. Findings were consolidated into an as-is journey map — a flowchart capturing every decision point in the analyst's manual workflow, built collaboratively in Mural — alongside a mapping of the current analysis business rules, led by Kellen Ramos together with the business team and under analyst supervision. This Current State Assessment was conducted in 2025, ahead of the 2025/2026 crop season.</p>
         <h3>Current State</h3>
         <h4>Manual Operations</h4>
         <ul class="achv-list">
@@ -3108,7 +3109,7 @@
         <ul class="achv-list">
           <li>
             <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-            <p>Received documents are not classified during the analysis process.</p>
+            <p>Received documents are not classified during the analysis process, an evolution that would let OCR and AI automatically apply the right checklist for each declared document type.</p>
           </li>
           <li>
             <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
@@ -3164,7 +3165,58 @@
           <li>Documentation Usage History</li>
           <li>Analysis Outcome</li>
         </ol>
-        <p>This structure guides analysts through the review process while ensuring visibility, traceability, and consistency in decision-making.</p>
+        <p>This structure guides analysts through the review process while ensuring visibility, traceability, and consistency in decision-making. The five stages are ordered from simplest to most complex, guiding analysts — from newcomers to seniors — through checks that prevent rework and stop incomplete or inconsistent tickets from advancing:</p>
+        <ul class="case-list">
+          <li><strong>Duplicate Verification</strong> — lets duplicate tickets be promptly canceled or returned to the requester, avoiding the more labor-intensive documentation analysis for cases that wouldn't need it at all.</li>
+          <li><strong>Document Triage</strong> — a basic acceptability check of each submitted attachment: legibility, completeness, absence of alterations, and whether the documentation actually belongs to the parties involved in the ticket (sender and recipient), plus document classification. Inconsistent documentation is rejected immediately, with a deadline for the requester to resubmit an acceptable version — so an analysis never moves forward on missing, inconsistent, or incomplete documents.</li>
+          <li><strong>Detailed Analysis</strong> — an in-depth review of the complete, already-accepted documentation set against the established analysis rules and the declared transfer reason, with every attachment viewed together on a single screen.</li>
+          <li><strong>Documentation Usage History</strong> — for specific scenarios, confirms that the requested volume is actually available and that the submitted documentation hasn't already been used in another ticket — considering every party listed in the contract, not just sender and recipient.</li>
+          <li><strong>Analysis Outcome</strong> — surfaces system alerts with recommended next steps: approve the ticket, return it for the requester to complete rejected documentation, or route it to the business's specialist team for deeper investigation.</li>
+        </ul>
+
+        <h3>Validation Activities</h3>
+        <ul class="case-list">
+          <li><strong>Internal Buy-in Prototyping:</strong> rounds of interactive experiments built in Figma Make were used to secure internal approval of the proposed workflow before validation with analysts.</li>
+          <li><strong>End-to-End Analysis Scenario:</strong> a complete transfer request analysis was executed to evaluate the full workflow experience, from initial verification to final outcome.</li>
+          <li><strong>Simplified Analysis Scenario:</strong> duplicate-request scenarios were tested to validate the effectiveness of the duplicate-verification experience and supporting decision-making mechanisms.</li>
+        </ul>
+        <div class="case-fig-grid case-fig-grid--2">
+          <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/tv_figma_make1.png" alt="Figma Make prototype of the analyst's landing screen" loading="lazy"></figure>
+          <figure class="case-fig"><img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/tv_figma_make2.png" alt="Figma Make prototype of the analysis support checklist" loading="lazy"></figure>
+        </div>
+        <p class="case-footnote">Prototypes built in Figma Make in 2025 — the only AI-assisted UI tool approved for this project at the time — used to visualize the proposed portal during internal buy-in rounds.</p>
+
+        <h3>User Testing Learnings</h3>
+        <div class="phase-grid">
+          <div class="phase-card">
+            <h4>What Worked Well</h4>
+            <p><strong>Duplicate Verification, Volume Analysis, and Triage</strong></p>
+            <ul class="case-list">
+              <li>Error scenarios were clearly highlighted.</li>
+              <li>Analysts were naturally guided toward the most critical review points.</li>
+              <li>Cognitive load was reduced through workflow segmentation.</li>
+              <li>Embedded business rules and checklists improved focus and confidence during analysis.</li>
+            </ul>
+            <p><strong>Guided Analysis Experience</strong></p>
+            <ul class="case-list">
+              <li>Analysts appreciated having review instructions available directly within the workflow.</li>
+              <li>Structured checkpoints freed analysts from relying on memorized procedures.</li>
+            </ul>
+          </div>
+          <div class="phase-card">
+            <h4>Areas Requiring Attention</h4>
+            <p><strong>Microinteractions</strong></p>
+            <ul class="case-list">
+              <li>Feedback mechanisms should clearly communicate when an action has been successfully executed.</li>
+              <li>Excessive free-text inputs should be avoided to minimize handling time.</li>
+            </ul>
+            <p><strong>Information Visibility</strong></p>
+            <ul class="case-list">
+              <li>Analysts expect access to participant and farmer information throughout the entire analysis process.</li>
+              <li>Critical contextual information should remain accessible regardless of the current workflow stage.</li>
+            </ul>
+          </div>
+        </div>
 
         <h3>Implemented Improvements</h3>
 
@@ -3249,77 +3301,30 @@
             <p>Reduced risk of approving transfers not supported by the available contractual documentation.</p>
           </li>
         </ul>
-
-        <h3>Validation Activities</h3>
-        <ul class="case-list">
-          <li><strong>End-to-End Analysis Scenario:</strong> a complete transfer request analysis was executed to evaluate the full workflow experience, from initial verification to final outcome.</li>
-          <li><strong>Simplified Analysis Scenario:</strong> duplicate-request scenarios were tested to validate the effectiveness of the duplicate-verification experience and supporting decision-making mechanisms.</li>
-        </ul>
-
-        <h3>User Testing Learnings</h3>
-        <div class="phase-grid">
-          <div class="phase-card">
-            <h4>What Worked Well</h4>
-            <p><strong>Duplicate Verification, Volume Analysis, and Triage</strong></p>
-            <ul class="case-list">
-              <li>Error scenarios were clearly highlighted.</li>
-              <li>Analysts were naturally guided toward the most critical review points.</li>
-              <li>Cognitive load was reduced through workflow segmentation.</li>
-              <li>Embedded business rules and checklists improved focus and confidence during analysis.</li>
-            </ul>
-            <p><strong>Guided Analysis Experience</strong></p>
-            <ul class="case-list">
-              <li>Analysts appreciated having review instructions available directly within the workflow.</li>
-              <li>Structured checkpoints freed analysts from relying on memorized procedures.</li>
-            </ul>
-          </div>
-          <div class="phase-card">
-            <h4>Areas Requiring Attention</h4>
-            <p><strong>Microinteractions</strong></p>
-            <ul class="case-list">
-              <li>Feedback mechanisms should clearly communicate when an action has been successfully executed.</li>
-              <li>Excessive free-text inputs should be avoided to minimize handling time.</li>
-            </ul>
-            <p><strong>Information Visibility</strong></p>
-            <ul class="case-list">
-              <li>Analysts expect access to participant and farmer information throughout the entire analysis process.</li>
-              <li>Critical contextual information should remain accessible regardless of the current workflow stage.</li>
-            </ul>
-          </div>
-        </div>
       </div>
       </section>
 
       <section class="case-section case-section--maroon">
       <div class="wrap">
         <h2>📈 Results & Key Insights</h2>
-        <h3>Next Steps</h3>
         <h4>Production Rollout</h4>
-        <ul class="achv-list">
-          <li>
-            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-            <p>Select a pilot group together with Operations.</p>
-          </li>
-          <li>
-            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-            <p>Deploy the portal to the production environment.</p>
-          </li>
-          <li>
-            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-            <p>Train participating analysts.</p>
-          </li>
-          <li>
-            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-            <p>Collect operational feedback and measure adoption.</p>
-          </li>
+        <p>Ahead of the full production rollout, the team selected a pilot group together with Operations and collected operational feedback to validate the new workflow before wider deployment. After reviewing the findings and resolving the identified blockers, the entire operation was trained on the new portal ahead of full deployment.</p>
+
+        <h4>Impact</h4>
+        <p>The initiative is expected to deliver:</p>
+        <ul class="case-list">
+          <li>Reduced onboarding and training time.</li>
+          <li>Increased consistency across analysis decisions.</li>
+          <li>Improved operational traceability.</li>
+          <li>Better support for quality-control and auditing activities.</li>
+          <li>Reduced manual effort during document analysis.</li>
+          <li>Structured data generation to enable future reporting and automation initiatives.</li>
+          <li>Readiness for future AI-assisted workflows.</li>
         </ul>
+
         <h4>Future Enhancements</h4>
         <p>Post-launch improvements should focus on:</p>
         <ul class="achv-list">
-          <li>
-            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-            <p>ITS duplicate-request integration.</p>
-          </li>
           <li>
             <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
             <p>Additional automation opportunities identified during production usage.</p>
@@ -3332,18 +3337,6 @@
             <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
             <p>Evolution of AI-assisted analysis features.</p>
           </li>
-        </ul>
-
-        <h4>Impact</h4>
-        <p>The initiative is expected to deliver:</p>
-        <ul class="case-list">
-          <li>Reduced onboarding and training time.</li>
-          <li>Increased consistency across analysis decisions.</li>
-          <li>Improved operational traceability.</li>
-          <li>Better support for quality-control and auditing activities.</li>
-          <li>Reduced manual effort during document analysis.</li>
-          <li>Structured data generation to enable future reporting and automation initiatives.</li>
-          <li>Readiness for future AI-assisted workflows.</li>
         </ul>
       </div>
       </section>
