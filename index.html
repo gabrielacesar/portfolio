@@ -1,4 +1,4 @@
-<!-- Versão: v91 | Gerado por Claude em: 2026-09-14T00:00:00Z | Ref: v91_portfolio_gabriela_cesar_14092026.html -->
+<!-- Versão: v100 | Gerado por Claude em: 2026-09-14T00:00:00Z | Ref: v100_portfolio_gabriela_cesar_14092026.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,6 +46,8 @@
     --text-maroon: #751600; /* links, primary actions, emphasis */
     --text-cream: #FFFCF6;  /* text on maroon/inverted surfaces */
     --text-coral: #F25667;  /* LARGE/DISPLAY TEXT ONLY — see a11y note */
+    --text-neutral-warm: #625454; /* muted warm gray — captions/footnotes on CREAM or PEACH backgrounds only. AA/AAA: 7.03:1 on --bg-cream, 5.14:1 on --bg-peach. Do NOT use on --bg-maroon (1.56:1, fails) — use --text-cream-muted there instead. v100: formalized as a token (previously only a var() fallback, never declared in :root). */
+    --text-cream-muted: rgba(255,252,246,0.85); /* muted/secondary variant of --text-cream (same color, 85% opacity) for captions/footnotes on maroon backgrounds — 8.23:1 vs --bg-maroon, WCAG AAA. Reuses --text-cream's value rather than introducing a new hex, per project color-token rule. v100. */
 
     /* --- color: structural --- */
     --border-soft: rgba(54,46,46,0.16);
@@ -475,6 +477,11 @@
   .section--maroon{ background: var(--bg-maroon); color: var(--text-cream); }
   .section--maroon h2, .section--maroon h3{ color: var(--text-cream); }
   .section--maroon a{ color: var(--text-cream); }
+  /* v100 a11y fix: same as .case-section--maroon below — if a .case-footnote
+     or .case-fig figcaption is ever placed inside this Home maroon section,
+     keep it off the cream/peach-only --text-neutral-warm color. */
+  .section--maroon .case-footnote,
+  .section--maroon .case-fig figcaption{ color: var(--text-cream-muted); }
 
   /* ============ CONTACT ROW ============ */
   /* Mobile: cards stack full-width. From --bp-md up, cards sit side by
@@ -773,7 +780,7 @@
     border-radius: 999px; padding: 0.25rem var(--space-md);
   }
   .case-about{ font-size: var(--text-size-md); max-width: 42em; }
-  .case-footnote{ font-size: var(--text-size-xs); color: var(--text-neutral-warm, #625454); font-style: italic; }
+  .case-footnote{ font-size: var(--text-size-xs); color: var(--text-neutral-warm); font-style: italic; }
 
   /* case-body: remove bottom padding — last section provides its own */
   .case-body{ padding-bottom: 0; }
@@ -798,6 +805,12 @@
   .case-section--maroon .footnote-ref{ color: var(--text-cream); }
   .case-section--maroon .achv-list li{ background: var(--bg-maroon); border-color: rgba(255,252,246,0.28); }
   .case-section--maroon .achv-list li svg{ color: var(--text-cream); }
+  /* v100 a11y fix: .case-footnote and .case-fig figcaption default to
+     --text-neutral-warm (#625454), tuned for cream/peach backgrounds only
+     (1.56:1 on maroon — fails WCAG entirely). Re-point to --text-cream-muted
+     wherever that muted caption/footnote text lands on a maroon section. */
+  .case-section--maroon .case-footnote,
+  .case-section--maroon .case-fig figcaption{ color: var(--text-cream-muted); }
 
   /* Cards inside peach sections → cream bg for contrast (achv-list lógica da home) */
   .case-section--peach .case-callout{ background: var(--bg-cream); }
@@ -896,7 +909,7 @@
     animation-fill-mode: both;
     animation-delay: calc(var(--i, 0) * var(--stagger-step));
   }
-  .case-fig figcaption{ margin-top: var(--space-xs); font-size: var(--text-size-xs); color: var(--text-neutral-warm, #625454); }
+  .case-fig figcaption{ margin-top: var(--space-xs); font-size: var(--text-size-xs); color: var(--text-neutral-warm); }
   .fig-credit{ font-style: italic; }
   .case-fig-grid{ display:grid; gap: var(--space-md); margin: var(--space-md) 0; }
   .case-fig-grid--2{ grid-template-columns: 1fr 1fr; }
@@ -3038,6 +3051,7 @@
       <div class="wrap">
         <h2>📋 Executive Summary</h2>
         <p>The solution restructures the analyst journey into guided stages, replacing manual and knowledge-dependent activities with standardized workflows, contextual information, and structured analysis checklists. The initiative also reduces analyst onboarding time and establishes the foundation for quality monitoring, auditing, and future AI-assisted decision support.</p>
+        <p>Transfer requests peak not at planting but at grain delivery — typically February through April — when farmers discover a shortfall in their soybean exemption volume balance. Analysts operate under an extremely tight SLA during this window, making full production readiness ahead of the peak critical to the business.</p>
       </div>
       </section>
 
@@ -3088,7 +3102,11 @@
       <section class="case-section case-section--cream">
       <div class="wrap">
         <h2>🔍 Discovery & Problem Framing</h2>
-        <p>Current-state understanding was built through semi-structured interviews with transfer analysts, jointly conducted by Gabriela César and Kellen Ramos and held remotely via Microsoft Teams. Findings were consolidated into an as-is journey map — a flowchart capturing every decision point in the analyst's manual workflow, built collaboratively in Mural — alongside a mapping of the current analysis business rules, led by Kellen Ramos together with the business team and under analyst supervision. This Current State Assessment was conducted in 2025, ahead of the 2025/2026 crop season.</p>
+        <p>Current-state understanding was built through semi-structured interviews with transfer analysts, jointly conducted by Gabriela César and Kellen Ramos and held remotely via Microsoft Teams. Findings were consolidated into an as-is journey map — a flowchart capturing every decision point in the analyst's manual workflow, built collaboratively in Mural — alongside a mapping of the current analysis business rules, led by Kellen Ramos together with the business team and under analyst supervision. This Current State Assessment was conducted in 2025, during the 2025/2026 crop season.</p>
+        <figure class="case-fig" style="max-width:22rem; margin-left:auto; margin-right:auto;">
+          <img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/tv_interviews_commercial_team.png" alt="Interviews with key stakeholders from the soybean commercial team" loading="lazy">
+          <figcaption>Interview series conducted with key stakeholders for maintaining system integrity: technical sales representatives from the soybean commercial team.</figcaption>
+        </figure>
         <h3>Current State</h3>
         <h4>Manual Operations</h4>
         <ul class="achv-list">
@@ -3187,6 +3205,10 @@
         <p class="case-footnote">Prototypes built in Figma Make in 2025 — the only AI-assisted UI tool approved for this project at the time — used to visualize the proposed portal during internal buy-in rounds.</p>
 
         <h3>User Testing Learnings</h3>
+        <figure class="case-fig" style="margin-left:0; margin-right:0; width:100%;">
+          <img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/tv_testing_with_user.png" alt="User testing session with an analyst from the operation" loading="lazy">
+          <figcaption>User testing session with a back-office analyst, conducted in a staging environment.</figcaption>
+        </figure>
         <div class="phase-grid">
           <div class="phase-card">
             <h4>What Worked Well</h4>
@@ -3209,11 +3231,13 @@
             <ul class="case-list">
               <li>Feedback mechanisms should clearly communicate when an action has been successfully executed.</li>
               <li>Excessive free-text inputs should be avoided to minimize handling time.</li>
+              <li>→ Resolved pre-launch by adjusting the checklist's feedback actions and reducing free-text fields.</li>
             </ul>
             <p><strong>Information Visibility</strong></p>
             <ul class="case-list">
               <li>Analysts expect access to participant and farmer information throughout the entire analysis process.</li>
               <li>Critical contextual information should remain accessible regardless of the current workflow stage.</li>
+              <li>→ Resolved pre-launch by making participant and farmer data persistently visible in the header, replacing the previous collapsible accordion.</li>
             </ul>
           </div>
         </div>
@@ -3321,6 +3345,19 @@
           <li>Structured data generation to enable future reporting and automation initiatives.</li>
           <li>Readiness for future AI-assisted workflows.</li>
         </ul>
+
+        <h4>Post-launch Automation</h4>
+        <p>The structured workflow and the data captured by the checklists made it possible to automate two post-launch scenarios, both scheduled for production in the first month of Q4: <strong>External-base sync</strong>, which selects transfer reasons validated against external bases (e.g. CNPJ records) directly within the workflow — low-risk cases with a confirmed match are approved automatically, without analyst review — and <strong>Automatic bond creation</strong>, which for family-relationship transfers validated by the analyst (~37% of transfer requests, January–April 2026 data) creates a lasting bond between the two farmers, so future transactions between them are automated and the same documentation isn't re-analyzed.</p>
+        <div class="case-fig-grid case-fig-grid--2">
+          <figure class="case-fig">
+            <img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/tv_api_farmers.png" alt="Illustration representing the external-base sync automation" loading="lazy">
+            <figcaption>External-base confirmation for corporate-ownership transfers — an individual transferring to a CNPJ they hold equity in, or vice versa. For low-risk cases, once the farmer's presence in the company's ownership structure is confirmed, approval is streamlined through API-based data exchange.</figcaption>
+          </figure>
+          <figure class="case-fig">
+            <img src="https://raw.githubusercontent.com/gabrielacesar/portfolio/refs/heads/main/tv_farmer_bond.png" alt="Illustration representing the automatic bond creation automation" loading="lazy">
+            <figcaption>Approved family-relationship requests can create a systemic bond between the two farmers, automating future transfers and waiving document re-analysis between the same parties for the same reason.</figcaption>
+          </figure>
+        </div>
 
         <h4>Future Enhancements</h4>
         <p>Post-launch improvements should focus on:</p>
